@@ -1,0 +1,29 @@
+.cl-primary {
+  color: #b2b2b2 !important;
+}
+.bg-gray {
+  background: #222 !important;
+}
+.out-line-none {
+  outline: none !important;
+}
+.border-radius-2 {
+  border-radius: 2rem !important;
+}
+.hover_translate {
+  transition: all 0.2s;
+}
+.hover_translate:hover {
+  transform: translateY(-0.5rem);
+}
+.btn_submit {
+  background: #717fe0 !important;
+  transition: all 0.2s;
+}
+.btn_submit:hover {
+  background-color: white !important;
+  color: #717fe0 !important;
+}
+.h-46 {
+  height: 46px !important;
+}
