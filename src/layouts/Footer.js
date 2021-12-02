@@ -135,11 +135,7 @@ function Footer() {
               </a>
               <a href="/#" className="col-sm-2 col-md-2 p-0">
                 <img
-<<<<<<< HEAD
                   src="./images/icons/icon-pay-05.png"
-=======
-                  src="images/icons/icon-pay-05.png"
->>>>>>> c3d78f0019f021b708761f0ffd1fc1f854efa00a
                   className=" hover_translate"
                   alt="ICON-PAY"
                 />

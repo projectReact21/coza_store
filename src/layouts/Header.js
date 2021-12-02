@@ -1,11 +1,7 @@
 import React from "react";
 import "./layout.css";
 import { Navbar, Container, Nav, Form, Row, Col } from "react-bootstrap";
-<<<<<<< HEAD
 import { NavLink } from "react-router-dom";
-=======
-import {} from "react-router-dom";
->>>>>>> c3d78f0019f021b708761f0ffd1fc1f854efa00a
 
 function Header() {
   return (
@@ -59,14 +55,24 @@ function Header() {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto mx-4">
-              <Nav.Link href="#home">Home</Nav.Link>
-              <Nav.Link href="#About">About</Nav.Link>
-              <Nav.Link href="#Shop">Shop</Nav.Link>
+              <Nav.Link as={NavLink} to="/home">
+                Home
+              </Nav.Link>
+              <Nav.Link as={NavLink} to="/about">
+                About
+              </Nav.Link>
+              <Nav.Link as={NavLink} to="/shop">
+                Shop
+              </Nav.Link>
               <Nav.Link as={NavLink} to="/feature">
                 Features
               </Nav.Link>
-              <Nav.Link href="#Blog">Blog</Nav.Link>
-              <Nav.Link href="#Contact">Contact</Nav.Link>
+              <Nav.Link as={NavLink} to="/blog">
+                Blog
+              </Nav.Link>
+              <Nav.Link as={NavLink} to="/contact">
+                Contact
+              </Nav.Link>
             </Nav>
 
             <Form className="d-flex">

@@ -413,3 +413,37 @@ input.num-product::-webkit-inner-spin-button {
   line-height: 1.466667;
   color: #333;
 }
+.dropdown-item:hover,
+.dropdown-item:focus {
+  color: #fff;
+  background-color: #717fe0;
+}
+.btn-info {
+  border: none;
+  width: 100%;
+  background-color: transparent;
+}
+.btn-info:hover {
+  color: #000;
+  background-color: transparent;
+  border-color: #999999;
+}
+.show > .btn-info.dropdown-toggle:focus {
+  box-shadow: none;
+}
+.show > .btn-info.dropdown-toggle {
+  color: #000;
+  background-color: transparent;
+  border-color: #9999;
+}
+.btn-info:focus {
+  color: #000;
+  background-color: transparent;
+  border-color: #9999;
+  box-shadow: none;
+}
+
+.dropdown-menu.show {
+  display: block;
+  width: 100%;
+}

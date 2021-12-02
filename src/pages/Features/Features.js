@@ -1,6 +1,6 @@
 import React from "react";
 import "./Features.css";
-import { Container, Row } from "react-bootstrap";
+import { Container, Dropdown, Row } from "react-bootstrap";
 
 const Features = () => {
   return (
@@ -118,11 +118,21 @@ const Features = () => {
                       <span className="stext-112 cl8">Calculate Shipping</span>
 
                       <div className="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-                        <select className="js-select2" name="time">
+                        <Dropdown>
+                          <Dropdown.Toggle variant="info" id="dropdown-basic">
+                            Select a country...
+                          </Dropdown.Toggle>
+
+                          <Dropdown.Menu>
+                            <Dropdown.Item>USA</Dropdown.Item>
+                            <Dropdown.Item>UK</Dropdown.Item>
+                          </Dropdown.Menu>
+                        </Dropdown>
+                        {/* <select className="js-select2" name="time">
                           <option>Select a country...</option>
                           <option>USA</option>
                           <option>UK</option>
-                        </select>
+                        </select> */}
                         <div className="dropDownSelect2"></div>
                       </div>
 

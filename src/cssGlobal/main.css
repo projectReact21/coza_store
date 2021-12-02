@@ -36,8 +36,6 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
-
-<<<<<<< HEAD
 /* @font-face {
   
   src: url("../fonts/Poppins/Poppins-Regular.ttf");
@@ -77,49 +75,6 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 /* @font-face {
   font-family: PlayfairDisplay-Regular;
   src: url("../fonts/PlayfairDisplay/PlayfairDisplay-Regular.ttf");
-=======
-@font-face {
-  font-family: Poppins-Regular;
-  src: import "../fonts/Poppins/Poppins-Regular.ttf";
-}
-
-@font-face {
-  font-family: Poppins-Light;
-  src: import "../fonts/Poppins/Poppins-Light.ttf";
-}
-
-@font-face {
-  font-family: Poppins-ExtraLight;
-  src: import "../fonts/Poppins/Poppins-ExtraLight.ttf";
-}
-
-@font-face {
-  font-family: Poppins-Medium;
-  src: import "../fonts/Poppins/Poppins-Medium.ttf";
-}
-
-@font-face {
-  font-family: Poppins-Italic;
-  src: import "../fonts/Poppins/Poppins-Italic.ttf";
-}
-
-@font-face {
-  font-family: Poppins-Bold;
-  src: import "../fonts/Poppins/Poppins-Bold.ttf";
-}
-
-@font-face {
-  font-family: Poppins-SemiBold;
-  src: import "../fonts/Poppins/Poppins-SemiBold.ttf";
-}
-
-/* //--------------------------------------------- */
-@font-face {
-  font-family: PlayfairDisplay-Regular;
-  src: import "../fonts/PlayfairDisplay/PlayfairDisplay-Regular.ttf";
->>>>>>> c3d78f0019f021b708761f0ffd1fc1f854efa00a
-}
-
 @font-face {
   font-family: PlayfairDisplay-Bold;
 <<<<<<< HEAD
@@ -136,23 +91,6 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   src: url("../fonts/Montserrat/Montserrat-Bold.ttf");
 }
 */
-*/
-=======
-  src: import "../fonts/PlayfairDisplay/PlayfairDisplay-Bold.ttf";
-}
-
-/* --------------------------------------------- */
-@font-face {
-  font-family: Montserrat-Regular;
-  src: import "../fonts/Montserrat/Montserrat-Regular.ttf";
-}
-
-@font-face {
-  font-family: Montserrat-Bold;
-  src: import "../fonts/Montserrat/Montserrat-Bold.ttf";
-}
->>>>>>> c3d78f0019f021b708761f0ffd1fc1f854efa00a
-
 /*//////////////////////////////////////////////////////////////////
 [ RS PLUGIN ]*/
 
@@ -1029,11 +967,6 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
 .header-cart-item-img::after {
   content: "\e870";
-<<<<<<< HEAD
-
-=======
-  font-family: Linearicons-Free;
->>>>>>> c3d78f0019f021b708761f0ffd1fc1f854efa00a
   font-size: 16px;
   display: -webkit-box;
   display: -webkit-flex;
@@ -1128,10 +1061,6 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   .select2-container
   .select2-selection--single
   .select2-selection__rendered {
-<<<<<<< HEAD
-=======
-  font-family: Poppins-Regular;
->>>>>>> c3d78f0019f021b708761f0ffd1fc1f854efa00a
   font-size: 13px;
   color: #555;
   line-height: 1.2;
@@ -3067,11 +2996,6 @@ input.num-product::-webkit-inner-spin-button {
 
 .how-itemcart1::after {
   content: "\e870";
-<<<<<<< HEAD
-
-=======
-  font-family: Linearicons-Free;
->>>>>>> c3d78f0019f021b708761f0ffd1fc1f854efa00a
   font-size: 16px;
   display: -webkit-box;
   display: -webkit-flex;
