@@ -1,42 +1,51 @@
 import React from 'react';
-import {Carousel} from 'react-bootstrap'
-import CarouselItem from './../../component/CarouselItem';
+import {Carousel,Button} from 'react-bootstrap'
+import slide01 from  './imghome/slide-01.jpg'
+import slide02 from  './imghome/slide-02.jpg'
+import slide03 from  './imghome/slide-03.jpg'
+
+
+
 function Banner() {
     return ( 
-        <Carousel fade>
+        <Carousel  >
             <Carousel.Item>
                 <img
                 className="d-block w-100"
-                src="imghome/slide-01.jpg"
+                src= {slide01}
                 alt="First slide"
                 />
                 <Carousel.Caption>
-                <h3>First slide label</h3>
-                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                <h3>Women Collection 2018</h3>
+                <p>NEW SEASON</p>
+                <Button>shop now</Button>
                 </Carousel.Caption>
             </Carousel.Item>
+            
             <Carousel.Item>
                 <img
                 className="d-block w-100"
-                src="imghome/slide-02.jpg"
+                src= {slide02} 
                 alt="Second slide"
                 />
 
                 <Carousel.Caption>
-                <h3>Second slide label</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <h3>Men New-Season</h3>
+                <p>New arrivals</p>
+                <Button>shop now</Button>
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>
                 <img
                 className="d-block w-100"
-                src="imghome/slide-03.jpg"
+                src= {slide03} 
                 alt="Third slide"
                 />
 
                 <Carousel.Caption>
-                <h3>Third slide label</h3>
-                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                <h3>Men Collection 2018</h3>
+                <p>Jackets & Coats</p>
+                <Button>shop now</Button>
                 </Carousel.Caption>
             </Carousel.Item>
         </Carousel>

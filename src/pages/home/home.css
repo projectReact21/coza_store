@@ -1,0 +1,54 @@
+.interface {
+  position: absolute !important;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(103, 117, 214, 0.8) !important;
+  display: none;
+  transition: all .5s !important;
+  display: block; }
+
+.carousel h3 {
+  color: black;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  word-spacing: 2px; }
+.carousel p {
+  color: black;
+  font-size: 4rem; }
+.carousel-caption {
+  text-align: start !important;
+  top: 5rem !important;
+  left: 1rem !important; }
+  .carousel-caption button {
+    text-transform: uppercase; }
+
+.card__item {
+  position: relative; }
+  .card__item:hover::before {
+    display: block; }
+  .card__item:hover .card__item--title, .card__item:hover .card__item--text {
+    color: white; }
+  .card__item--title {
+    color: black;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 2rem; }
+  .card__item--text {
+    color: black;
+    font-size: 1rem;
+    font-weight: 600; }
+
+@keyframes hoverShopNow {
+  from {
+    font-size: 1rem;
+    opacity: 0;
+    display: none; }
+  to {
+    font-size: 2rem;
+    opacity: 1;
+    display: block; } }
+
+/*# sourceMappingURL=home.css.map */

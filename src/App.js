@@ -2,11 +2,16 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.css";
 import DefaultLayout from "./layouts/DefaultLayout";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
     <>
-      <DefaultLayout />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/*" element={<DefaultLayout />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
