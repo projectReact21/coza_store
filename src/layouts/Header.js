@@ -1,7 +1,11 @@
 import React from "react";
 import "./layout.css";
 import { Navbar, Container, Nav, Form, Row, Col } from "react-bootstrap";
+<<<<<<< HEAD
 import { NavLink } from "react-router-dom";
+=======
+import {} from "react-router-dom";
+>>>>>>> c3d78f0019f021b708761f0ffd1fc1f854efa00a
 
 function Header() {
   return (
