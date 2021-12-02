@@ -6,7 +6,7 @@ function DefaultLayout() {
   return (
     <>
       <Header />
-        <Home/>
+      <Home />
       <Footer />
     </>
   );

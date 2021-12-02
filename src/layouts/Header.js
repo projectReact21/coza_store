@@ -1,24 +1,48 @@
 import React from "react";
 import "./layout.css";
-import { Navbar, Container, Nav, Form,Row,Col } from "react-bootstrap";
+import { Navbar, Container, Nav, Form, Row, Col } from "react-bootstrap";
 import {} from "react-router-dom";
 
 function Header() {
   return (
     <>
-      
-      <Container fluid  className="top-bar">
+      <Container fluid className="top-bar">
         <Row>
           <Col md={6}>
-              <Nav.Link href="/#">Free shipping for standard order over $100</Nav.Link>
+            <Nav.Link href="/#">
+              Free shipping for standard order over $100
+            </Nav.Link>
           </Col>
           <Col md={6}>
             <Row className=" align-items-center mt-1">
-              <Col md={4}> <Nav.Link href="/#" className="p-0"> Help & FAQs</Nav.Link></Col>
-              <Col md={4}> <Nav.Link href="/#" className="p-0"> My Account</Nav.Link></Col>
-              <Col> <Nav.Link href="/#" className="p-0">  EN</Nav.Link></Col>
-              <Col> <Nav.Link href="/#" className="p-0">  USD</Nav.Link></Col>
-
+              <Col md={4}>
+                {" "}
+                <Nav.Link href="/#" className="p-0">
+                  {" "}
+                  Help & FAQs
+                </Nav.Link>
+              </Col>
+              <Col md={4}>
+                {" "}
+                <Nav.Link href="/#" className="p-0">
+                  {" "}
+                  My Account
+                </Nav.Link>
+              </Col>
+              <Col>
+                {" "}
+                <Nav.Link href="/#" className="p-0">
+                  {" "}
+                  EN
+                </Nav.Link>
+              </Col>
+              <Col>
+                {" "}
+                <Nav.Link href="/#" className="p-0">
+                  {" "}
+                  USD
+                </Nav.Link>
+              </Col>
             </Row>
           </Col>
         </Row>
