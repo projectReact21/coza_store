@@ -1,7 +1,7 @@
 import React from "react";
 import "./layout.css";
 import { Navbar, Container, Nav, Form, Row, Col } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 function Header() {
   return (
@@ -24,7 +24,7 @@ function Header() {
               </Col>
               <Col md={4}>
                 {" "}
-                <Nav.Link href="/#" className="p-0">
+                <Nav.Link as={Link} to="/login" className="p-0">
                   {" "}
                   My Account
                 </Nav.Link>
@@ -90,6 +90,7 @@ function Header() {
                   aria-hidden="true"
                 ></i>
               </label>
+
               <i
                 className="fa fa-shopping-cart fs-3 mt-1 mx-2"
                 aria-hidden="true"

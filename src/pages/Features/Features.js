@@ -1,8 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Features.css";
 import { Container, Dropdown, Row } from "react-bootstrap";
+import itemcart1 from "./images/item-cart-04.jpg";
 
 const Features = () => {
+  const [quantity, setQuantity] = useState(1);
+  const handleQuantityDown = (e) => {
+    e.preventDefault();
+    const count = quantity;
+    if (count > 0) {
+      setQuantity(count - 1);
+    }
+  };
+  const handleQuantityUp = (e) => {
+    e.preventDefault();
+    const count = quantity;
+    if (count >= 0) {
+      setQuantity(count + 1);
+    }
+  };
   return (
     <>
       <Container>
@@ -39,27 +55,36 @@ const Features = () => {
                       <tr className="table_row">
                         <td className="column-1">
                           <div className="how-itemcart1">
-                            <img src="images/item-cart-04.jpg" alt="IMG" />
+                            <img
+                              src={itemcart1}
+                              style={{ width: "100%" }}
+                              alt="IMG"
+                            />
                           </div>
                         </td>
                         <td className="column-2">Fresh Strawberries</td>
                         <td className="column-3">$ 36.00</td>
                         <td className="column-4">
-                          <div className="wrap-num-product flex-w m-l-auto m-r-0">
-                            <div className="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-                              <span className="spanplus">-</span>
-                            </div>
-
+                          <div className="quantity-input">
+                            <button
+                              className="quantity-input__modifier quantity-input__modifier--left"
+                              onClick={(e) => handleQuantityDown(e)}
+                            >
+                              &mdash;
+                            </button>
                             <input
-                              className="mtext-104 cl3 txt-center num-product"
-                              type="number"
-                              name="num-product1"
-                              defaultValue="1"
+                              className="quantity-input__screen"
+                              type="text"
+                              value={quantity}
+                              // value={this.state.value}
+                              readonly
                             />
-
-                            <div className="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-                              <span className="spanplus">+</span>
-                            </div>
+                            <button
+                              className="quantity-input__modifier quantity-input__modifier--right"
+                              onClick={(e) => handleQuantityUp(e)}
+                            >
+                              &#xff0b;
+                            </button>
                           </div>
                         </td>
                         <td className="column-5">$ 36.00</td>
@@ -128,11 +153,6 @@ const Features = () => {
                             <Dropdown.Item>UK</Dropdown.Item>
                           </Dropdown.Menu>
                         </Dropdown>
-                        {/* <select className="js-select2" name="time">
-                          <option>Select a country...</option>
-                          <option>USA</option>
-                          <option>UK</option>
-                        </select> */}
                         <div className="dropDownSelect2"></div>
                       </div>
 
