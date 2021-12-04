@@ -2,12 +2,11 @@
   font-size: 1.2rem;
 }
 .nav-link:hover {
-  color: #6c7ae0 !important;
+  color: #0d6efd !important;
 }
 
-.navbar-light .navbar-nav .show > .nav-link,
-.navbar-light .navbar-nav .nav-link.active {
-  color: #6c7ae0;
+.nav-link.active {
+  border-bottom: solid blue 1px;
 }
 .nav-item {
   color: #b2b2b2;

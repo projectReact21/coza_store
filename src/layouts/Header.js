@@ -1,7 +1,7 @@
 import React from "react";
 import "./layout.css";
 import { Navbar, Container, Nav, Form, Row, Col } from "react-bootstrap";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Header() {
   return (
@@ -24,7 +24,7 @@ function Header() {
               </Col>
               <Col md={4}>
                 {" "}
-                <Nav.Link as={Link} to="/login" className="p-0">
+                <Nav.Link href="/#" className="p-0">
                   {" "}
                   My Account
                 </Nav.Link>
@@ -50,7 +50,7 @@ function Header() {
       <Navbar expand="lg" collapseOnSelect>
         <Container fluid>
           <Navbar.Brand href="#">
-            <img src="images/icons/logo-01.png" alt="IMG-LOGO" />
+            <img src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/logo-01.png?raw=true" alt="IMG-LOGO" />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
@@ -90,7 +90,6 @@ function Header() {
                   aria-hidden="true"
                 ></i>
               </label>
-
               <i
                 className="fa fa-shopping-cart fs-3 mt-1 mx-2"
                 aria-hidden="true"
