@@ -1,29 +1,6 @@
 import React from "react";
-// import { Form } from "react-bootstrap";
-// import logo1 from "./imageShop/logo-01.png";
-// import logo2 from "./imageShop/logo-02.png";
-import product01 from "./images/product-01.jpg";
-import product02 from "./images/product-02.jpg";
-import product03 from "./images/product-03.jpg";
-import product04 from "./images/product-04.jpg";
-import product05 from "./images/product-05.jpg";
-import product06 from "./images/product-06.jpg";
-import product07 from "./images/product-07.jpg";
-import product08 from "./images/product-08.jpg";
-import product09 from "./images/product-09.jpg";
-import product10 from "./images/product-10.jpg";
-import product11 from "./images/product-11.jpg";
-import product12 from "./images/product-12.jpg";
-import product13 from "./images/product-13.jpg";
-import product14 from "./images/product-14.jpg";
-import product15 from "./images/product-15.jpg";
-import product16 from "./images/product-16.jpg";
-import heart02 from "./images/icon-heart-02.png";
-import heart01 from "./images/icon-heart-01.png";
-
 const Shop = () => {
   return (
-<<<<<<< HEAD
     <div>
       {/* <!-- Product --> */}
       <div className="bg0 m-t-23 p-b-140">
@@ -324,20 +301,6 @@ const Shop = () => {
                   </div>
                 </div>
               </div>
-=======
-    <>
-      {/* <HeaderShop /> */}
-      {/* <!-- Cart -->*/}
-      <div className="wrap-header-cart js-panel-cart">
-        <div className="s-full js-hide-cart"></div>
-
-        <div className="header-cart flex-col-l p-l-65 p-r-25">
-          <div className="header-cart-title flex-w flex-sb-m p-b-8">
-            <span className="mtext-10 cl2">Your Cart</span>
-
-            <div className="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
-              <i className="zmdi zmdi-close"></i>
->>>>>>> a740401045807372dad33ccd56f5f73c69547f7f
             </div>
           </div>
 
@@ -346,7 +309,10 @@ const Shop = () => {
               {/*<!-- Block2 -->*/}
               <div className="block2">
                 <div className="block2-pic hov-img0">
-                  <img src={product01} alt="IMG-PRODUCT" />
+                  <img
+                    src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-01.jpg?raw=true "
+                    alt="IMG-PRODUCT"
+                  />
 
                   <a
                     href="/#"
@@ -375,12 +341,12 @@ const Shop = () => {
                     >
                       <img
                         className="icon-heart1 dis-block trans-04"
-                        src={heart01}
+                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-01.png?raw=true"
                         alt="ICON"
                       />
                       <img
                         className="icon-heart2 dis-block trans-04 ab-t-l"
-                        src={heart02}
+                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-02.png?raw=true"
                         alt="ICON"
                       />
                     </a>
@@ -393,7 +359,10 @@ const Shop = () => {
               {/*<!-- Block2 -->*/}
               <div className="block2">
                 <div className="block2-pic hov-img0">
-                  <img src={product02} alt="IMG-PRODUCT" />
+                  <img
+                    src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-02.jpg?raw=true "
+                    alt="IMG-PRODUCT"
+                  />
 
                   <a
                     href="/#"
@@ -422,12 +391,12 @@ const Shop = () => {
                     >
                       <img
                         className="icon-heart1 dis-block trans-04"
-                        src={heart01}
+                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-01.png?raw=true"
                         alt="ICON"
                       />
                       <img
                         className="icon-heart2 dis-block trans-04 ab-t-l"
-                        src={heart02}
+                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-02.png?raw=true"
                         alt="ICON"
                       />
                     </a>
@@ -440,7 +409,10 @@ const Shop = () => {
               {/*<!-- Block2 -->*/}
               <div className="block2">
                 <div className="block2-pic hov-img0">
-                  <img src={product03} alt="IMG-PRODUCT" />
+                  <img
+                    src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-03.jpg?raw=true "
+                    alt="IMG-PRODUCT"
+                  />
 
                   <a
                     href="/#"
@@ -469,12 +441,12 @@ const Shop = () => {
                     >
                       <img
                         className="icon-heart1 dis-block trans-04"
-                        src={heart01}
+                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-01.png?raw=true"
                         alt="ICON"
                       />
                       <img
                         className="icon-heart2 dis-block trans-04 ab-t-l"
-                        src={heart02}
+                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-02.png?raw=true"
                         alt="ICON"
                       />
                     </a>
@@ -487,7 +459,10 @@ const Shop = () => {
               {/*<!-- Block2 -->*/}
               <div className="block2">
                 <div className="block2-pic hov-img0">
-                  <img src={product04} alt="IMG-PRODUCT" />
+                  <img
+                    src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-04.jpg?raw=true "
+                    alt="IMG-PRODUCT"
+                  />
 
                   <a
                     href="/#"
@@ -516,12 +491,12 @@ const Shop = () => {
                     >
                       <img
                         className="icon-heart1 dis-block trans-04"
-                        src={heart01}
+                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-01.png?raw=true"
                         alt="ICON"
                       />
                       <img
                         className="icon-heart2 dis-block trans-04 ab-t-l"
-                        src={heart02}
+                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-02.png?raw=true"
                         alt="ICON"
                       />
                     </a>
@@ -534,7 +509,10 @@ const Shop = () => {
               {/*<!-- Block2 -->*/}
               <div className="block2">
                 <div className="block2-pic hov-img0">
-                  <img src={product05} alt="IMG-PRODUCT" />
+                  <img
+                    src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-05.jpg?raw=true "
+                    alt="IMG-PRODUCT"
+                  />
 
                   <a
                     href="/#"
@@ -563,12 +541,12 @@ const Shop = () => {
                     >
                       <img
                         className="icon-heart1 dis-block trans-04"
-                        src={heart01}
+                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-01.png?raw=true"
                         alt="ICON"
                       />
                       <img
                         className="icon-heart2 dis-block trans-04 ab-t-l"
-                        src={heart02}
+                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-02.png?raw=true"
                         alt="ICON"
                       />
                     </a>
@@ -581,7 +559,10 @@ const Shop = () => {
               {/*<!-- Block2 -->*/}
               <div className="block2">
                 <div className="block2-pic hov-img0">
-                  <img src={product06} alt="IMG-PRODUCT" />
+                  <img
+                    src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-06.jpg?raw=true "
+                    alt="IMG-PRODUCT"
+                  />
 
                   <a
                     href="/#"
@@ -610,12 +591,12 @@ const Shop = () => {
                     >
                       <img
                         className="icon-heart1 dis-block trans-04"
-                        src={heart01}
+                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-01.png?raw=true"
                         alt="ICON"
                       />
                       <img
                         className="icon-heart2 dis-block trans-04 ab-t-l"
-                        src={heart02}
+                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-02.png?raw=true"
                         alt="ICON"
                       />
                     </a>
@@ -628,7 +609,10 @@ const Shop = () => {
               {/*<!-- Block2 -->*/}
               <div className="block2">
                 <div className="block2-pic hov-img0">
-                  <img src={product07} alt="IMG-PRODUCT" />
+                  <img
+                    src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-07.jpg?raw=true "
+                    alt="IMG-PRODUCT"
+                  />
 
                   <a
                     href="/#"
@@ -657,12 +641,12 @@ const Shop = () => {
                     >
                       <img
                         className="icon-heart1 dis-block trans-04"
-                        src={heart01}
+                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-01.png?raw=true"
                         alt="ICON"
                       />
                       <img
                         className="icon-heart2 dis-block trans-04 ab-t-l"
-                        src={heart02}
+                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-02.png?raw=true"
                         alt="ICON"
                       />
                     </a>
@@ -675,7 +659,10 @@ const Shop = () => {
               {/*<!-- Block2 -->*/}
               <div className="block2">
                 <div className="block2-pic hov-img0">
-                  <img src={product08} alt="IMG-PRODUCT" />
+                  <img
+                    src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-08.jpg?raw=true "
+                    alt="IMG-PRODUCT"
+                  />
 
                   <a
                     href="/#"
@@ -704,12 +691,12 @@ const Shop = () => {
                     >
                       <img
                         className="icon-heart1 dis-block trans-04"
-                        src={heart01}
+                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-01.png?raw=true"
                         alt="ICON"
                       />
                       <img
                         className="icon-heart2 dis-block trans-04 ab-t-l"
-                        src={heart02}
+                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-02.png?raw=true"
                         alt="ICON"
                       />
                     </a>
@@ -722,7 +709,10 @@ const Shop = () => {
               {/*<!-- Block2 -->*/}
               <div className="block2">
                 <div className="block2-pic hov-img0">
-                  <img src={product09} alt="IMG-PRODUCT" />
+                  <img
+                    src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-09.jpg?raw=true "
+                    alt="IMG-PRODUCT"
+                  />
 
                   <a
                     href="/#"
@@ -751,12 +741,12 @@ const Shop = () => {
                     >
                       <img
                         className="icon-heart1 dis-block trans-04"
-                        src={heart01}
+                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-01.png?raw=true"
                         alt="ICON"
                       />
                       <img
                         className="icon-heart2 dis-block trans-04 ab-t-l"
-                        src={heart02}
+                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-02.png?raw=true"
                         alt="ICON"
                       />
                     </a>
@@ -769,7 +759,10 @@ const Shop = () => {
               {/*<!-- Block2 -->*/}
               <div className="block2">
                 <div className="block2-pic hov-img0">
-                  <img src={product10} alt="IMG-PRODUCT" />
+                  <img
+                    src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-10.jpg?raw=true"
+                    alt="IMG-PRODUCT"
+                  />
 
                   <a
                     href="/#"
@@ -798,12 +791,12 @@ const Shop = () => {
                     >
                       <img
                         className="icon-heart1 dis-block trans-04"
-                        src={heart01}
+                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-01.png?raw=true"
                         alt="ICON"
                       />
                       <img
                         className="icon-heart2 dis-block trans-04 ab-t-l"
-                        src={heart02}
+                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-02.png?raw=true"
                         alt="ICON"
                       />
                     </a>
@@ -816,7 +809,10 @@ const Shop = () => {
               {/*<!-- Block2 -->*/}
               <div className="block2">
                 <div className="block2-pic hov-img0">
-                  <img src={product11} alt="IMG-PRODUCT" />
+                  <img
+                    src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-11.jpg?raw=true "
+                    alt="IMG-PRODUCT"
+                  />
 
                   <a
                     href="/#"
@@ -845,12 +841,12 @@ const Shop = () => {
                     >
                       <img
                         className="icon-heart1 dis-block trans-04"
-                        src={heart01}
+                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-01.png?raw=true"
                         alt="ICON"
                       />
                       <img
                         className="icon-heart2 dis-block trans-04 ab-t-l"
-                        src={heart02}
+                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-02.png?raw=true"
                         alt="ICON"
                       />
                     </a>
@@ -863,7 +859,10 @@ const Shop = () => {
               {/*<!-- Block2 -->*/}
               <div className="block2">
                 <div className="block2-pic hov-img0">
-                  <img src={product12} alt="IMG-PRODUCT" />
+                  <img
+                    src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-12.jpg?raw=true "
+                    alt="IMG-PRODUCT"
+                  />
 
                   <a
                     href="/#"
@@ -892,12 +891,12 @@ const Shop = () => {
                     >
                       <img
                         className="icon-heart1 dis-block trans-04"
-                        src={heart01}
+                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-01.png?raw=true"
                         alt="ICON"
                       />
                       <img
                         className="icon-heart2 dis-block trans-04 ab-t-l"
-                        src={heart02}
+                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-02.png?raw=true"
                         alt="ICON"
                       />
                     </a>
@@ -910,7 +909,10 @@ const Shop = () => {
               {/*<!-- Block2 -->*/}
               <div className="block2">
                 <div className="block2-pic hov-img0">
-                  <img src={product13} alt="IMG-PRODUCT" />
+                  <img
+                    src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-13.jpg?raw=true "
+                    alt="IMG-PRODUCT"
+                  />
 
                   <a
                     href="/#"
@@ -939,12 +941,12 @@ const Shop = () => {
                     >
                       <img
                         className="icon-heart1 dis-block trans-04"
-                        src={heart01}
+                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-01.png?raw=true"
                         alt="ICON"
                       />
                       <img
                         className="icon-heart2 dis-block trans-04 ab-t-l"
-                        src={heart02}
+                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-02.png?raw=true"
                         alt="ICON"
                       />
                     </a>
@@ -957,7 +959,10 @@ const Shop = () => {
               {/*<!-- Block2 -->*/}
               <div className="block2">
                 <div className="block2-pic hov-img0">
-                  <img src={product14} alt="IMG-PRODUCT" />
+                  <img
+                    src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-14.jpg?raw=true "
+                    alt="IMG-PRODUCT"
+                  />
 
                   <a
                     href="/#"
@@ -986,12 +991,12 @@ const Shop = () => {
                     >
                       <img
                         className="icon-heart1 dis-block trans-04"
-                        src={heart01}
+                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-01.png?raw=true"
                         alt="ICON"
                       />
                       <img
                         className="icon-heart2 dis-block trans-04 ab-t-l"
-                        src={heart02}
+                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-02.png?raw=true"
                         alt="ICON"
                       />
                     </a>
@@ -1004,7 +1009,10 @@ const Shop = () => {
               {/*<!-- Block2 -->*/}
               <div className="block2">
                 <div className="block2-pic hov-img0">
-                  <img src={product15} alt="IMG-PRODUCT" />
+                  <img
+                    src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-15.jpg?raw=true "
+                    alt="IMG-PRODUCT"
+                  />
 
                   <a
                     href="/#"
@@ -1033,12 +1041,12 @@ const Shop = () => {
                     >
                       <img
                         className="icon-heart1 dis-block trans-04"
-                        src={heart01}
+                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-01.png?raw=true"
                         alt="ICON"
                       />
                       <img
                         className="icon-heart2 dis-block trans-04 ab-t-l"
-                        src={heart02}
+                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-02.png?raw=true"
                         alt="ICON"
                       />
                     </a>
@@ -1051,7 +1059,10 @@ const Shop = () => {
               {/*<!-- Block2 -->*/}
               <div className="block2">
                 <div className="block2-pic hov-img0">
-                  <img src={product16} alt="IMG-PRODUCT" />
+                  <img
+                    src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-16.jpg?raw=true "
+                    alt="IMG-PRODUCT"
+                  />
 
                   <a
                     href="/#"
@@ -1080,12 +1091,12 @@ const Shop = () => {
                     >
                       <img
                         className="icon-heart1 dis-block trans-04"
-                        src={heart01}
+                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-01.png?raw=true"
                         alt="ICON"
                       />
                       <img
                         className="icon-heart2 dis-block trans-04 ab-t-l"
-                        src={heart02}
+                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-02.png?raw=true"
                         alt="ICON"
                       />
                     </a>
