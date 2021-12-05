@@ -1,5 +1,4 @@
 import React from "react";
-import "./layout.css";
 import { Navbar, Container, Nav, Form, Row, Col } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
@@ -50,7 +49,10 @@ function Header() {
       <Navbar expand="lg" collapseOnSelect>
         <Container fluid>
           <Navbar.Brand href="#">
-            <img src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/logo-01.png?raw=true" alt="IMG-LOGO" />
+            <img
+              src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/logo-01.png?raw=true"
+              alt="IMG-LOGO"
+            />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
