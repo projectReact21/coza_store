@@ -10,7 +10,7 @@ import cart5 from "./imageShop/item-cart-05.jpg";
 const Shop = () => {
   return (
     <>
-      <HeaderShop />
+      {/* <HeaderShop /> */}
       {/* <!-- Cart -->*/}
       <div className="wrap-header-cart js-panel-cart">
         <div className="s-full js-hide-cart"></div>
