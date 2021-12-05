@@ -118,6 +118,7 @@ function ProductOverview() {
       <Row className="gy-4">
         <Col sm={12} md={6} lg={3}>
           <ListProductItem
+            srcImg="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-01.jpg?raw=true"
             status="1"
             name="Esprit Ruffle Shirt"
             price="$16.64"
@@ -125,6 +126,7 @@ function ProductOverview() {
         </Col>
         <Col sm={12} md={6} lg={3}>
           <ListProductItem
+            srcImg="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-01.jpg?raw=true"
             status="0"
             name="Esprit Ruffle Shirt"
             price="$16.64"
@@ -132,6 +134,7 @@ function ProductOverview() {
         </Col>
         <Col sm={12} md={6} lg={3}>
           <ListProductItem
+            srcImg="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-01.jpg?raw=true"
             status="0"
             name="Esprit Ruffle Shirt"
             price="$16.64"
@@ -139,6 +142,7 @@ function ProductOverview() {
         </Col>
         <Col sm={12} md={6} lg={3}>
           <ListProductItem
+            srcImg="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-01.jpg?raw=true"
             status="0"
             name="Esprit Ruffle Shirt"
             price="$16.64"
@@ -146,6 +150,7 @@ function ProductOverview() {
         </Col>
         <Col sm={12} md={6} lg={3}>
           <ListProductItem
+            srcImg="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-01.jpg?raw=true"
             status="0"
             name="Esprit Ruffle Shirt"
             price="$16.64"
@@ -153,6 +158,7 @@ function ProductOverview() {
         </Col>
         <Col sm={12} md={6} lg={3}>
           <ListProductItem
+            srcImg="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-01.jpg?raw=true"
             status="0"
             name="Esprit Ruffle Shirt"
             price="$16.64"
@@ -160,6 +166,7 @@ function ProductOverview() {
         </Col>
         <Col sm={12} md={6} lg={3}>
           <ListProductItem
+            srcImg="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-01.jpg?raw=true"
             status="0"
             name="Esprit Ruffle Shirt"
             price="$16.64"
@@ -167,6 +174,7 @@ function ProductOverview() {
         </Col>
         <Col sm={12} md={6} lg={3}>
           <ListProductItem
+            srcImg="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-01.jpg?raw=true"
             status="0"
             name="Esprit Ruffle Shirt"
             price="$16.64"
@@ -174,6 +182,7 @@ function ProductOverview() {
         </Col>
         <Col sm={12} md={6} lg={3}>
           <ListProductItem
+            srcImg="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-01.jpg?raw=true"
             status="0"
             name="Esprit Ruffle Shirt"
             price="$16.64"

@@ -1,15 +1,14 @@
 import React from "react";
 import "font-awesome/css/font-awesome.css";
 import { Card, Row, Button } from "react-bootstrap";
-function ListProductItem({ name, price, status }) {
-  console.log(status);
+function ListProductItem({ name, price, status, srcImg }) {
   return (
     <Card className="overflow-hidden card__product--item">
       <div className="overflow-hidden">
         <Card.Img
           variant="top"
           className="card__product--item-img"
-          src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-01.jpg?raw=true"
+          src={srcImg}
         />
       </div>
       <Card.Body>
