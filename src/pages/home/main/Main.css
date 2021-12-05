@@ -28,5 +28,9 @@
     .card__product--item-btn:hover {
       background-color: black !important;
       color: white !important; }
+  .card__product--item-status {
+    transition: all 0.3s; }
+    .card__product--item-status:hover {
+      color: red !important; }
 
 /*# sourceMappingURL=Main.css.map */

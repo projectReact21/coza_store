@@ -107,35 +107,35 @@ function Footer() {
             <Row className="justify-content-center">
               <a href="/#" className="col-sm-2 col-md-2 p-0">
                 <img
-                  src="images/icons/icon-pay-01.png"
+                  src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-pay-01.png?raw=true"
                   className=" hover_translate"
                   alt="ICON-PAY"
                 />
               </a>
               <a href="/#" className="col-sm-2 col-md-2 p-0">
                 <img
-                  src="images/icons/icon-pay-02.png"
+                  src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-pay-02.png?raw=true"
                   className=" hover_translate"
                   alt="ICON-PAY"
                 />
               </a>
               <a href="/#" className="col-sm-2 col-md-2 p-0">
                 <img
-                  src="images/icons/icon-pay-03.png"
+                  src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-pay-03.png?raw=true"
                   className=" hover_translate"
                   alt="ICON-PAY"
                 />
               </a>
               <a href="/#" className="col-sm-2 col-md-2 p-0">
                 <img
-                  src="images/icons/icon-pay-04.png"
+                  src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-pay-04.png?raw=true"
                   className=" hover_translate"
                   alt="ICON-PAY"
                 />
               </a>
               <a href="/#" className="col-sm-2 col-md-2 p-0">
                 <img
-                  src="./images/icons/icon-pay-05.png"
+                  src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-pay-05.png?raw=true"
                   className=" hover_translate"
                   alt="ICON-PAY"
                 />

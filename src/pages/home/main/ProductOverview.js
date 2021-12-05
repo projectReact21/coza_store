@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { Button, Nav, Row, Col, ListGroup, Form } from "react-bootstrap";
-import { Card } from "react-bootstrap";
+import { Button, Row, Col, Form } from "react-bootstrap";
 import CateloryListText from "../../../component/CateloryListText";
-import ListProductItem from "../../../component/ListGroup";
+import ListProductItem from "../../../component/ListProductItem";
 
 function ProductOverview() {
   const [showFilter, setShowFilter] = useState(false);
@@ -38,11 +37,11 @@ function ProductOverview() {
     <>
       <Row className="mb-2">
         <CateloryListText listText={listNav} defaultActive="allproducts" />
-        <Col>
-          <Row className="justify-content-center">
+        <Col sm={12} md={4}>
+          <Row className="justify-content-around g-3 px-2 pe-2 ">
             <Button
               onClick={handleFilter}
-              className="col-3 me-3 bg-light text-dark border-1"
+              className="col-xs-6 col-md-5 bg-light text-dark border-1"
             >
               {showFilter ? (
                 <i class="fa fa-times fs-4 me-1" aria-hidden="true"></i>
@@ -56,7 +55,7 @@ function ProductOverview() {
             </Button>
             <Button
               onClick={handleSearch}
-              className="col-3 bg-light text-dark border-1"
+              className="col-xs-6 col-md-5 bg-light text-dark border-1"
             >
               {showSearch ? (
                 <i class="fa fa-times fs-4 me-1" aria-hidden="true"></i>
@@ -118,31 +117,67 @@ function ProductOverview() {
       </Row>
       <Row className="gy-4">
         <Col sm={12} md={6} lg={3}>
-          <ListProductItem name="Esprit Ruffle Shirt" price="$16.64" />
+          <ListProductItem
+            status="1"
+            name="Esprit Ruffle Shirt"
+            price="$16.64"
+          />
         </Col>
         <Col sm={12} md={6} lg={3}>
-          <ListProductItem name="Esprit Ruffle Shirt" price="$16.64" />
+          <ListProductItem
+            status="0"
+            name="Esprit Ruffle Shirt"
+            price="$16.64"
+          />
         </Col>
         <Col sm={12} md={6} lg={3}>
-          <ListProductItem name="Esprit Ruffle Shirt" price="$16.64" />
+          <ListProductItem
+            status="0"
+            name="Esprit Ruffle Shirt"
+            price="$16.64"
+          />
         </Col>
         <Col sm={12} md={6} lg={3}>
-          <ListProductItem name="Esprit Ruffle Shirt" price="$16.64" />
+          <ListProductItem
+            status="0"
+            name="Esprit Ruffle Shirt"
+            price="$16.64"
+          />
         </Col>
         <Col sm={12} md={6} lg={3}>
-          <ListProductItem name="Esprit Ruffle Shirt" price="$16.64" />
+          <ListProductItem
+            status="0"
+            name="Esprit Ruffle Shirt"
+            price="$16.64"
+          />
         </Col>
         <Col sm={12} md={6} lg={3}>
-          <ListProductItem name="Esprit Ruffle Shirt" price="$16.64" />
+          <ListProductItem
+            status="0"
+            name="Esprit Ruffle Shirt"
+            price="$16.64"
+          />
         </Col>
         <Col sm={12} md={6} lg={3}>
-          <ListProductItem name="Esprit Ruffle Shirt" price="$16.64" />
+          <ListProductItem
+            status="0"
+            name="Esprit Ruffle Shirt"
+            price="$16.64"
+          />
         </Col>
         <Col sm={12} md={6} lg={3}>
-          <ListProductItem name="Esprit Ruffle Shirt" price="$16.64" />
+          <ListProductItem
+            status="0"
+            name="Esprit Ruffle Shirt"
+            price="$16.64"
+          />
         </Col>
         <Col sm={12} md={6} lg={3}>
-          <ListProductItem name="Esprit Ruffle Shirt" price="$16.64" />
+          <ListProductItem
+            status="0"
+            name="Esprit Ruffle Shirt"
+            price="$16.64"
+          />
         </Col>
       </Row>
       <Row className="justify-content-center mb-5 mt-5">

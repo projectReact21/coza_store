@@ -6,7 +6,11 @@ function CateloryListText({ listText, defaultActive, col, radius }) {
     <Nav
       defaultActiveKey={defaultActive}
       as="ul"
-      className={col || radius ? "col-8 w-100" : "col-8"}
+      className={
+        col || radius
+          ? "col-sm-12 col-md-8 w-100 mb-2"
+          : "col-sm-12 col-md-8 mb-2"
+      }
     >
       {listText.map((l, index) => (
         <Nav.Item

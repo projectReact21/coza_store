@@ -5,7 +5,7 @@ import CateloryItem from "./../../component/CateloryItem";
 function CateloryProduct() {
   return (
     <Container fluid className="pt-5 pb-5">
-      <Row>
+      <Row className="justify-content-center gy-4">
         <CateloryItem
           srcImg="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/banner-01.jpg?raw=true "
           title="women"

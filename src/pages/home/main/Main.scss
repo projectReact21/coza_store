@@ -36,4 +36,10 @@
       color: white !important;
     }
   }
+  &-status {
+    transition: all 0.3s;
+    &:hover {
+      color: red !important;
+    }
+  }
 }
