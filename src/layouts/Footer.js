@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  Container,
-  Row,
-  Col,
-  ListGroup,
-  Nav,
-  Form,
-  Button,
-} from "react-bootstrap";
+import { Container, Row, Col, ListGroup, Form, Button } from "react-bootstrap";
 import LayoutListTextItem from "./LayoutListTextItem";
 const listFirst = ["women", "men", "Shoes", "Watches"];
 const listSecond = ["track order", "returns", "shipping", "FAQs"];

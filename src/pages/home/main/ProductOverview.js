@@ -44,10 +44,10 @@ function ProductOverview() {
               className="col-xs-6 col-md-5 bg-light text-dark border-1"
             >
               {showFilter ? (
-                <i class="fa fa-times fs-4 me-1" aria-hidden="true"></i>
+                <i className="fa fa-times fs-4 me-1" aria-hidden="true"></i>
               ) : (
                 <i
-                  class="fa fa-filter text-dark me-1 fs-4 "
+                  className="fa fa-filter text-dark me-1 fs-4 "
                   aria-hidden="true"
                 ></i>
               )}
@@ -58,9 +58,9 @@ function ProductOverview() {
               className="col-xs-6 col-md-5 bg-light text-dark border-1"
             >
               {showSearch ? (
-                <i class="fa fa-times fs-4 me-1" aria-hidden="true"></i>
+                <i className="fa fa-times fs-4 me-1" aria-hidden="true"></i>
               ) : (
-                <i class="fa fa-search fs-4 me-1" aria-hidden="true"></i>
+                <i className="fa fa-search fs-4 me-1" aria-hidden="true"></i>
               )}
               <strong>search</strong>
             </Button>

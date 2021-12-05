@@ -206,7 +206,7 @@ const Blog = () => {
                   />
 
                   <button className="flex-c-m size-122 ab-t-r fs-18 cl4 hov-cl1 trans-04">
-                    <i class="fa fa-search" aria-hidden="true"></i>
+                    <i className="fa fa-search" aria-hidden="true"></i>
                   </button>
                 </div>
 
