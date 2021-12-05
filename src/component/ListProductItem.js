@@ -15,7 +15,7 @@ function ListProductItem({ name, price, status, srcImg }) {
         <Card.Text className="position-absolute top-1 right-0 me-2">
           {" "}
           <i
-            class="fa fa-heart fs-4 card__product--item-status "
+            className="fa fa-heart fs-4 card__product--item-status "
             style={
               parseInt(status) === 0 ? { color: "#eee" } : { color: "red" }
             }

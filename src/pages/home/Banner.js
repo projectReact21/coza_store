@@ -5,7 +5,7 @@ import BannerItem from "./../../component/BannerItem";
 function Banner() {
   return (
     <Carousel>
-      <Carousel.Item fade>
+      <Carousel.Item fade="true">
         <BannerItem
           srcImg="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/slide-01.jpg?raw=true"
           title="Women Collection 2018"
