@@ -32,10 +32,13 @@
   cursor: pointer;
 }
 .hover-layout:hover {
-  color: blue !important;
+  color: #717fe0 !important;
 }
 @media screen and (max-width: 999px) {
   #header__topBar {
     display: none;
   }
+}
+.nav-link {
+  color: #b2b2b2 !important;
 }

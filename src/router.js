@@ -5,6 +5,7 @@ import About from "./pages/about/about";
 import Blog from "./pages/blog/Blog";
 import BlogDetail from "./pages/blog/BlogDetail";
 const router = [
+  { path: "/*", component: <Home /> },
   { path: "/home", component: <Home /> },
   { path: "/shop", component: <Shop /> },
   { path: "/about", component: <About /> },

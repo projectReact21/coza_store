@@ -7,12 +7,14 @@ import "./cssGlobal/util.css";
 import "./cssGlobal/main.css";
 import DefaultLayout from "./layouts/DefaultLayout";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Login from "./pages/login/Login";
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
+          <Route path="/login" element={<Login />} />
           <Route path="/*" element={<DefaultLayout />} />
         </Routes>
       </BrowserRouter>

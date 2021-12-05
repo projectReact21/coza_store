@@ -1,5 +1,8 @@
 .nav-link.active {
-  border-bottom: solid blue !important;
+  color: #717fe0 !important;
+}
+.nav-link:hover {
+  color: #717fe0 !important;
 }
 
 .btn-loadmore {
@@ -36,7 +39,7 @@
     border-radius: 1rem !important;
     border: none;
     &:hover {
-      background-color: black !important;
+      background-color: #717fe0 !important;
       color: white !important;
     }
   }
