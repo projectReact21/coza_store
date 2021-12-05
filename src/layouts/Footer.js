@@ -8,49 +8,26 @@ import {
   Form,
   Button,
 } from "react-bootstrap";
+import LayoutListTextItem from "./LayoutListTextItem";
+const listFirst = ["women", "men", "Shoes", "Watches"];
+const listSecond = ["track order", "returns", "shipping", "FAQs"];
 function Footer() {
   return (
     <footer>
-      <Container>
+      <Container className="bg-dark">
         <Row className="justify-content-center">
           <Col xs={12} sm={6} md={3} className=" mt-5 col-lg-3 p-b-50">
             <h4 className="text-white mb-4">Categories</h4>
-            <ListGroup className="border-0  ">
-              <ListGroup.Item className="border-0">
-                <Nav.Item href="#Women">Women</Nav.Item>
-              </ListGroup.Item>
-              <ListGroup.Item className="border-0">
-                <Nav.Item href="#Men">Men</Nav.Item>
-              </ListGroup.Item>
-              <ListGroup.Item className="border-0">
-                <Nav.Item href="#Shoes">Shoes</Nav.Item>
-              </ListGroup.Item>
-              <ListGroup.Item className="border-0">
-                <Nav.Item href="#Watches">Watches</Nav.Item>
-              </ListGroup.Item>
-            </ListGroup>
+            <LayoutListTextItem listContent={listFirst} />
           </Col>
           <Col xs={12} sm={6} md={3} className=" mt-5 col-lg-3 p-b-50">
             <h4 className="text-white mb-4">Help</h4>
-            <ListGroup className="border-0  ">
-              <ListGroup.Item className="border-0">
-                <Nav.Item href="#TrackOrder"> Track Order</Nav.Item>
-              </ListGroup.Item>
-              <ListGroup.Item className="border-0">
-                <Nav.Item href="#Returns">Returns</Nav.Item>
-              </ListGroup.Item>
-              <ListGroup.Item className="border-0">
-                <Nav.Item href="#Shipping">Shipping</Nav.Item>
-              </ListGroup.Item>
-              <ListGroup.Item className="border-0">
-                <Nav.Item href="#Watches">FAQs</Nav.Item>
-              </ListGroup.Item>
-            </ListGroup>
+            <LayoutListTextItem listContent={listSecond} />
           </Col>
           <Col xs={12} sm={6} md={3} className=" mt-5 col-lg-3 p-b-50">
             <h4 className="text-white mb-4">GET IN TOUCH</h4>
             <ListGroup className="border-0  ">
-              <ListGroup.Item className="border-0 px-0">
+              <ListGroup.Item className="border-0 px-0 bg-dark text-white">
                 <p className="cl-primary">
                   Any questions? Let us know in store at 8th floor, 379 Hudson
                   St, New York, NY 10018 or call us on{" "}
@@ -59,21 +36,21 @@ function Footer() {
                   </strong>
                 </p>
               </ListGroup.Item>
-              <ListGroup.Item>
-                <Row>
-                  <Col sm={3} md={2}>
+              <ListGroup.Item className="bg-dark text-white">
+                <Row className="justify-content-center">
+                  <Col xs={3} sm={3} md={2}>
                     <i
                       className="fa fa-facebook-f cl-primary fs-3 hover_translate"
                       aria-hidden="true"
                     ></i>
                   </Col>
-                  <Col sm={3} md={2}>
+                  <Col xs={3} sm={3} md={2}>
                     <i
                       className="fa fa-instagram cl-primary fs-3 hover_translate"
                       aria-hidden="true"
                     ></i>
                   </Col>
-                  <Col sm={3} md={2}>
+                  <Col xs={3} sm={3} md={2}>
                     <i
                       className="fa fa-pinterest-p cl-primary cl-primary fs-3 hover_translate"
                       aria-hidden="true"
@@ -105,37 +82,37 @@ function Footer() {
         <Row className="justify-content-center">
           <Col sm={6} md={4}>
             <Row className="justify-content-center">
-              <a href="/#" className="col-sm-2 col-md-2 p-0">
+              <a href="/#" className="col-2 col-md-2 p-0">
                 <img
-                  src="images/icons/icon-pay-01.png"
+                  src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-pay-01.png?raw=true"
                   className=" hover_translate"
                   alt="ICON-PAY"
                 />
               </a>
-              <a href="/#" className="col-sm-2 col-md-2 p-0">
+              <a href="/#" className="col-2 col-md-2 p-0">
                 <img
-                  src="images/icons/icon-pay-02.png"
+                  src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-pay-02.png?raw=true"
                   className=" hover_translate"
                   alt="ICON-PAY"
                 />
               </a>
-              <a href="/#" className="col-sm-2 col-md-2 p-0">
+              <a href="/#" className="col-2 col-md-2 p-0">
                 <img
-                  src="images/icons/icon-pay-03.png"
+                  src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-pay-03.png?raw=true"
                   className=" hover_translate"
                   alt="ICON-PAY"
                 />
               </a>
-              <a href="/#" className="col-sm-2 col-md-2 p-0">
+              <a href="/#" className="col-2 col-md-2 p-0">
                 <img
-                  src="images/icons/icon-pay-04.png"
+                  src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-pay-04.png?raw=true"
                   className=" hover_translate"
                   alt="ICON-PAY"
                 />
               </a>
-              <a href="/#" className="col-sm-2 col-md-2 p-0">
+              <a href="/#" className="col-2 col-md-2 p-0">
                 <img
-                  src="./images/icons/icon-pay-05.png"
+                  src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-pay-05.png?raw=true"
                   className=" hover_translate"
                   alt="ICON-PAY"
                 />

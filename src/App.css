@@ -27,3 +27,15 @@
 .h-46 {
   height: 46px !important;
 }
+.hover-layout {
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.hover-layout:hover {
+  color: blue !important;
+}
+@media screen and (max-width: 999px) {
+  #header__topBar {
+    display: none;
+  }
+}

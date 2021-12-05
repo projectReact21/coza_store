@@ -39,7 +39,10 @@ const Features = () => {
                       <tr className="table_row">
                         <td className="column-1">
                           <div className="how-itemcart1">
-                            <img src="images/item-cart-04.jpg" alt="IMG" />
+                            <img
+                              src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/item-cart-01.jpg?raw=true"
+                              alt="IMG"
+                            />
                           </div>
                         </td>
                         <td className="column-2">Fresh Strawberries</td>

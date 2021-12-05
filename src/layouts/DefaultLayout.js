@@ -12,7 +12,6 @@ function DefaultLayout() {
           <Route key={index} path={route.path} element={route.component} />
         ))}
       </Routes>
-
       <Footer />
     </>
   );

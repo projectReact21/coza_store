@@ -1,73 +1,116 @@
-//
-.interface{
-    position: absolute !important;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color:rgba(103,117,214,0.8) !important;
-    display:none;
-
-    display:block;
+.carousel {
+  h3 {
+    color: black;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    word-spacing: 2px;
+    transition: all 0.3s;
+    transform: rotate(-45deg);
+    transform-origin: 10% 50%;
+    animation: ease animationTitle 1s forwards;
+  }
+  p {
+    color: black;
+    font-size: 4rem;
+    transform: translateX(-100%);
+    transition: all 0.3s;
+    animation: ease animationDes 1s forwards;
+  }
+  &-caption {
+    text-align: start !important;
+    top: 5rem !important;
+    left: 1rem !important;
+    button {
+      text-transform: uppercase;
+    }
+  }
 }
 
+.card__item {
+  position: relative;
 
-//
-.carousel{
-    h3{
-        color: black;
-        font-size: 1.5rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        word-spacing: 2px;
+  &:hover {
+    .card__item--card {
+      display: block !important;
+      background-color: rgba(103, 117, 214, 0.8) !important;
     }
-    p{
-        color: black;
-        font-size:4rem
+    .card__item--title,
+    .card__item--text {
+      color: white;
     }
-    &-caption{
-        text-align: start !important;
-        top: 5rem !important;
-        left: 1rem!important;
-        button{
-            text-transform: uppercase;
-        }
+    .card__item--btn {
+      animation: ease hoverShopNow 1s forwards, ease hoverResize 2s forwards;
     }
-} 
-.card__item{
-    position: relative;
-    
-    &:hover{
-       
-        &::before{ display:block}
-       .card__item--title,.card__item--text{
-           color:white;
-       }
+  }
+  &--title {
+    color: black;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 2rem;
+    transition: all 0.3s;
+  }
+  &--text {
+    color: black;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s;
+  }
+  &--btn {
+    bottom: 2rem !important;
+    left: 2rem !important;
+    transition: all 1s;
+    transform: translateY(10rem);
+    overflow: hidden !important;
+    padding: 0 !important;
+    height: 3rem;
+    border-bottom: solid 2px white !important;
+    transform: scale(0.1);
+    &:hover {
+      background: transparent;
     }
-    &--title{
-        color: black;
-        text-transform: uppercase;
-        font-weight: 600;
-        font-size: 2rem;
-    }
-    &--text{
-        color: black;
-        font-size:1rem;
-        font-weight: 600;
-    }
+  }
+  &--card {
+    display: none;
+    overflow: hidden;
+  }
 }
-
-
 
 @keyframes hoverShopNow {
-    from{
-        font-size: 1rem;
-        opacity: 0;
-        display:none;
-    }
-    to{
-        font-size: 2rem;
-        opacity: 1;
-        display:block;
-    }
+  from {
+    transform: translateY(10rem);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes animationTitle {
+  0% {
+    transform: rotate(-45deg);
+  }
+  50% {
+    transform: rotate(5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+@keyframes animationDes {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(5%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes hoverResize {
+  from {
+    transform: scale(0.1);
+  }
+  to {
+    transform: scale(1.5);
+  }
 }
