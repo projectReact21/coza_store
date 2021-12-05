@@ -23,6 +23,7 @@ import heart01 from "./images/icon-heart-01.png";
 
 const Shop = () => {
   return (
+<<<<<<< HEAD
     <div>
       {/* <!-- Product --> */}
       <div className="bg0 m-t-23 p-b-140">
@@ -323,6 +324,20 @@ const Shop = () => {
                   </div>
                 </div>
               </div>
+=======
+    <>
+      {/* <HeaderShop /> */}
+      {/* <!-- Cart -->*/}
+      <div className="wrap-header-cart js-panel-cart">
+        <div className="s-full js-hide-cart"></div>
+
+        <div className="header-cart flex-col-l p-l-65 p-r-25">
+          <div className="header-cart-title flex-w flex-sb-m p-b-8">
+            <span className="mtext-10 cl2">Your Cart</span>
+
+            <div className="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
+              <i className="zmdi zmdi-close"></i>
+>>>>>>> a740401045807372dad33ccd56f5f73c69547f7f
             </div>
           </div>
 
