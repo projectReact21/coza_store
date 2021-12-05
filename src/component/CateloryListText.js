@@ -29,7 +29,7 @@ function CateloryListText({ listText, defaultActive, col, radius }) {
                   }
                 : {}
             }
-            className="text-dark text-capitalize w-100 me-2"
+            className="text-dark text-capitalize w-100 me-2 "
           >
             {l}
           </Nav.Link>

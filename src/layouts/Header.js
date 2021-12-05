@@ -1,11 +1,16 @@
 import React from "react";
 import { Navbar, Container, Nav, Form, Row, Col } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
+  const navigate = useNavigate();
+  const handlechangePage = (e, param) => {
+    e.preventDefault();
+    navigate(param);
+  };
   return (
     <>
-      <Container fluid className="top-bar">
+      <Container fluid className="top-bar" id="header__topBar">
         <Row>
           <Col md={6}>
             <Nav.Link href="/#">
@@ -13,7 +18,7 @@ function Header() {
             </Nav.Link>
           </Col>
           <Col md={6}>
-            <Row className=" align-items-center mt-1">
+            <Row className=" align-items-center h-100">
               <Col md={4}>
                 {" "}
                 <Nav.Link href="/#" className="p-0">
@@ -48,7 +53,10 @@ function Header() {
       </Container>
       <Navbar expand="lg" collapseOnSelect>
         <Container fluid>
-          <Navbar.Brand href="#">
+          <Navbar.Brand
+            onClick={(e) => handlechangePage(e, "/home")}
+            href="/home"
+          >
             <img
               src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/logo-01.png?raw=true"
               alt="IMG-LOGO"
@@ -57,22 +65,46 @@ function Header() {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto mx-4">
-              <Nav.Link as={NavLink} to="/home">
+              <Nav.Link
+                onClick={(e) => handlechangePage(e, "/home")}
+                href="/home"
+                className="hover-layout"
+              >
                 Home
               </Nav.Link>
-              <Nav.Link as={NavLink} to="/about">
+              <Nav.Link
+                onClick={(e) => handlechangePage(e, "/about")}
+                href="/about"
+                className="hover-layout"
+              >
                 About
               </Nav.Link>
-              <Nav.Link as={NavLink} to="/shop">
+              <Nav.Link
+                onClick={(e) => handlechangePage(e, "/shop")}
+                href="/shop"
+                className="hover-layout"
+              >
                 Shop
               </Nav.Link>
-              <Nav.Link as={NavLink} to="/feature">
+              <Nav.Link
+                onClick={(e) => handlechangePage(e, "/feature")}
+                href="/feature"
+                className="hover-layout"
+              >
                 Features
               </Nav.Link>
-              <Nav.Link as={NavLink} to="/blog">
+              <Nav.Link
+                onClick={(e) => handlechangePage(e, "/blog")}
+                href="/blog"
+                className="hover-layout"
+              >
                 Blog
               </Nav.Link>
-              <Nav.Link as={NavLink} to="/contact">
+              <Nav.Link
+                onClick={(e) => handlechangePage(e, "/contact")}
+                href="/contact"
+                className="hover-layout"
+              >
                 Contact
               </Nav.Link>
             </Nav>

@@ -1,20 +1,10 @@
-.interface {
-  position: absolute !important;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(103, 117, 214, 0.8) !important;
-  display: none;
-  display: block; }
-
 .carousel h3 {
   color: black;
   font-size: 1.5rem;
   font-weight: 600;
   text-transform: uppercase;
   word-spacing: 2px;
-  transition: all .3s;
+  transition: all 0.3s;
   transform: rotate(-45deg);
   transform-origin: 10% 50%;
   animation: ease animationTitle 1s forwards; }
@@ -22,7 +12,7 @@
   color: black;
   font-size: 4rem;
   transform: translateX(-100%);
-  transition: all .3s;
+  transition: all 0.3s;
   animation: ease animationDes 1s forwards; }
 .carousel-caption {
   text-align: start !important;
@@ -36,21 +26,22 @@
   .card__item:hover .card__item--card {
     display: block !important;
     background-color: rgba(103, 117, 214, 0.8) !important; }
-  .card__item:hover .card__item--title, .card__item:hover .card__item--text {
+  .card__item:hover .card__item--title,
+  .card__item:hover .card__item--text {
     color: white; }
   .card__item:hover .card__item--btn {
-    animation: ease hoverShopNow 1s forwards,ease hoverResize 2s forwards; }
+    animation: ease hoverShopNow 1s forwards, ease hoverResize 2s forwards; }
   .card__item--title {
     color: black;
     text-transform: uppercase;
     font-weight: 600;
     font-size: 2rem;
-    transition: all .3s; }
+    transition: all 0.3s; }
   .card__item--text {
     color: black;
     font-size: 1rem;
     font-weight: 600;
-    transition: all .3s; }
+    transition: all 0.3s; }
   .card__item--btn {
     bottom: 2rem !important;
     left: 2rem !important;
