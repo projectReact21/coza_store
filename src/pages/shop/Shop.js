@@ -1,1123 +1,304 @@
 import React from "react";
+import Footer from "../../layouts/Footer";
+import HeaderShop from "./HeaderShop";
+import cart1 from "./imageShop/item-cart-01.jpg";
+import cart2 from "./imageShop/item-cart-02.jpg";
+import cart3 from "./imageShop/item-cart-03.jpg";
+import cart4 from "./imageShop/item-cart-04.jpg";
+import cart5 from "./imageShop/item-cart-05.jpg";
+
 const Shop = () => {
   return (
-    <div>
-      {/* <!-- Product --> */}
-      <div className="bg0 m-t-23 p-b-140">
-        <div className="container">
-          <div className="flex-w flex-sb-m p-b-52">
-            <div className="flex-w flex-l-m filter-tope-group m-tb-10">
-              <button
-                className="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1"
-                data-filter="*"
-              >
-                All Products
-              </button>
+    <>
+      {/* <HeaderShop /> */}
+      {/* <!-- Cart -->*/}
+      <div className="wrap-header-cart js-panel-cart">
+        <div className="s-full js-hide-cart"></div>
 
-              <button
-                className="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
-                data-filter=".women"
-              >
-                Women
-              </button>
+        <div className="header-cart flex-col-l p-l-65 p-r-25">
+          <div className="header-cart-title flex-w flex-sb-m p-b-8">
+            <span className="mtext-103 cl2">Your Cart</span>
 
-              <button
-                className="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
-                data-filter=".men"
-              >
-                Men
-              </button>
-
-              <button
-                className="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
-                data-filter=".bag"
-              >
-                Bag
-              </button>
-
-              <button
-                className="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
-                data-filter=".shoes"
-              >
-                Shoes
-              </button>
-
-              <button
-                className="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
-                data-filter=".watches"
-              >
-                Watches
-              </button>
-            </div>
-
-            <div className="flex-w flex-c-m m-tb-10">
-              <div className="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
-                <i className="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
-                <i className="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-                Filter
-              </div>
-
-              <div className="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
-                <i className="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
-                <i className="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-                Search
-              </div>
-            </div>
-
-            {/* <!-- Search product --> */}
-            <div className="dis-none panel-search w-full p-t-10 p-b-15">
-              <div className="bor8 dis-flex p-l-15">
-                <button className="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
-                  <i className="zmdi zmdi-search"></i>
-                </button>
-
-                <input
-                  className="mtext-107 cl2 size-114 plh2 p-r-15"
-                  type="text"
-                  name="search-product"
-                  placeholder="Search"
-                />
-              </div>
-            </div>
-
-            {/* <!-- Filter --> */}
-            <div className="dis-none panel-filter w-full p-t-10">
-              <div className="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
-                <div className="filter-col1 p-r-15 p-b-27">
-                  <div className="mtext-102 cl2 p-b-15">Sort By</div>
-
-                  <ul>
-                    <li className="p-b-6">
-                      <a href="/#" className="filter-link stext-106 trans-04">
-                        Default
-                      </a>
-                    </li>
-
-                    <li className="p-b-6">
-                      <a href="/#" className="filter-link stext-106 trans-04">
-                        Popularity
-                      </a>
-                    </li>
-
-                    <li className="p-b-6">
-                      <a href="/#" className="filter-link stext-106 trans-04">
-                        Average rating
-                      </a>
-                    </li>
-
-                    <li className="p-b-6">
-                      <a
-                        href="/#"
-                        className="filter-link stext-106 trans-04 filter-link-active"
-                      >
-                        Newness
-                      </a>
-                    </li>
-
-                    <li className="p-b-6">
-                      <a href="/#" className="filter-link stext-106 trans-04">
-                        Price: Low to High
-                      </a>
-                    </li>
-
-                    <li className="p-b-6">
-                      <a href="/#" className="filter-link stext-106 trans-04">
-                        Price: High to Low
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-
-                <div className="filter-col2 p-r-15 p-b-27">
-                  <div className="mtext-102 cl2 p-b-15">Price</div>
-
-                  <ul>
-                    <li className="p-b-6">
-                      <a
-                        href="/#"
-                        className="filter-link stext-106 trans-04 filter-link-active"
-                      >
-                        All
-                      </a>
-                    </li>
-
-                    <li className="p-b-6">
-                      <a href="/#" className="filter-link stext-106 trans-04">
-                        $0.00 - $50.00
-                      </a>
-                    </li>
-
-                    <li className="p-b-6">
-                      <a href="/#" className="filter-link stext-106 trans-04">
-                        $50.00 - $100.00
-                      </a>
-                    </li>
-
-                    <li className="p-b-6">
-                      <a href="/#" className="filter-link stext-106 trans-04">
-                        $100.00 - $150.00
-                      </a>
-                    </li>
-
-                    <li className="p-b-6">
-                      <a href="/#" className="filter-link stext-106 trans-04">
-                        $150.00 - $200.00
-                      </a>
-                    </li>
-
-                    <li className="p-b-6">
-                      <a href="/#" className="filter-link stext-106 trans-04">
-                        $200.00+
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-
-                <div className="filter-col3 p-r-15 p-b-27">
-                  <div className="mtext-102 cl2 p-b-15">Color</div>
-
-                  <ul>
-                    <li className="p-b-6">
-                      <span
-                        className="fs-15 lh-12 m-r-6"
-                        style={{ color: "/#222" }}
-                      >
-                        <i className="zmdi zmdi-circle"></i>
-                      </span>
-
-                      <a href="/#" className="filter-link stext-106 trans-04">
-                        Black
-                      </a>
-                    </li>
-
-                    <li className="p-b-6">
-                      <span
-                        className="fs-15 lh-12 m-r-6"
-                        style={{ color: "/#4272d7" }}
-                      >
-                        <i className="zmdi zmdi-circle"></i>
-                      </span>
-
-                      <a
-                        href="/#"
-                        className="filter-link stext-106 trans-04 filter-link-active"
-                      >
-                        Blue
-                      </a>
-                    </li>
-
-                    <li className="p-b-6">
-                      <span
-                        className="fs-15 lh-12 m-r-6"
-                        style={{ color: "/#b3b3b3" }}
-                      >
-                        <i className="zmdi zmdi-circle"></i>
-                      </span>
-
-                      <a href="/#" className="filter-link stext-106 trans-04">
-                        Grey
-                      </a>
-                    </li>
-
-                    <li className="p-b-6">
-                      <span
-                        className="fs-15 lh-12 m-r-6"
-                        style={{ color: "/#00ad5f" }}
-                      >
-                        <i className="zmdi zmdi-circle"></i>
-                      </span>
-
-                      <a href="/#" className="filter-link stext-106 trans-04">
-                        Green
-                      </a>
-                    </li>
-
-                    <li className="p-b-6">
-                      <span
-                        className="fs-15 lh-12 m-r-6"
-                        style={{ color: "/#fa4251" }}
-                      >
-                        <i className="zmdi zmdi-circle"></i>
-                      </span>
-
-                      <a href="/#" className="filter-link stext-106 trans-04">
-                        Red
-                      </a>
-                    </li>
-
-                    <li className="p-b-6">
-                      <span
-                        className="fs-15 lh-12 m-r-6"
-                        style={{ color: "/#aaa" }}
-                      >
-                        <i className="zmdi zmdi-circle-o"></i>
-                      </span>
-
-                      <a href="/#" className="filter-link stext-106 trans-04">
-                        White
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-
-                <div className="filter-col4 p-b-27">
-                  <div className="mtext-102 cl2 p-b-15">Tags</div>
-
-                  <div className="flex-w p-t-4 m-r--5">
-                    <a
-                      href="/#"
-                      className="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5"
-                    >
-                      Fashion
-                    </a>
-
-                    <a
-                      href="/#"
-                      className="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5"
-                    >
-                      Lifestyle
-                    </a>
-
-                    <a
-                      href="/#"
-                      className="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5"
-                    >
-                      Denim
-                    </a>
-
-                    <a
-                      href="/#"
-                      className="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5"
-                    >
-                      Streetstyle
-                    </a>
-
-                    <a
-                      href="/#"
-                      className="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5"
-                    >
-                      Crafts
-                    </a>
-                  </div>
-                </div>
-              </div>
+            <div className="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
+              <i className="zmdi zmdi-close"></i>
             </div>
           </div>
 
-          <div className="row isotope-grid">
-            <div className="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-              {/*<!-- Block2 -->*/}
-              <div className="block2">
-                <div className="block2-pic hov-img0">
-                  <img
-                    src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-01.jpg?raw=true "
-                    alt="IMG-PRODUCT"
-                  />
+          <div className="header-cart-content flex-w js-pscroll">
+            <ul className="header-cart-wrapitem w-full">
+              <li className="header-cart-item flex-w flex-t m-b-12">
+                <div className="header-cart-item-img">
+                  <img src={cart1} alt="IMG" />
+                </div>
 
+                <div className="header-cart-item-txt p-t-8">
                   <a
                     href="/#"
-                    className="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"
+                    className="header-cart-item-name m-b-18 hov-cl1 trans-04"
                   >
-                    Quick View
+                    White Shirt Pleat
                   </a>
+
+                  <span className="header-cart-item-info">1 x $19.00</span>
+                </div>
+              </li>
+
+              <li className="header-cart-item flex-w flex-t m-b-12">
+                <div className="header-cart-item-img">
+                  <img src={cart2} alt="IMG" />
                 </div>
 
-                <div className="block2-txt flex-w flex-t p-t-14">
-                  <div className="block2-txt-child1 flex-col-l ">
-                    <a
-                      href="product-detail.html"
-                      className="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"
-                    >
-                      Esprit Ruffle Shirt
-                    </a>
-
-                    <span className="stext-105 cl3">$16.64</span>
-                  </div>
-
-                  <div className="block2-txt-child2 flex-r p-t-3">
-                    <a
-                      href="/#"
-                      className="btn-addwish-b2 dis-block pos-relative js-addwish-b2"
-                    >
-                      <img
-                        className="icon-heart1 dis-block trans-04"
-                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-01.png?raw=true"
-                        alt="ICON"
-                      />
-                      <img
-                        className="icon-heart2 dis-block trans-04 ab-t-l"
-                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-02.png?raw=true"
-                        alt="ICON"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-              {/*<!-- Block2 -->*/}
-              <div className="block2">
-                <div className="block2-pic hov-img0">
-                  <img
-                    src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-02.jpg?raw=true "
-                    alt="IMG-PRODUCT"
-                  />
-
+                <div className="header-cart-item-txt p-t-8">
                   <a
                     href="/#"
-                    className="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"
+                    className="header-cart-item-name m-b-18 hov-cl1 trans-04"
                   >
-                    Quick View
+                    Converse All Star
                   </a>
+
+                  <span className="header-cart-item-info">1 x $39.00</span>
+                </div>
+              </li>
+
+              <li className="header-cart-item flex-w flex-t m-b-12">
+                <div className="header-cart-item-img">
+                  <img src={cart3} alt="IMG" />
                 </div>
 
-                <div className="block2-txt flex-w flex-t p-t-14">
-                  <div className="block2-txt-child1 flex-col-l ">
-                    <a
-                      href="product-detail.html"
-                      className="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"
-                    >
-                      Herschel supply
-                    </a>
-
-                    <span className="stext-105 cl3">$35.31</span>
-                  </div>
-
-                  <div className="block2-txt-child2 flex-r p-t-3">
-                    <a
-                      href="/#"
-                      className="btn-addwish-b2 dis-block pos-relative js-addwish-b2"
-                    >
-                      <img
-                        className="icon-heart1 dis-block trans-04"
-                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-01.png?raw=true"
-                        alt="ICON"
-                      />
-                      <img
-                        className="icon-heart2 dis-block trans-04 ab-t-l"
-                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-02.png?raw=true"
-                        alt="ICON"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item men">
-              {/*<!-- Block2 -->*/}
-              <div className="block2">
-                <div className="block2-pic hov-img0">
-                  <img
-                    src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-03.jpg?raw=true "
-                    alt="IMG-PRODUCT"
-                  />
-
+                <div className="header-cart-item-txt p-t-8">
                   <a
                     href="/#"
-                    className="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"
+                    className="header-cart-item-name m-b-18 hov-cl1 trans-04"
                   >
-                    Quick View
+                    Nixon Porter Leather
                   </a>
+
+                  <span className="header-cart-item-info">1 x $17.00</span>
                 </div>
+              </li>
+            </ul>
 
-                <div className="block2-txt flex-w flex-t p-t-14">
-                  <div className="block2-txt-child1 flex-col-l ">
-                    <a
-                      href="product-detail.html"
-                      className="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"
-                    >
-                      Only Check Trouser
-                    </a>
+            <div className="w-full">
+              <div className="header-cart-total w-full p-tb-40">
+                Total: $75.00
+              </div>
 
-                    <span className="stext-105 cl3">$25.50</span>
-                  </div>
+              <div className="header-cart-buttons flex-w w-full">
+                <a
+                  href="shoping-cart.html"
+                  className="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10"
+                >
+                  View Cart
+                </a>
 
-                  <div className="block2-txt-child2 flex-r p-t-3">
-                    <a
-                      href="/#"
-                      className="btn-addwish-b2 dis-block pos-relative js-addwish-b2"
-                    >
-                      <img
-                        className="icon-heart1 dis-block trans-04"
-                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-01.png?raw=true"
-                        alt="ICON"
-                      />
-                      <img
-                        className="icon-heart2 dis-block trans-04 ab-t-l"
-                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-02.png?raw=true"
-                        alt="ICON"
-                      />
-                    </a>
-                  </div>
-                </div>
+                <a
+                  href="shoping-cart.html"
+                  className="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10"
+                >
+                  Check Out
+                </a>
               </div>
             </div>
-
-            <div className="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-              {/*<!-- Block2 -->*/}
-              <div className="block2">
-                <div className="block2-pic hov-img0">
-                  <img
-                    src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-04.jpg?raw=true "
-                    alt="IMG-PRODUCT"
-                  />
-
-                  <a
-                    href="/#"
-                    className="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"
-                  >
-                    Quick View
-                  </a>
-                </div>
-
-                <div className="block2-txt flex-w flex-t p-t-14">
-                  <div className="block2-txt-child1 flex-col-l ">
-                    <a
-                      href="product-detail.html"
-                      className="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"
-                    >
-                      Classic Trench Coat
-                    </a>
-
-                    <span className="stext-105 cl3">$75.00</span>
-                  </div>
-
-                  <div className="block2-txt-child2 flex-r p-t-3">
-                    <a
-                      href="/#"
-                      className="btn-addwish-b2 dis-block pos-relative js-addwish-b2"
-                    >
-                      <img
-                        className="icon-heart1 dis-block trans-04"
-                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-01.png?raw=true"
-                        alt="ICON"
-                      />
-                      <img
-                        className="icon-heart2 dis-block trans-04 ab-t-l"
-                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-02.png?raw=true"
-                        alt="ICON"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-              {/*<!-- Block2 -->*/}
-              <div className="block2">
-                <div className="block2-pic hov-img0">
-                  <img
-                    src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-05.jpg?raw=true "
-                    alt="IMG-PRODUCT"
-                  />
-
-                  <a
-                    href="/#"
-                    className="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"
-                  >
-                    Quick View
-                  </a>
-                </div>
-
-                <div className="block2-txt flex-w flex-t p-t-14">
-                  <div className="block2-txt-child1 flex-col-l ">
-                    <a
-                      href="product-detail.html"
-                      className="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"
-                    >
-                      Front Pocket Jumper
-                    </a>
-
-                    <span className="stext-105 cl3">$34.75</span>
-                  </div>
-
-                  <div className="block2-txt-child2 flex-r p-t-3">
-                    <a
-                      href="/#"
-                      className="btn-addwish-b2 dis-block pos-relative js-addwish-b2"
-                    >
-                      <img
-                        className="icon-heart1 dis-block trans-04"
-                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-01.png?raw=true"
-                        alt="ICON"
-                      />
-                      <img
-                        className="icon-heart2 dis-block trans-04 ab-t-l"
-                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-02.png?raw=true"
-                        alt="ICON"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item watches">
-              {/*<!-- Block2 -->*/}
-              <div className="block2">
-                <div className="block2-pic hov-img0">
-                  <img
-                    src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-06.jpg?raw=true "
-                    alt="IMG-PRODUCT"
-                  />
-
-                  <a
-                    href="/#"
-                    className="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"
-                  >
-                    Quick View
-                  </a>
-                </div>
-
-                <div className="block2-txt flex-w flex-t p-t-14">
-                  <div className="block2-txt-child1 flex-col-l ">
-                    <a
-                      href="product-detail.html"
-                      className="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"
-                    >
-                      Vintage Inspired Classic
-                    </a>
-
-                    <span className="stext-105 cl3">$93.20</span>
-                  </div>
-
-                  <div className="block2-txt-child2 flex-r p-t-3">
-                    <a
-                      href="/#"
-                      className="btn-addwish-b2 dis-block pos-relative js-addwish-b2"
-                    >
-                      <img
-                        className="icon-heart1 dis-block trans-04"
-                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-01.png?raw=true"
-                        alt="ICON"
-                      />
-                      <img
-                        className="icon-heart2 dis-block trans-04 ab-t-l"
-                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-02.png?raw=true"
-                        alt="ICON"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-              {/*<!-- Block2 -->*/}
-              <div className="block2">
-                <div className="block2-pic hov-img0">
-                  <img
-                    src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-07.jpg?raw=true "
-                    alt="IMG-PRODUCT"
-                  />
-
-                  <a
-                    href="/#"
-                    className="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"
-                  >
-                    Quick View
-                  </a>
-                </div>
-
-                <div className="block2-txt flex-w flex-t p-t-14">
-                  <div className="block2-txt-child1 flex-col-l ">
-                    <a
-                      href="product-detail.html"
-                      className="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"
-                    >
-                      Shirt in Stretch Cotton
-                    </a>
-
-                    <span className="stext-105 cl3">$52.66</span>
-                  </div>
-
-                  <div className="block2-txt-child2 flex-r p-t-3">
-                    <a
-                      href="/#"
-                      className="btn-addwish-b2 dis-block pos-relative js-addwish-b2"
-                    >
-                      <img
-                        className="icon-heart1 dis-block trans-04"
-                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-01.png?raw=true"
-                        alt="ICON"
-                      />
-                      <img
-                        className="icon-heart2 dis-block trans-04 ab-t-l"
-                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-02.png?raw=true"
-                        alt="ICON"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-              {/*<!-- Block2 -->*/}
-              <div className="block2">
-                <div className="block2-pic hov-img0">
-                  <img
-                    src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-08.jpg?raw=true "
-                    alt="IMG-PRODUCT"
-                  />
-
-                  <a
-                    href="/#"
-                    className="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"
-                  >
-                    Quick View
-                  </a>
-                </div>
-
-                <div className="block2-txt flex-w flex-t p-t-14">
-                  <div className="block2-txt-child1 flex-col-l ">
-                    <a
-                      href="product-detail.html"
-                      className="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"
-                    >
-                      Pieces Metallic Printed
-                    </a>
-
-                    <span className="stext-105 cl3">$18.96</span>
-                  </div>
-
-                  <div className="block2-txt-child2 flex-r p-t-3">
-                    <a
-                      href="/#"
-                      className="btn-addwish-b2 dis-block pos-relative js-addwish-b2"
-                    >
-                      <img
-                        className="icon-heart1 dis-block trans-04"
-                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-01.png?raw=true"
-                        alt="ICON"
-                      />
-                      <img
-                        className="icon-heart2 dis-block trans-04 ab-t-l"
-                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-02.png?raw=true"
-                        alt="ICON"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item shoes">
-              {/*<!-- Block2 -->*/}
-              <div className="block2">
-                <div className="block2-pic hov-img0">
-                  <img
-                    src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-09.jpg?raw=true "
-                    alt="IMG-PRODUCT"
-                  />
-
-                  <a
-                    href="/#"
-                    className="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"
-                  >
-                    Quick View
-                  </a>
-                </div>
-
-                <div className="block2-txt flex-w flex-t p-t-14">
-                  <div className="block2-txt-child1 flex-col-l ">
-                    <a
-                      href="product-detail.html"
-                      className="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"
-                    >
-                      Converse All Star Hi Plimsolls
-                    </a>
-
-                    <span className="stext-105 cl3">$75.00</span>
-                  </div>
-
-                  <div className="block2-txt-child2 flex-r p-t-3">
-                    <a
-                      href="/#"
-                      className="btn-addwish-b2 dis-block pos-relative js-addwish-b2"
-                    >
-                      <img
-                        className="icon-heart1 dis-block trans-04"
-                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-01.png?raw=true"
-                        alt="ICON"
-                      />
-                      <img
-                        className="icon-heart2 dis-block trans-04 ab-t-l"
-                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-02.png?raw=true"
-                        alt="ICON"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-              {/*<!-- Block2 -->*/}
-              <div className="block2">
-                <div className="block2-pic hov-img0">
-                  <img
-                    src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-10.jpg?raw=true"
-                    alt="IMG-PRODUCT"
-                  />
-
-                  <a
-                    href="/#"
-                    className="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"
-                  >
-                    Quick View
-                  </a>
-                </div>
-
-                <div className="block2-txt flex-w flex-t p-t-14">
-                  <div className="block2-txt-child1 flex-col-l ">
-                    <a
-                      href="product-detail.html"
-                      className="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"
-                    >
-                      Femme T-Shirt In Stripe
-                    </a>
-
-                    <span className="stext-105 cl3">$25.85</span>
-                  </div>
-
-                  <div className="block2-txt-child2 flex-r p-t-3">
-                    <a
-                      href="/#"
-                      className="btn-addwish-b2 dis-block pos-relative js-addwish-b2"
-                    >
-                      <img
-                        className="icon-heart1 dis-block trans-04"
-                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-01.png?raw=true"
-                        alt="ICON"
-                      />
-                      <img
-                        className="icon-heart2 dis-block trans-04 ab-t-l"
-                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-02.png?raw=true"
-                        alt="ICON"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item men">
-              {/*<!-- Block2 -->*/}
-              <div className="block2">
-                <div className="block2-pic hov-img0">
-                  <img
-                    src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-11.jpg?raw=true "
-                    alt="IMG-PRODUCT"
-                  />
-
-                  <a
-                    href="/#"
-                    className="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"
-                  >
-                    Quick View
-                  </a>
-                </div>
-
-                <div className="block2-txt flex-w flex-t p-t-14">
-                  <div className="block2-txt-child1 flex-col-l ">
-                    <a
-                      href="product-detail.html"
-                      className="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"
-                    >
-                      Herschel supply
-                    </a>
-
-                    <span className="stext-105 cl3">$63.16</span>
-                  </div>
-
-                  <div className="block2-txt-child2 flex-r p-t-3">
-                    <a
-                      href="/#"
-                      className="btn-addwish-b2 dis-block pos-relative js-addwish-b2"
-                    >
-                      <img
-                        className="icon-heart1 dis-block trans-04"
-                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-01.png?raw=true"
-                        alt="ICON"
-                      />
-                      <img
-                        className="icon-heart2 dis-block trans-04 ab-t-l"
-                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-02.png?raw=true"
-                        alt="ICON"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item men">
-              {/*<!-- Block2 -->*/}
-              <div className="block2">
-                <div className="block2-pic hov-img0">
-                  <img
-                    src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-12.jpg?raw=true "
-                    alt="IMG-PRODUCT"
-                  />
-
-                  <a
-                    href="/#"
-                    className="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"
-                  >
-                    Quick View
-                  </a>
-                </div>
-
-                <div className="block2-txt flex-w flex-t p-t-14">
-                  <div className="block2-txt-child1 flex-col-l ">
-                    <a
-                      href="product-detail.html"
-                      className="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"
-                    >
-                      Herschel supply
-                    </a>
-
-                    <span className="stext-105 cl3">$63.15</span>
-                  </div>
-
-                  <div className="block2-txt-child2 flex-r p-t-3">
-                    <a
-                      href="/#"
-                      className="btn-addwish-b2 dis-block pos-relative js-addwish-b2"
-                    >
-                      <img
-                        className="icon-heart1 dis-block trans-04"
-                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-01.png?raw=true"
-                        alt="ICON"
-                      />
-                      <img
-                        className="icon-heart2 dis-block trans-04 ab-t-l"
-                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-02.png?raw=true"
-                        alt="ICON"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-              {/*<!-- Block2 -->*/}
-              <div className="block2">
-                <div className="block2-pic hov-img0">
-                  <img
-                    src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-13.jpg?raw=true "
-                    alt="IMG-PRODUCT"
-                  />
-
-                  <a
-                    href="/#"
-                    className="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"
-                  >
-                    Quick View
-                  </a>
-                </div>
-
-                <div className="block2-txt flex-w flex-t p-t-14">
-                  <div className="block2-txt-child1 flex-col-l ">
-                    <a
-                      href="product-detail.html"
-                      className="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"
-                    >
-                      T-Shirt with Sleeve
-                    </a>
-
-                    <span className="stext-105 cl3">$18.49</span>
-                  </div>
-
-                  <div className="block2-txt-child2 flex-r p-t-3">
-                    <a
-                      href="/#"
-                      className="btn-addwish-b2 dis-block pos-relative js-addwish-b2"
-                    >
-                      <img
-                        className="icon-heart1 dis-block trans-04"
-                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-01.png?raw=true"
-                        alt="ICON"
-                      />
-                      <img
-                        className="icon-heart2 dis-block trans-04 ab-t-l"
-                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-02.png?raw=true"
-                        alt="ICON"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-              {/*<!-- Block2 -->*/}
-              <div className="block2">
-                <div className="block2-pic hov-img0">
-                  <img
-                    src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-14.jpg?raw=true "
-                    alt="IMG-PRODUCT"
-                  />
-
-                  <a
-                    href="/#"
-                    className="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"
-                  >
-                    Quick View
-                  </a>
-                </div>
-
-                <div className="block2-txt flex-w flex-t p-t-14">
-                  <div className="block2-txt-child1 flex-col-l ">
-                    <a
-                      href="product-detail.html"
-                      className="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"
-                    >
-                      Pretty Little Thing
-                    </a>
-
-                    <span className="stext-105 cl3">$54.79</span>
-                  </div>
-
-                  <div className="block2-txt-child2 flex-r p-t-3">
-                    <a
-                      href="/#"
-                      className="btn-addwish-b2 dis-block pos-relative js-addwish-b2"
-                    >
-                      <img
-                        className="icon-heart1 dis-block trans-04"
-                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-01.png?raw=true"
-                        alt="ICON"
-                      />
-                      <img
-                        className="icon-heart2 dis-block trans-04 ab-t-l"
-                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-02.png?raw=true"
-                        alt="ICON"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item watches">
-              {/*<!-- Block2 -->*/}
-              <div className="block2">
-                <div className="block2-pic hov-img0">
-                  <img
-                    src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-15.jpg?raw=true "
-                    alt="IMG-PRODUCT"
-                  />
-
-                  <a
-                    href="/#"
-                    className="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"
-                  >
-                    Quick View
-                  </a>
-                </div>
-
-                <div className="block2-txt flex-w flex-t p-t-14">
-                  <div className="block2-txt-child1 flex-col-l ">
-                    <a
-                      href="product-detail.html"
-                      className="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"
-                    >
-                      Mini Silver Mesh Watch
-                    </a>
-
-                    <span className="stext-105 cl3">$86.85</span>
-                  </div>
-
-                  <div className="block2-txt-child2 flex-r p-t-3">
-                    <a
-                      href="/#"
-                      className="btn-addwish-b2 dis-block pos-relative js-addwish-b2"
-                    >
-                      <img
-                        className="icon-heart1 dis-block trans-04"
-                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-01.png?raw=true"
-                        alt="ICON"
-                      />
-                      <img
-                        className="icon-heart2 dis-block trans-04 ab-t-l"
-                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-02.png?raw=true"
-                        alt="ICON"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-              {/*<!-- Block2 -->*/}
-              <div className="block2">
-                <div className="block2-pic hov-img0">
-                  <img
-                    src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-16.jpg?raw=true "
-                    alt="IMG-PRODUCT"
-                  />
-
-                  <a
-                    href="/#"
-                    className="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1"
-                  >
-                    Quick View
-                  </a>
-                </div>
-
-                <div className="block2-txt flex-w flex-t p-t-14">
-                  <div className="block2-txt-child1 flex-col-l ">
-                    <a
-                      href="product-detail.html"
-                      className="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"
-                    >
-                      Square Neck Back
-                    </a>
-
-                    <span className="stext-105 cl3">$29.64</span>
-                  </div>
-
-                  <div className="block2-txt-child2 flex-r p-t-3">
-                    <a
-                      href="/#"
-                      className="btn-addwish-b2 dis-block pos-relative js-addwish-b2"
-                    >
-                      <img
-                        className="icon-heart1 dis-block trans-04"
-                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-01.png?raw=true"
-                        alt="ICON"
-                      />
-                      <img
-                        className="icon-heart2 dis-block trans-04 ab-t-l"
-                        src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/icon-heart-02.png?raw=true"
-                        alt="ICON"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* <!-- Load more --> */}
-          <div className="flex-c-m flex-w w-full p-t-45">
-            <a
-              href="/#"
-              className="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04"
-            >
-              Load More
-            </a>
           </div>
         </div>
       </div>
-    </div>
+
+      {/*<!-- breadcrumb -->*/}
+      <div className="container">
+        <div className="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+          <a href="index.html" className="stext-109 cl8 hov-cl1 trans-04">
+            Home
+            <i
+              className="fa fa-angle-right m-l-9 m-r-10"
+              aria-hidden="true"
+            ></i>
+          </a>
+
+          <span className="stext-109 cl4">Shoping Cart</span>
+        </div>
+      </div>
+
+      {/*<!-- Shoping Cart -->*/}
+      <form className="bg0 p-t-75 p-b-85">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-10 col-xl-7 m-lr-auto m-b-50">
+              <div className="m-l-25 m-r--38 m-lr-0-xl">
+                <div className="wrap-table-shopping-cart">
+                  <table className="table-shopping-cart">
+                    <tr className="table_head">
+                      <th className="column-1">Product</th>
+                      <th className="column-2"></th>
+                      <th className="column-3">Price</th>
+                      <th className="column-4">Quantity</th>
+                      <th className="column-5">Total</th>
+                    </tr>
+
+                    <tr className="table_row">
+                      <td className="column-1">
+                        <div className="how-itemcart1">
+                          <img src={cart4} alt="IMG" />
+                        </div>
+                      </td>
+                      <td className="column-2">Fresh Strawberries</td>
+                      <td className="column-3">$ 36.00</td>
+                      <td className="column-4">
+                        <div className="wrap-num-product flex-w m-l-auto m-r-0">
+                          <div className="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+                            <i className="fs-16 zmdi zmdi-minus"></i>
+                          </div>
+
+                          <input
+                            className="mtext-104 cl3 txt-center num-product"
+                            type="number"
+                            name="num-product1"
+                            defaultValue="1"
+                          />
+
+                          <div className="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+                            <i className="fs-16 zmdi zmdi-plus"></i>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="column-5">$ 36.00</td>
+                    </tr>
+
+                    <tr className="table_row">
+                      <td className="column-1">
+                        <div className="how-itemcart1">
+                          <img src={cart5} alt="IMG" />
+                        </div>
+                      </td>
+                      <td className="column-2">Lightweight Jacket</td>
+                      <td className="column-3">$ 16.00</td>
+                      <td className="column-4">
+                        <div className="wrap-num-product flex-w m-l-auto m-r-0">
+                          <div className="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+                            <i className="fs-16 zmdi zmdi-minus"></i>
+                          </div>
+
+                          <input
+                            className="mtext-104 cl3 txt-center num-product"
+                            type="number"
+                            name="num-product2"
+                            defaultValue="1"
+                          />
+
+                          <div className="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+                            <i className="fs-16 zmdi zmdi-plus"></i>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="column-5">$ 16.00</td>
+                    </tr>
+                  </table>
+                </div>
+
+                <div className="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
+                  <div className="flex-w flex-m m-r-20 m-tb-5">
+                    <input
+                      className="stext-104 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5"
+                      type="text"
+                      name="coupon"
+                      placeholder="Coupon Code"
+                    />
+
+                    <div className="flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5">
+                      Apply coupon
+                    </div>
+                  </div>
+
+                  <div className="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
+                    Update Cart
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
+              <div className="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
+                <h4 className="mtext-109 cl2 p-b-30">Cart Totals</h4>
+
+                <div className="flex-w flex-t bor12 p-b-13">
+                  <div className="size-208">
+                    <span className="stext-110 cl2">Subtotal:</span>
+                  </div>
+
+                  <div className="size-209">
+                    <span className="mtext-110 cl2">$79.65</span>
+                  </div>
+                </div>
+
+                <div className="flex-w flex-t bor12 p-t-15 p-b-30">
+                  <div className="size-208 w-full-ssm">
+                    <span className="stext-110 cl2">Shipping:</span>
+                  </div>
+
+                  <div className="size-209 p-r-18 p-r-0-sm w-full-ssm">
+                    <p className="stext-111 cl6 p-t-2">
+                      There are no shipping methods available. Please double
+                      check your address, or contact us if you need any help.
+                    </p>
+
+                    <div className="p-t-15">
+                      <span className="stext-112 cl8">Calculate Shipping</span>
+
+                      <div className="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
+                        <select className="js-select2" name="time">
+                          <option>Select a country...</option>
+                          <option>USA</option>
+                          <option>UK</option>
+                        </select>
+                        <div className="dropDownSelect2"></div>
+                      </div>
+
+                      <div className="bor8 bg0 m-b-12">
+                        <input
+                          className="stext-111 cl8 plh3 size-111 p-lr-15"
+                          type="text"
+                          name="state"
+                          placeholder="State /  country"
+                        />
+                      </div>
+
+                      <div className="bor8 bg0 m-b-22">
+                        <input
+                          className="stext-111 cl8 plh3 size-111 p-lr-15"
+                          type="text"
+                          name="postcode"
+                          placeholder="Postcode / Zip"
+                        />
+                      </div>
+
+                      <div className="flex-w">
+                        <div className="flex-c-m stext-101 cl2 size-115 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer">
+                          Update Totals
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex-w flex-t p-t-27 p-b-33">
+                  <div className="size-208">
+                    <span className="mtext-101 cl2">Total:</span>
+                  </div>
+
+                  <div className="size-209 p-t-1">
+                    <span className="mtext-110 cl2">$79.65</span>
+                  </div>
+                </div>
+
+                <button className="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+                  Proceed to Checkout
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <Footer />
+    </>
   );
 };
 

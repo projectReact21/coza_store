@@ -7,14 +7,20 @@ import "./cssGlobal/util.css";
 import "./cssGlobal/main.css";
 import DefaultLayout from "./layouts/DefaultLayout";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Login from "./pages/login/Login";
+import LoadingBar from "react-redux-loading-bar";
 
 function App() {
   return (
     <>
+      <div className="position-absolute w-100" style={{ zIndex: 100 }}>
+        <LoadingBar
+          updateTime={100}
+          className="bg-danger"
+          style={{ height: "2px" }}
+        />
+      </div>
       <BrowserRouter>
         <Routes>
-          <Route path="/login" element={<Login />} />
           <Route path="/*" element={<DefaultLayout />} />
         </Routes>
       </BrowserRouter>

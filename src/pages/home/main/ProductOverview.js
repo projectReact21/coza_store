@@ -1,11 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Row, Col, Form } from "react-bootstrap";
 import CateloryListText from "../../../component/CateloryListText";
 import ListProductItem from "../../../component/ListProductItem";
+import productService from "../../../services/productService";
 
 function ProductOverview() {
   const [showFilter, setShowFilter] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
+  const [products, setProducts] = useState([]);
+  console.log(products);
+  useEffect(() => {
+    console.log("do");
+    productService.getProduct().then((res) => {
+      console.log(res.data);
+      setProducts(res.data.data);
+    });
+  }, []);
   const handleFilter = () => {
     setShowFilter(!showFilter);
     setShowSearch(false);
@@ -116,78 +126,16 @@ function ProductOverview() {
         )}
       </Row>
       <Row className="gy-4">
-        <Col sm={12} md={6} lg={3}>
-          <ListProductItem
-            srcImg="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-01.jpg?raw=true"
-            status="1"
-            name="Esprit Ruffle Shirt"
-            price="$16.64"
-          />
-        </Col>
-        <Col sm={12} md={6} lg={3}>
-          <ListProductItem
-            srcImg="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-01.jpg?raw=true"
-            status="0"
-            name="Esprit Ruffle Shirt"
-            price="$16.64"
-          />
-        </Col>
-        <Col sm={12} md={6} lg={3}>
-          <ListProductItem
-            srcImg="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-01.jpg?raw=true"
-            status="0"
-            name="Esprit Ruffle Shirt"
-            price="$16.64"
-          />
-        </Col>
-        <Col sm={12} md={6} lg={3}>
-          <ListProductItem
-            srcImg="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-01.jpg?raw=true"
-            status="0"
-            name="Esprit Ruffle Shirt"
-            price="$16.64"
-          />
-        </Col>
-        <Col sm={12} md={6} lg={3}>
-          <ListProductItem
-            srcImg="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-01.jpg?raw=true"
-            status="0"
-            name="Esprit Ruffle Shirt"
-            price="$16.64"
-          />
-        </Col>
-        <Col sm={12} md={6} lg={3}>
-          <ListProductItem
-            srcImg="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-01.jpg?raw=true"
-            status="0"
-            name="Esprit Ruffle Shirt"
-            price="$16.64"
-          />
-        </Col>
-        <Col sm={12} md={6} lg={3}>
-          <ListProductItem
-            srcImg="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-01.jpg?raw=true"
-            status="0"
-            name="Esprit Ruffle Shirt"
-            price="$16.64"
-          />
-        </Col>
-        <Col sm={12} md={6} lg={3}>
-          <ListProductItem
-            srcImg="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-01.jpg?raw=true"
-            status="0"
-            name="Esprit Ruffle Shirt"
-            price="$16.64"
-          />
-        </Col>
-        <Col sm={12} md={6} lg={3}>
-          <ListProductItem
-            srcImg="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/product-01.jpg?raw=true"
-            status="0"
-            name="Esprit Ruffle Shirt"
-            price="$16.64"
-          />
-        </Col>
+        {products.map((pro) => (
+          <Col sm={12} md={6} lg={3} key={pro.id}>
+            <ListProductItem
+              srcImg={pro.srcImg}
+              status={pro.status}
+              name={pro.name}
+              price={"$ " + pro.price}
+            />
+          </Col>
+        ))}
       </Row>
       <Row className="justify-content-center mb-5 mt-5">
         <Button className="text-uppercase col-sm-3 col-md-2 text-dark h-100 btn-loadmore">

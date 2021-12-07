@@ -15,13 +15,13 @@ function ListProductItem({ name, price, status, srcImg }) {
         <Card.Text className="position-absolute top-1 right-0 me-2">
           {" "}
           <i
-            className="fa fa-heart fs-4 card__product--item-status "
+            className="fa fa-heart fs-4 card__product--item-status  "
             style={
               parseInt(status) === 0 ? { color: "#eee" } : { color: "red" }
             }
           ></i>
         </Card.Text>
-        <Card.Title>{name}</Card.Title>
+        <Card.Title className="text-overflow-1 pe-4">{name}</Card.Title>
         <Card.Text>{price}</Card.Text>
         <Row className="justify-content-center">
           <Button

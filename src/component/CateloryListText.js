@@ -1,6 +1,6 @@
 import React from "react";
 import { Nav } from "react-bootstrap";
-function CateloryListText({ listText, defaultActive, col, radius, col2 }) {
+function CateloryListText({ listText, defaultActive, col, radius }) {
   console.log(defaultActive);
   return (
     <Nav
@@ -29,9 +29,7 @@ function CateloryListText({ listText, defaultActive, col, radius, col2 }) {
                   }
                 : {}
             }
-            className={
-              col2 ? col2 : "text-dark stext-107 c16 text-capitalize w-100 me-2"
-            }
+            className="text-dark text-capitalize w-100 me-2 "
           >
             {l}
           </Nav.Link>

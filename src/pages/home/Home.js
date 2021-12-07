@@ -1,19 +1,16 @@
-import React from "react";
-import "./home.css";
-import Banner from "./Banner";
-import CateloryProduct from "./CateloryProduct";
-import Main from "./main/Main";
-import { Container } from "react-bootstrap";
+import React from 'react';
+import './home.css'
+import Banner from './Banner';
+import CateloryProduct from './CateloryProduct';
+import Main from './main/Main';
 function Home() {
-  return (
-    <>
-      <Banner />
-      <Container>
-        <CateloryProduct />
-        <Main />
-      </Container>
-    </>
-  );
+    return ( 
+      <>
+        <Banner/>
+        <CateloryProduct/>
+        <Main/>
+      </>
+     );
 }
 
 export default Home;

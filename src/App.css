@@ -32,13 +32,17 @@
   cursor: pointer;
 }
 .hover-layout:hover {
-  color: #717fe0 !important;
+  color: blue !important;
+}
+.text-overflow-1 {
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  overflow: hidden;
 }
 @media screen and (max-width: 999px) {
   #header__topBar {
     display: none;
   }
-}
-.nav-link {
-  color: #b2b2b2 !important;
 }
