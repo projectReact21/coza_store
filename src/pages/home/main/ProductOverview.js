@@ -3,19 +3,19 @@ import { Button, Row, Col, Form } from "react-bootstrap";
 import CateloryListText from "../../../component/CateloryListText";
 import ListProductItem from "../../../component/ListProductItem";
 import productService from "../../../services/productService";
+import { useDispatch, useSelector } from "react-redux";
+import ActionTypes from "../../../stores/action";
 
 function ProductOverview() {
   const [showFilter, setShowFilter] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [products, setProducts] = useState([]);
-  console.log(products);
+  const [dataFromStore, setDataFromStore] = useState([]);
+  const isFill = useSelector((state) => state.auth.isFill);
+  const productFill =useSelector((state) => state.auth.productFill)
   useEffect(() => {
-    console.log("do");
-    productService.getProduct().then((res) => {
-      console.log(res.data);
-      setProducts(res.data.data);
-    });
-  }, []);
+    setProducts(dataFromStore);
+  }, [dataFromStore]);
   const handleFilter = () => {
     setShowFilter(!showFilter);
     setShowSearch(false);
@@ -24,7 +24,7 @@ function ProductOverview() {
     setShowSearch(!showSearch);
     setShowFilter(false);
   };
-  const listNav = ["allproducts", "women", "men", "bag", "shoes", "satches"];
+  const listNav = ["allproducts", "women", "men", "bag", "shoes", "watches"];
   const listPrice = [
     "all",
     "$0.00 - $50.00",
@@ -46,7 +46,11 @@ function ProductOverview() {
   return (
     <>
       <Row className="mb-2">
-        <CateloryListText listText={listNav} defaultActive="allproducts" />
+        <CateloryListText
+          listText={listNav}
+          typeFill="theme"
+          defaultActive="allproducts"
+        />
         <Col sm={12} md={4}>
           <Row className="justify-content-around g-3 px-2 pe-2 ">
             <Button
@@ -84,7 +88,8 @@ function ProductOverview() {
             <CateloryListText
               col="col-12"
               listText={listFilter}
-              defaultActive="average raing"
+              typeFill="sorfby"
+              // defaultActive="average raing"
             />
           </Col>
           <Col sm={12} md={6} lg={3}>
@@ -92,7 +97,8 @@ function ProductOverview() {
             <CateloryListText
               col="col-12"
               listText={listPrice}
-              defaultActive="all"
+              typeFill="price"
+              // defaultActive="all"
             />
           </Col>
           <Col sm={12} md={6} lg={3}>
@@ -100,14 +106,16 @@ function ProductOverview() {
             <CateloryListText
               col="col-12"
               listText={listColor}
-              defaultActive="green"
+              typeFill="color"
+              // defaultActive="green"
             />
           </Col>
           <Col sm={12} md={6} lg={3}>
             <strong className="fs-3">Tags</strong>
             <CateloryListText
               listText={listTags}
-              defaultActive="lifestyle"
+              typeFill="tag"
+              // defaultActive="lifestyle"
               radius="2rem"
             />
           </Col>
@@ -126,16 +134,17 @@ function ProductOverview() {
         )}
       </Row>
       <Row className="gy-4">
-        {products.map((pro) => (
-          <Col sm={12} md={6} lg={3} key={pro.id}>
-            <ListProductItem
-              srcImg={pro.srcImg}
-              status={pro.status}
-              name={pro.name}
-              price={"$ " + pro.price}
-            />
-          </Col>
-        ))}
+        {
+          productFill.map((pro) => (
+            <Col sm={12} md={6} lg={3} key={pro.id}>
+              <ListProductItem
+                srcImg={pro.srcImg}
+                status={pro.status}
+                name={pro.name}
+                price={"$ " + pro.price}
+              />
+            </Col>
+          ))}
       </Row>
       <Row className="justify-content-center mb-5 mt-5">
         <Button className="text-uppercase col-sm-3 col-md-2 text-dark h-100 btn-loadmore">

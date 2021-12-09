@@ -1,7 +1,27 @@
 import React from "react";
 import { Nav } from "react-bootstrap";
-function CateloryListText({ listText, defaultActive, col, radius }) {
-  console.log(defaultActive);
+import { useDispatch, useSelector } from "react-redux";
+import ActionTypes from "../stores/action";
+import productService from "../services/productService"
+function CateloryListText({ listText, defaultActive, col, radius, typeFill }) {
+  const dispatch = useDispatch();
+  const dataFill = (data) => {
+    dispatch({
+      type: ActionTypes.FIND_DATA,
+      productFill: data,
+    });
+  };
+  const dataAPI = useSelector((state) => state.auth.allproducts);
+  const handleFill = (c, t) => {
+    console.log(c);
+    if(c==='allproducts'){
+      dataFill(dataAPI)
+    }else{
+       productService.getFillProduct(c).then(res=>{
+          dataFill(res.data.data)
+      })  
+    }
+  };
   return (
     <Nav
       defaultActiveKey={defaultActive}
@@ -30,6 +50,8 @@ function CateloryListText({ listText, defaultActive, col, radius }) {
                 : {}
             }
             className="text-dark text-capitalize w-100 me-2 "
+            name={typeFill}
+            onClick={() => handleFill(l, typeFill)}
           >
             {l}
           </Nav.Link>

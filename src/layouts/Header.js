@@ -1,12 +1,28 @@
 import React from "react";
 import { Navbar, Container, Nav, Form, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import CanvasFavorite from "../component/CanvasFavorite";
+import CanvasCart from "../component/CanvasCart"
+import ActionTypes from "../stores/action";
+import { useDispatch } from "react-redux";
+import productService from "../services/productService"
 
 function Header() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handlechangePage = (e, param) => {
     e.preventDefault();
     navigate(param);
+  };
+  const handleShowCanvasFavoriteProduct = () => {
+    dispatch({
+      type: ActionTypes.SHOW_CANVAS_FAVORITE
+    });
+  };
+  const handleShowCanvasCartProduct = () => {
+    dispatch({
+      type: ActionTypes.SHOW_CANVAS_CART,
+    });
   };
   return (
     <>
@@ -127,14 +143,21 @@ function Header() {
               <i
                 className="fa fa-shopping-cart fs-3 mt-1 mx-2"
                 aria-hidden="true"
+                onClick={handleShowCanvasCartProduct}
               ></i>
-              <i className="fa fa-heart fs-3 mt-1" aria-hidden="true">
+              <i
+                className="fa fa-heart fs-3 mt-1"
+                aria-hidden="true"
+                onClick={handleShowCanvasFavoriteProduct}
+              >
                 <sup className="text-warning mx-1">2</sup>
               </i>
             </Form>
           </Navbar.Collapse>
         </Container>
       </Navbar>
+      <CanvasFavorite content="Favorite Product" />
+      <CanvasCart content="My Cart" />
     </>
   );
 }
