@@ -1,0 +1,49 @@
+.nav-link.active {
+  border-bottom: solid blue !important;
+}
+
+.btn-loadmore {
+  height: 3rem !important;
+  border-radius: 1rem !important;
+  background-color: #eee;
+  color: black;
+  border: none !important;
+  font-weight: 600;
+  transition: all 0.3s;
+  &:hover {
+    background-color: black !important;
+    color: white !important;
+  }
+}
+.card__product--item {
+  overflow: hidden;
+  &:hover {
+    .card__product--item-btn {
+      transform: translateY(-8rem);
+      color: black;
+    }
+    .card__product--item-img {
+      transform: scale(1.2);
+    }
+  }
+  &-img {
+    transition: all 0.3s;
+  }
+  &-btn {
+    transition: all 0.5s;
+    transform: translateY(1rem);
+    background-color: white !important;
+    border-radius: 1rem !important;
+    border: none;
+    &:hover {
+      background-color: black !important;
+      color: white !important;
+    }
+  }
+  &-status {
+    transition: all 0.3s;
+    &:hover {
+      color: red !important;
+    }
+  }
+}

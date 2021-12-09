@@ -4,7 +4,7 @@ import store from "./../stores/index";
 const url = {
   baseUrl: "https://hoanghuy1998.herokuapp.com/allproduct",
   allproducts: "/list",
-  filter:"/filter"
+  filter: "/filter",
 };
 const instance = axios.create({
   baseURL: url.baseUrl,
