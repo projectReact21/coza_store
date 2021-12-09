@@ -17,12 +17,13 @@
   transform: translateY(-0.5rem);
 }
 .btn_submit {
-  background: #717fe0 !important;
-  transition: all 0.2s;
+  background-color: white !important;
+  color: black !important;
+  transition: all 0.5s linear;
 }
 .btn_submit:hover {
-  background-color: white !important;
-  color: #717fe0 !important;
+  color: white !important;
+  background: #717fe0 !important;
 }
 .h-46 {
   height: 46px !important;
@@ -32,7 +33,7 @@
   cursor: pointer;
 }
 .hover-layout:hover {
-  color: blue !important;
+  color: #717fe0 !important;
 }
 .text-overflow-1 {
   text-overflow: ellipsis;

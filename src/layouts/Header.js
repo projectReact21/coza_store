@@ -11,45 +11,45 @@ function Header() {
   return (
     <>
       <Container fluid className="top-bar" id="header__topBar">
-        <Row>
-          <Col md={6}>
-            <Nav.Link href="/#">
-              Free shipping for standard order over $100
-            </Nav.Link>
-          </Col>
-          <Col md={6}>
-            <Row className=" align-items-center h-100">
-              <Col md={4}>
-                {" "}
-                <Nav.Link href="/#" className="p-0">
+        <Container>
+          <Row>
+            <Col md={6} className="left-top-bar">
+              <div>Free shipping for standard order over $100</div>
+            </Col>
+            <Col md={6}>
+              <Row className=" align-items-center h-100">
+                <Col md={4}>
                   {" "}
-                  Help & FAQs
-                </Nav.Link>
-              </Col>
-              <Col md={4}>
-                {" "}
-                <Nav.Link href="/#" className="p-0">
+                  <Nav.Link href="/#" className="p-0">
+                    {" "}
+                    Help & FAQs
+                  </Nav.Link>
+                </Col>
+                <Col md={4}>
                   {" "}
-                  My Account
-                </Nav.Link>
-              </Col>
-              <Col>
-                {" "}
-                <Nav.Link href="/#" className="p-0">
+                  <Nav.Link href="/#" className="p-0">
+                    {" "}
+                    My Account
+                  </Nav.Link>
+                </Col>
+                <Col>
                   {" "}
-                  EN
-                </Nav.Link>
-              </Col>
-              <Col>
-                {" "}
-                <Nav.Link href="/#" className="p-0">
+                  <Nav.Link href="/#" className="p-0">
+                    {" "}
+                    EN
+                  </Nav.Link>
+                </Col>
+                <Col>
                   {" "}
-                  USD
-                </Nav.Link>
-              </Col>
-            </Row>
-          </Col>
-        </Row>
+                  <Nav.Link href="/#" className="p-0">
+                    {" "}
+                    USD
+                  </Nav.Link>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+        </Container>
       </Container>
       <Navbar expand="lg" collapseOnSelect>
         <Container fluid>

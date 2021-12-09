@@ -2,8 +2,9 @@ import axios from "axios";
 import { hideLoading, showLoading } from "react-redux-loading-bar";
 import store from "./../stores/index";
 const url = {
-  baseUrl: "https://hoanghuy1998.herokuapp.com/allproduct",
-  allproducts: "/list",
+  baseUrl: "https://hoanghuy1998.herokuapp.com",
+  allproducts: "/allproduct/list",
+  filter: "/allproduct/filter",
 };
 const instance = axios.create({
   baseURL: url.baseUrl,
