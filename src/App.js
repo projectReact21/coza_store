@@ -12,11 +12,14 @@ import LoadingBar from "react-redux-loading-bar";
 function App() {
   return (
     <>
-      <div className="position-absolute w-100" style={{ zIndex: 100 }}>
+      <div
+        className="position-absolute pos-fixed  w-100"
+        style={{ zIndex: 100 }}
+      >
         <LoadingBar
           updateTime={100}
           className="bg-danger"
-          style={{ height: "2px" }}
+          style={{ height: "4px" }}
         />
       </div>
       <BrowserRouter>
