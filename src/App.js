@@ -18,7 +18,7 @@ function App() {
       >
         <LoadingBar
           updateTime={100}
-          className="bg-danger"
+          className="bg-custom"
           style={{ height: "4px" }}
         />
       </div>

@@ -1,8 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Features.css";
 import { Container, Dropdown, Row } from "react-bootstrap";
+import mycartService from "../../services/mycartService";
 
 const Features = () => {
+  const [total, setTotal] = useState(100);
+  const [quanity, setQuanity] = useState(1);
+  const [carts, setCarts] = useState([]);
+  const [cart, setCart] = useState();
+  useEffect(() => {
+    loadData();
+  }, []);
+  const loadData = () => {
+    mycartService.getList().then((res) => {
+      setCarts(res.data.data);
+      // console.log(res.data);
+    });
+  };
+  const handleproductDown = (e) => {
+    e.preventDefault();
+  };
+  const handleproductUp = (e, id) => {
+    e.preventDefault();
+    // const quanityId = carts.find((x) => x.id === id);
+    // quanityId.quanity += 1;
+    // // setCart(quanityId);
+    // console.log(cart);
+    mycartService.get(id).then((res) => {
+      setCart(res.data);
+      console.log(cart);
+    });
+    // cart((quanity += 1));
+
+    mycartService.update(id, cart).then((res) => {
+      loadData();
+    });
+  };
+  const handleChange = (e) => {
+    e.preventDefault();
+    total = e.target.value;
+  };
   return (
     <>
       <Container>
@@ -36,37 +73,47 @@ const Features = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr className="table_row">
-                        <td className="column-1">
-                          <div className="how-itemcart1">
-                            <img
-                              src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/item-cart-01.jpg?raw=true"
-                              alt="IMG"
-                            />
-                          </div>
-                        </td>
-                        <td className="column-2">Fresh Strawberries</td>
-                        <td className="column-3">$ 36.00</td>
-                        <td className="column-4">
-                          <div className="wrap-num-product flex-w m-l-auto m-r-0">
-                            <div className="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-                              <span className="spanplus">-</span>
+                      {carts.map((item, index) => (
+                        <tr className="table_row" key={index}>
+                          <td className="column-1">
+                            <div className="how-itemcart1">
+                              <img src={item.srcImg} alt="IMG" />
                             </div>
+                          </td>
+                          <td className="column-2">{item.name}</td>
+                          <td className="column-3">$ {item.price}</td>
+                          <td className="column-4">
+                            <div className="wrap-num-product flex-w m-l-auto m-r-0">
+                              <div className="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+                                <span
+                                  className="spanplus"
+                                  onClick={handleproductDown}
+                                >
+                                  -
+                                </span>
+                              </div>
 
-                            <input
-                              className="mtext-104 cl3 txt-center num-product"
-                              type="number"
-                              name="num-product1"
-                              defaultValue="1"
-                            />
+                              <input
+                                className="mtext-104 cl3 txt-center num-product"
+                                type="number"
+                                name="num-product1"
+                                onChange={handleChange}
+                                defaultValue={item.quanity}
+                              />
 
-                            <div className="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-                              <span className="spanplus">+</span>
+                              <div className="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+                                <span
+                                  className="spanplus"
+                                  onClick={(e) => handleproductUp(e, item.id)}
+                                >
+                                  +
+                                </span>
+                              </div>
                             </div>
-                          </div>
-                        </td>
-                        <td className="column-5">$ 36.00</td>
-                      </tr>
+                          </td>
+                          <td className="column-5">$ {total}</td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>

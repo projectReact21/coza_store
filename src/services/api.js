@@ -5,6 +5,7 @@ const url = {
   baseUrl: "https://hoanghuy1998.herokuapp.com",
   allproducts: "/allproduct/list",
   filter: "/allproduct/filter",
+  mycart: "/mycartproduct/list",
 };
 const instance = axios.create({
   baseURL: url.baseUrl,

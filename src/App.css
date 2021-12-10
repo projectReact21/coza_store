@@ -42,6 +42,9 @@
   display: -webkit-box;
   overflow: hidden;
 }
+.bg-custom {
+  background-color: #717fe0;
+}
 @media screen and (max-width: 999px) {
   #header__topBar {
     display: none;
