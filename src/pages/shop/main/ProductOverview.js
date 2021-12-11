@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Button, Row, Col, Form } from "react-bootstrap";
 import CateloryListText from "../../../component/CateloryListText";
 import ListProductItem from "../../../component/ListProductItem";
-import productService from "../../../services/productService";
+// import productService from "../../../services/productService";
 import { useDispatch, useSelector } from "react-redux";
-import ActionTypes from "../../../stores/action";
+// import ActionTypes from "../../../stores/action";
 
 function ProductOverview() {
   const [showFilter, setShowFilter] = useState(false);
