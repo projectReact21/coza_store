@@ -2,15 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Button, Row, Col, Form } from "react-bootstrap";
 import CateloryListText from "../../../component/CateloryListText";
 import ListProductItem from "../../../component/ListProductItem";
-<<<<<<< HEAD
+
 import { useDispatch, useSelector } from "react-redux";
 import mycartService from "../../../services/mycartService";
-=======
-// import productService from "../../../services/productService";
-import { useDispatch, useSelector } from "react-redux";
-// import ActionTypes from "../../../stores/action";
 
->>>>>>> f0471b8e14619dfe1d090f3cbef1332930531c95
 function ProductOverview() {
   const [showFilter, setShowFilter] = useState(false);
   const [showSearch, setShowSearch] = useState(false);

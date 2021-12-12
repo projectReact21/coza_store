@@ -29,7 +29,6 @@ const Features = () => {
   });
   useEffect(() => {
     loadData();
-    Total();
   }, []);
   const loadData = () => {
     mycartService.getList().then((res) => {
@@ -43,7 +42,6 @@ const Features = () => {
     setGetid(id);
   };
   const handleChangeData = (e, id) => {
-    e.preventDefault();
     setCartsId(id);
     const newData = { ...cart };
     newData[e.target.name] = e.target.value;
@@ -56,7 +54,7 @@ const Features = () => {
     console.log(getid);
     console.log(cart);
     mycartService.update(cart.id, cart).then((res) => {
-      console.log(res.data.result.quantity);
+      console.log(res.data.result.data.quantity);
       // console.log(res);
       // console.log(res.data.result.data);
       if (res.data.result.errorCode === 0) {
