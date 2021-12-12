@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import "./home.css";
 import Banner from "./Banner";
 import CateloryProduct from "./CateloryProduct";
-import Main from "./main/Main";
 import { useEffect } from "react";
 import productService from "./../../services/productService";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ActionTypes from "../../stores/action";
+import { Col, Row } from "react-bootstrap";
+import ListProductItem from "../../component/ListProductItem";
 
 function Home() {
+  const product = useSelector((state) => state.auth.productFill);
   const dispatch = useDispatch();
   const getData = (data) => {
     dispatch({
@@ -34,19 +36,19 @@ function Home() {
       <Banner />
       <CateloryProduct />
       {/* <!-- Product --> */}
-      <section class="sec-product bg0 p-t-100 p-b-50">
-        <div class="container">
-          <div class="p-b-32">
-            <h3 class="ltext-105 cl5 txt-center respon1">Store Overview</h3>
+      <section className="sec-product bg0 p-t-100 p-b-50">
+        <div className="container">
+          <div className="p-b-32">
+            <h3 className="ltext-105 cl5 txt-center respon1">Store Overview</h3>
           </div>
 
           {/* <!-- Tab01 --> */}
-          <div class="tab01">
+          <div className="tab01">
             {/* <!-- Nav tabs --> */}
-            <ul class="nav nav-tabs" role="tablist">
-              <li class="nav-item p-b-10">
+            <ul className="nav nav-tabs" role="tablist">
+              <li className="nav-item p-b-10">
                 <a
-                  class="nav-link active"
+                  className="nav-link active"
                   data-toggle="tab"
                   href="#best-seller"
                   role="tab"
@@ -55,9 +57,9 @@ function Home() {
                 </a>
               </li>
 
-              <li class="nav-item p-b-10">
+              <li className="nav-item p-b-10">
                 <a
-                  class="nav-link"
+                  className="nav-link"
                   data-toggle="tab"
                   href="#featured"
                   role="tab"
@@ -66,15 +68,20 @@ function Home() {
                 </a>
               </li>
 
-              <li class="nav-item p-b-10">
-                <a class="nav-link" data-toggle="tab" href="#sale" role="tab">
+              <li className="nav-item p-b-10">
+                <a
+                  className="nav-link"
+                  data-toggle="tab"
+                  href="#sale"
+                  role="tab"
+                >
                   Sale
                 </a>
               </li>
 
-              <li class="nav-item p-b-10">
+              <li className="nav-item p-b-10">
                 <a
-                  class="nav-link"
+                  className="nav-link"
                   data-toggle="tab"
                   href="#top-rate"
                   role="tab"
@@ -1673,51 +1680,69 @@ function Home() {
                 </div>
               </div>
             </div>
+            {/* <div className="row">
+              <Row className="gy-4">
+                {product.map((pro) => (
+                  <Col sm={12} md={6} lg={3} key={pro.id}>
+                    <ListProductItem
+                      srcImg={pro.srcImg}
+                      status={pro.status}
+                      name={pro.name}
+                      price={"$ " + pro.price}
+                    />
+                  </Col>
+                ))}
+              </Row>
+
+            </div> */}
           </div>
         </div>
       </section>
 
       {/* <!-- Blog --> */}
-      <section class="sec-blog bg0 p-t-60 p-b-90">
-        <div class="container">
-          <div class="p-b-66">
-            <h3 class="ltext-105 cl5 txt-center respon1">Our Blogs</h3>
+      <section className="sec-blog bg0 p-t-60 p-b-90">
+        <div className="container">
+          <div className="p-b-66">
+            <h3 className="ltext-105 cl5 txt-center respon1">Our Blogs</h3>
           </div>
 
-          <div class="row">
-            <div class="col-sm-6 col-md-4 p-b-40">
-              <div class="blog-item">
-                <div class="hov-img0">
+          <div className="row">
+            <div className="col-sm-6 col-md-4 p-b-40">
+              <div className="blog-item">
+                <div className="hov-img0">
                   <a href="blog-detail.html">
-                    <img src="images/blog-01.jpg" alt="IMG-BLOG" />
+                    <img
+                      src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/blog-01.jpg?raw=true"
+                      alt="IMG-BLOG"
+                    />
                   </a>
                 </div>
 
-                <div class="p-t-15">
-                  <div class="stext-107 flex-w p-b-14">
-                    <span class="m-r-3">
-                      <span class="cl4">By</span>
+                <div className="p-t-15">
+                  <div className="stext-107 flex-w p-b-14">
+                    <span className="m-r-3">
+                      <span className="cl4">By</span>
 
-                      <span class="cl5">Nancy Ward</span>
+                      <span className="cl5">Nancy Ward</span>
                     </span>
 
                     <span>
-                      <span class="cl4">on</span>
+                      <span className="cl4">on</span>
 
-                      <span class="cl5">July 22, 2017</span>
+                      <span className="cl5">July 22, 2017</span>
                     </span>
                   </div>
 
-                  <h4 class="p-b-12">
+                  <h4 className="p-b-12">
                     <a
                       href="blog-detail.html"
-                      class="mtext-101 cl2 hov-cl1 trans-04"
+                      className="mtext-101 cl2 hov-cl1 trans-04"
                     >
                       8 Inspiring Ways to Wear Dresses in the Winter
                     </a>
                   </h4>
 
-                  <p class="stext-108 cl6">
+                  <p className="stext-108 cl6">
                     Duis ut velit gravida nibh bibendum commodo. Suspendisse
                     pellentesque mattis augue id euismod. Interdum et male-suada
                     fames
@@ -1726,39 +1751,42 @@ function Home() {
               </div>
             </div>
 
-            <div class="col-sm-6 col-md-4 p-b-40">
-              <div class="blog-item">
-                <div class="hov-img0">
+            <div className="col-sm-6 col-md-4 p-b-40">
+              <div className="blog-item">
+                <div className="hov-img0">
                   <a href="blog-detail.html">
-                    <img src="images/blog-02.jpg" alt="IMG-BLOG" />
+                    <img
+                      src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/blog-02.jpg?raw=true"
+                      alt="IMG-BLOG"
+                    />
                   </a>
                 </div>
 
-                <div class="p-t-15">
-                  <div class="stext-107 flex-w p-b-14">
-                    <span class="m-r-3">
-                      <span class="cl4">By</span>
+                <div className="p-t-15">
+                  <div className="stext-107 flex-w p-b-14">
+                    <span className="m-r-3">
+                      <span className="cl4">By</span>
 
-                      <span class="cl5">Nancy Ward</span>
+                      <span className="cl5">Nancy Ward</span>
                     </span>
 
                     <span>
-                      <span class="cl4">on</span>
+                      <span className="cl4">on</span>
 
-                      <span class="cl5">July 18, 2017</span>
+                      <span className="cl5">July 18, 2017</span>
                     </span>
                   </div>
 
-                  <h4 class="p-b-12">
+                  <h4 className="p-b-12">
                     <a
                       href="blog-detail.html"
-                      class="mtext-101 cl2 hov-cl1 trans-04"
+                      className="mtext-101 cl2 hov-cl1 trans-04"
                     >
                       The Great Big List of Men’s Gifts for the Holidays
                     </a>
                   </h4>
 
-                  <p class="stext-108 cl6">
+                  <p className="stext-108 cl6">
                     Nullam scelerisque, lacus sed consequat laoreet, dui enim
                     iaculis leo, eu viverra ex nulla in tellus. Nullam nec
                     ornare tellus, ac fringilla lacus. Ut sit ame
@@ -1767,39 +1795,42 @@ function Home() {
               </div>
             </div>
 
-            <div class="col-sm-6 col-md-4 p-b-40">
-              <div class="blog-item">
-                <div class="hov-img0">
+            <div className="col-sm-6 col-md-4 p-b-40">
+              <div className="blog-item">
+                <div className="hov-img0">
                   <a href="blog-detail.html">
-                    <img src="images/blog-03.jpg" alt="IMG-BLOG" />
+                    <img
+                      src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/blog-03.jpg?raw=true"
+                      alt="IMG-BLOG"
+                    />
                   </a>
                 </div>
 
-                <div class="p-t-15">
-                  <div class="stext-107 flex-w p-b-14">
-                    <span class="m-r-3">
-                      <span class="cl4">By</span>
+                <div className="p-t-15">
+                  <div className="stext-107 flex-w p-b-14">
+                    <span className="m-r-3">
+                      <span className="cl4">By</span>
 
-                      <span class="cl5">Nancy Ward</span>
+                      <span className="cl5">Nancy Ward</span>
                     </span>
 
                     <span>
-                      <span class="cl4">on</span>
+                      <span className="cl4">on</span>
 
-                      <span class="cl5">July 2, 2017</span>
+                      <span className="cl5">July 2, 2017</span>
                     </span>
                   </div>
 
-                  <h4 class="p-b-12">
+                  <h4 className="p-b-12">
                     <a
                       href="blog-detail.html"
-                      class="mtext-101 cl2 hov-cl1 trans-04"
+                      className="mtext-101 cl2 hov-cl1 trans-04"
                     >
                       5 Winter-to-Spring Fashion Trends to Try Now
                     </a>
                   </h4>
 
-                  <p class="stext-108 cl6">
+                  <p className="stext-108 cl6">
                     Proin nec vehicula lorem, a efficitur ex. Nam vehicula nulla
                     vel erat tincidunt, sed hendrerit ligula porttitor. Fusce
                     sit amet maximus nunc

@@ -5,6 +5,8 @@ import "./cssGlobal/animate.css";
 import "./cssGlobal/select2.min.css";
 import "./cssGlobal/util.css";
 import "./cssGlobal/main.css";
+// import "jquery/dist/jquery.min.js";
+// import "./cssGlobal/main.js";
 import DefaultLayout from "./layouts/DefaultLayout";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LoadingBar from "react-redux-loading-bar";
