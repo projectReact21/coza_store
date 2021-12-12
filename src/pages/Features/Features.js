@@ -6,40 +6,99 @@ import mycartService from "../../services/mycartService";
 const Features = () => {
   const [total, setTotal] = useState(100);
   const [quanity, setQuanity] = useState(1);
+  const [getid, setGetid] = useState(0);
   const [carts, setCarts] = useState([]);
-  const [cart, setCart] = useState();
+  const [cartTotal, setCartTotal] = useState(0);
+  const [cart, setCart] = useState({
+    // id: "",
+    // name: "",
+    // price: "",
+    // status: 0,
+    // srcImg: "",
+    // sale: 0,
+    // create_at: "",
+    // update_at: "",
+    // description: "",
+    // type: "",
+    // color: "",
+    // theme: "",
+    // sorfby: "",
+    // tag: "",
+    // quantity: 0,
+    // total: 0,
+  });
   useEffect(() => {
     loadData();
+    Total();
   }, []);
   const loadData = () => {
     mycartService.getList().then((res) => {
       setCarts(res.data.data);
-      // console.log(res.data);
+    });
+  };
+  const setCartsId = (id) => {
+    mycartService.get(id).then((res) => {
+      setCart(res.data);
+    });
+    setGetid(id);
+  };
+  const handleChangeData = (e, id) => {
+    e.preventDefault();
+    setCartsId(id);
+    const newData = { ...cart };
+    newData[e.target.name] = e.target.value;
+    setCart(newData);
+    console.log(newData);
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("hi");
+    console.log(getid);
+    console.log(cart);
+    mycartService.update(cart.id, cart).then((res) => {
+      console.log(res.data.result.quantity);
+      // console.log(res);
+      // console.log(res.data.result.data);
+      if (res.data.result.errorCode === 0) {
+        console.log("ok");
+      }
     });
   };
   const handleproductDown = (e) => {
     e.preventDefault();
   };
+  const Total = () => {
+    let totalVal = 0;
+    for (let i = 0; i < carts.length; i++) {
+      totalVal += carts[i].total;
+    }
+    console.log(totalVal);
+    setCartTotal(totalVal);
+  };
+  const handleDelete = (id) => {
+    mycartService.delete(id).then((res) => {
+      if (res.errorCode === 0) {
+        console.log("delete success");
+      }
+    });
+  };
   const handleproductUp = (e, id) => {
     e.preventDefault();
-    // const quanityId = carts.find((x) => x.id === id);
-    // quanityId.quanity += 1;
-    // // setCart(quanityId);
-    // console.log(cart);
     mycartService.get(id).then((res) => {
       setCart(res.data);
-      console.log(cart);
+      // console.log(cart);
+      // setQuanity(res.data.quantity);
+      // console.log(quanity);
     });
-    // cart((quanity += 1));
 
-    mycartService.update(id, cart).then((res) => {
-      loadData();
-    });
+    // mycartService.update(id, cart).then((res) => {
+    //   loadData();
+    // });
   };
-  const handleChange = (e) => {
-    e.preventDefault();
-    total = e.target.value;
-  };
+  // const handleChange = (e) => {
+  //   e.preventDefault();
+  //   setQuanity(e.target.value);
+  // };
   return (
     <>
       <Container>
@@ -77,11 +136,15 @@ const Features = () => {
                         <tr className="table_row" key={index}>
                           <td className="column-1">
                             <div className="how-itemcart1">
-                              <img src={item.srcImg} alt="IMG" />
+                              <img src={item.srcImg} name="srcImg" alt="IMG" />
                             </div>
                           </td>
-                          <td className="column-2">{item.name}</td>
-                          <td className="column-3">$ {item.price}</td>
+                          <td className="column-2" name="name">
+                            {item.name}
+                          </td>
+                          <td className="column-3" name="price">
+                            $ {item.price}
+                          </td>
                           <td className="column-4">
                             <div className="wrap-num-product flex-w m-l-auto m-r-0">
                               <div className="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
@@ -96,27 +159,39 @@ const Features = () => {
                               <input
                                 className="mtext-104 cl3 txt-center num-product"
                                 type="number"
-                                name="num-product1"
-                                onChange={handleChange}
-                                defaultValue={item.quanity}
+                                name="quantity"
+                                defaultValue={item.quantity}
+                                onChange={(e) => {
+                                  handleChangeData(e, item.id);
+                                }}
                               />
 
                               <div className="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
                                 <span
                                   className="spanplus"
-                                  onClick={(e) => handleproductUp(e, item.id)}
+                                  onClick={(e, id) =>
+                                    handleproductUp(e, item.id)
+                                  }
                                 >
                                   +
                                 </span>
                               </div>
                             </div>
                           </td>
-                          <td className="column-5">$ {total}</td>
+                          <td className="column-5">$ {item.total}</td>
                         </tr>
                       ))}
                     </tbody>
                   </table>
                 </div>
+                {cartTotal === 0 ? (
+                  <div className="d-flex justify-content-end">
+                    <label className="form-control-label">Total</label>
+                    <span>{cartTotal}</span>
+                  </div>
+                ) : (
+                  ""
+                )}
 
                 <div className="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
                   <div className="flex-w flex-m m-r-20 m-tb-5">
@@ -133,7 +208,13 @@ const Features = () => {
                   </div>
 
                   <div className="flex-c-m   hov-btn3 p-lr-15 trans-04 pointer m-tb-10 btn-Apply ">
-                    Update Cart
+                    <button
+                      type="button"
+                      className=" btn-Apply"
+                      onClick={handleSubmit}
+                    >
+                      Update Cart
+                    </button>
                   </div>
                 </div>
               </div>

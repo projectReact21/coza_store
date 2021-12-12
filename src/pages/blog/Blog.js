@@ -14,7 +14,7 @@ const Blog = () => {
     <>
       <section
         className="bg-img1 txt-center p-lr-15 p-tb-92"
-        style={{ "background-image": `url('${bgBlogs}')` }}
+        style={{ backgroundImage: `url('${bgBlogs}')` }}
       >
         <h2 className="ltext-105 cl0 txt-center">Blog</h2>
       </section>
