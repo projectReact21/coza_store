@@ -13,6 +13,7 @@ const router = [
   { path: "/feature", component: <Features /> },
   { path: "/blog", component: <Blog /> },
   { path: "/blog/:id", component: <BlogDetail /> },
+  { path: "/contact", component: <Contact /> },
 ];
 
 export default router;
