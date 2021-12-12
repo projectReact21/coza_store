@@ -40,7 +40,6 @@ const Features = () => {
   };
   const handleChangeData = (e, id) => {
     let getcartitem = carts.find((x) => x.id === id);
-    git;
     const newData = { ...getcartitem };
     newData[e.target.name] = e.target.value;
     newData.total = totalCartSum(newData.price, newData.quantity);
