@@ -19,7 +19,7 @@ function ProductOverview() {
 
   const addToCart = (data) => {
     mycartService.add(data).then((res) => {
-      console.log(res.errorCode);
+      console.log(res.data);
       if (res.errorCode === 0) {
         console.log("Cart added");
       }

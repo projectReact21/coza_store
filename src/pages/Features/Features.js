@@ -10,22 +10,22 @@ const Features = () => {
   const [carts, setCarts] = useState([]);
   const [cartTotal, setCartTotal] = useState(0);
   const [cart, setCart] = useState({
-    // id: "",
-    // name: "",
-    // price: "",
-    // status: 0,
-    // srcImg: "",
-    // sale: 0,
-    // create_at: "",
-    // update_at: "",
-    // description: "",
-    // type: "",
-    // color: "",
-    // theme: "",
-    // sorfby: "",
-    // tag: "",
-    // quantity: 0,
-    // total: 0,
+    id: "",
+    name: "",
+    price: "",
+    status: 0,
+    srcImg: "",
+    sale: 0,
+    create_at: "",
+    update_at: "",
+    description: "",
+    type: "",
+    color: "",
+    theme: "",
+    sorfby: "",
+    tag: "",
+    quantity: 0,
+    total: 0,
   });
   useEffect(() => {
     loadData();
@@ -35,32 +35,41 @@ const Features = () => {
       setCarts(res.data.data);
     });
   };
-  const setCartsId = (id) => {
-    mycartService.get(id).then((res) => {
-      setCart(res.data);
-    });
-    setGetid(id);
+  const totalCartSum = (price, quantity) => {
+    return price * quantity;
   };
   const handleChangeData = (e, id) => {
-    setCartsId(id);
-    const newData = { ...cart };
+    let getcartitem = carts.find((x) => x.id === id);
+    git;
+    const newData = { ...getcartitem };
     newData[e.target.name] = e.target.value;
+    newData.total = totalCartSum(newData.price, newData.quantity);
     setCart(newData);
     console.log(newData);
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("hi");
-    console.log(getid);
-    console.log(cart);
+  const handleproductUp = (e, id) => {
+    let getcartitem = carts.find((x) => x.id === id);
+    const newData = { ...getcartitem };
+    newData.quantity = newData.quantity + 1;
+    setCart(newData);
+    console.log(newData);
     mycartService.update(cart.id, cart).then((res) => {
-      console.log(res.data.result.data.quantity);
-      // console.log(res);
-      // console.log(res.data.result.data);
       if (res.data.result.errorCode === 0) {
         console.log("ok");
       }
     });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("hi");
+    // console.log(getid);
+    console.log(cart);
+    mycartService.update(cart.id, cart).then((res) => {
+      if (res.data.result.errorCode === 0) {
+        console.log("ok");
+      }
+    });
+    loadData();
   };
   const handleproductDown = (e) => {
     e.preventDefault();
@@ -79,19 +88,6 @@ const Features = () => {
         console.log("delete success");
       }
     });
-  };
-  const handleproductUp = (e, id) => {
-    e.preventDefault();
-    mycartService.get(id).then((res) => {
-      setCart(res.data);
-      // console.log(cart);
-      // setQuanity(res.data.quantity);
-      // console.log(quanity);
-    });
-
-    // mycartService.update(id, cart).then((res) => {
-    //   loadData();
-    // });
   };
   // const handleChange = (e) => {
   //   e.preventDefault();
@@ -147,6 +143,7 @@ const Features = () => {
                             <div className="wrap-num-product flex-w m-l-auto m-r-0">
                               <div className="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
                                 <span
+                                  htmlFor="txtquantity"
                                   className="spanplus"
                                   onClick={handleproductDown}
                                 >
@@ -155,17 +152,20 @@ const Features = () => {
                               </div>
 
                               <input
+                                id="txtquantity"
                                 className="mtext-104 cl3 txt-center num-product"
                                 type="number"
                                 name="quantity"
                                 defaultValue={item.quantity}
-                                onChange={(e) => {
+                                onChange={(e, id) => {
                                   handleChangeData(e, item.id);
                                 }}
                               />
 
                               <div className="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
                                 <span
+                                  htmlFor="txtquantity"
+                                  name="quantity"
                                   className="spanplus"
                                   onClick={(e, id) =>
                                     handleproductUp(e, item.id)
