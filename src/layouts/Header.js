@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Navbar, Container, Nav, Form, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import CanvasFavorite from "../component/CanvasFavorite";
-import CanvasCart from "../component/CanvasCart"
+import CanvasCart from "../component/CanvasCart";
 import ActionTypes from "../stores/action";
 import { useDispatch } from "react-redux";
-import productService from "../services/productService"
+import productService from "../services/productService";
 
 function Header() {
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ function Header() {
   };
   const handleShowCanvasFavoriteProduct = () => {
     dispatch({
-      type: ActionTypes.SHOW_CANVAS_FAVORITE
+      type: ActionTypes.SHOW_CANVAS_FAVORITE,
     });
   };
   const handleShowCanvasCartProduct = () => {
@@ -24,6 +24,31 @@ function Header() {
       type: ActionTypes.SHOW_CANVAS_CART,
     });
   };
+  const getData = (data) => {
+    dispatch({
+      type: ActionTypes.LOAD_DATA,
+      allproducts: data,
+      productFill: data,
+    });
+  };
+  useEffect(() => {
+    productService.getProduct().then((res) => {
+      getData(res.data.data);
+    });
+    productService.getFillProduct(1).then((res) => {
+      dispatch({
+        type: ActionTypes.FIND_LIKE_DATA,
+        productLike: res.data.data,
+      });
+      productService.getFillProduct('seller').then(res=>{
+        dispatch({
+          type: ActionTypes.FIN_DATA_HOME,
+          productHome:res.data.data
+        })
+    })  
+    });
+  }, []);
+
   return (
     <>
       <Container fluid className="top-bar" id="header__topBar">
