@@ -6,6 +6,7 @@ const initialState = {
   productLike: [],
   allmycarts: [],
   productHome:[],
+  selectedHome: 'seller',
   isFill: false,
   isCanvasFavorite: false,
   isCanvasCart: false,
@@ -15,10 +16,11 @@ const initialState = {
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionTypes.LOAD_DATA:
+      console.log("productFill",action.productFill)
       return {
         ...state,
         allproducts: action.allproducts,
-        productFill: action.allproducts,
+        productFill: action.productFill,
       };
     case ActionTypes.FIND_DATA:
       return {
@@ -36,6 +38,11 @@ const authReducer = (state = initialState, action) => {
           ...state,
           productHome:action.productHome
         };
+      case ActionTypes.SELECTED_MAIN_HOME:
+        return{
+          ...state,
+          selectedHome: action.selectedHome
+        }
     case ActionTypes.SHOW_CANVAS_FAVORITE:
       return {
         ...state,

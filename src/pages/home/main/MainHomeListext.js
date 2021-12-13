@@ -10,17 +10,19 @@ function MainHomeListText({ listText, col, names,center }) {
   const dispatch = useDispatch();
   const dataFill = (data) => {
     dispatch({
-      type: ActionTypes.FIN_DATA_HOME,
+      type: ActionTypes.FIND_DATA_HOME,
       productHome: data,
     });
   };
-  const selected = useSelector((state) => state.auth.selectedMainHome);
+  const selected = useSelector((state) => state.auth.selectedHome);
   const handleFill = (c, t) => {
+    console.log(t)
     dispatch({
         type: ActionTypes.SELECTED_MAIN_HOME,
-        selectedMainHome:t
+        selectedHome:t
     })
     productService.getFillProduct(t).then(res=>{
+      console.log(res.data.data)
         dataFill(res.data.data)
     })  
   };

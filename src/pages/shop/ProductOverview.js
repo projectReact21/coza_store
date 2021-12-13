@@ -1,21 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button, Row, Col, Form } from "react-bootstrap";
 import CateloryListText from "../../component/CateloryListText";
 import ListProductItem from "../../component/ListProductItem";
-import productService from "../../services/productService";
+
 import { useDispatch, useSelector } from "react-redux";
 import ActionTypes from "../../stores/action";
 
 function ProductOverview() {
   const [showFilter, setShowFilter] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
-  const [products, setProducts] = useState([]);
-  const [dataFromStore, setDataFromStore] = useState([]);
-  const isFill = useSelector((state) => state.auth.isFill);
   const productFill = useSelector((state) => state.auth.productFill);
-  useEffect(() => {
-    setProducts(dataFromStore);
-  }, [dataFromStore]);
+  console.log('data',productFill)
+
   const handleFilter = () => {
     setShowFilter(!showFilter);
     setShowSearch(false);
@@ -43,6 +39,12 @@ function ProductOverview() {
     " price:Low To Hight",
     "price:Hight To Low",
   ];
+  // const addToCart=()=>{
+  //   dispatch({
+  //     type: ActionTypes.ADD_TO_CART,
+
+  //   })
+  // }
   return (
     <>
       <Row className="mb-2">
@@ -137,10 +139,8 @@ function ProductOverview() {
         {productFill.map((pro) => (
           <Col sm={12} md={6} lg={3} key={pro.id}>
             <ListProductItem
-              srcImg={pro.srcImg}
-              status={pro.status}
-              name={pro.name}
-              price={"$ " + pro.price}
+            productItem={pro}
+              // addToCart={addToCart}
             />
           </Col>
         ))}

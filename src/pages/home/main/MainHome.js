@@ -45,7 +45,7 @@ function MainHome() {
                 <Row className="gy-4">
                     {item2.map((i,index)=>(
                     <Col key={index} xs={6} md={6} lg={3} >
-                        <ListProductItem srcImg={i?.srcImg} name={i?.name} price={"$ " + i?.price} fs="fs-5" />
+                        <ListProductItem productItem={i} fs="fs-5" />
                     </Col>
                     ))}
                 </Row>
