@@ -5,6 +5,7 @@ const initialState = {
   productFill: [],
   productLike: [],
   allmycarts: [],
+  productHome:[],
   isFill: false,
   isCanvasFavorite: false,
   isCanvasCart: false,
@@ -30,6 +31,11 @@ const authReducer = (state = initialState, action) => {
         ...state,
         productLike: action.productLike,
       };
+     case ActionTypes.FIND_DATA_HOME:
+        return{
+          ...state,
+          productHome:action.productHome
+        };
     case ActionTypes.SHOW_CANVAS_FAVORITE:
       return {
         ...state,

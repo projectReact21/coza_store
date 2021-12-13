@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Button, Row, Col, Form } from "react-bootstrap";
-import CateloryListText from "../../../component/CateloryListText";
-import ListProductItem from "../../../component/ListProductItem";
-import productService from "../../../services/productService";
+import CateloryListText from "../../component/CateloryListText";
+import ListProductItem from "../../component/ListProductItem";
+import productService from "../../services/productService";
 import { useDispatch, useSelector } from "react-redux";
-import ActionTypes from "../../../stores/action";
+import ActionTypes from "../../stores/action";
 
 function ProductOverview() {
   const [showFilter, setShowFilter] = useState(false);
@@ -12,7 +12,7 @@ function ProductOverview() {
   const [products, setProducts] = useState([]);
   const [dataFromStore, setDataFromStore] = useState([]);
   const isFill = useSelector((state) => state.auth.isFill);
-  const productFill =useSelector((state) => state.auth.productFill)
+  const productFill = useSelector((state) => state.auth.productFill);
   useEffect(() => {
     setProducts(dataFromStore);
   }, [dataFromStore]);
@@ -134,17 +134,16 @@ function ProductOverview() {
         )}
       </Row>
       <Row className="gy-4">
-        {
-          productFill.map((pro) => (
-            <Col sm={12} md={6} lg={3} key={pro.id}>
-              <ListProductItem
-                srcImg={pro.srcImg}
-                status={pro.status}
-                name={pro.name}
-                price={"$ " + pro.price}
-              />
-            </Col>
-          ))}
+        {productFill.map((pro) => (
+          <Col sm={12} md={6} lg={3} key={pro.id}>
+            <ListProductItem
+              srcImg={pro.srcImg}
+              status={pro.status}
+              name={pro.name}
+              price={"$ " + pro.price}
+            />
+          </Col>
+        ))}
       </Row>
       <Row className="justify-content-center mb-5 mt-5">
         <Button className="text-uppercase col-sm-3 col-md-2 text-dark h-100 btn-loadmore">

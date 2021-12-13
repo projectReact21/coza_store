@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Button, Row, Col, Form } from "react-bootstrap";
 import CateloryListText from "../../../component/CateloryListText";
 import ListProductItem from "../../../component/ListProductItem";
-
+// import productService from "../../../services/productService";
 import { useDispatch, useSelector } from "react-redux";
-import mycartService from "../../../services/mycartService";
+// import ActionTypes from "../../../stores/action";
 
 function ProductOverview() {
   const [showFilter, setShowFilter] = useState(false);
@@ -12,19 +12,6 @@ function ProductOverview() {
   const [products, setProducts] = useState([]);
   const [dataFromStore, setDataFromStore] = useState([]);
   const isFill = useSelector((state) => state.auth.isFill);
-  const dispatch = useDispatch();
-
-  const [cart, setCart] = useState([]);
-  const [cartTotal, setCartTotal] = useState(0);
-
-  const addToCart = (data) => {
-    mycartService.add(data).then((res) => {
-      console.log(res.data);
-      if (res.errorCode === 0) {
-        console.log("Cart added");
-      }
-    });
-  };
   const productFill = useSelector((state) => state.auth.productFill);
   useEffect(() => {
     setProducts(dataFromStore);
@@ -150,8 +137,15 @@ function ProductOverview() {
         {productFill.map((pro) => (
           <Col sm={12} md={6} lg={3} key={pro.id}>
             <ListProductItem
+<<<<<<< HEAD
               productItem={pro}
               addToCart={addToCart}
+=======
+              srcImg={pro.srcImg}
+              status={pro.status}
+              name={pro.name}
+              price={"$ " + pro.price}
+>>>>>>> 2fc4b3f939caf8c9b8895eacf39338c93cf1ba97
             />
           </Col>
         ))}
