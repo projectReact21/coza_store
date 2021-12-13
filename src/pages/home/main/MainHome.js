@@ -38,20 +38,17 @@ function MainHome() {
       </Row>
       <Row className="p-5 main__home--carousel">
         <Carousel>
-<<<<<<< HEAD
           <Carousel.Item>
             <Container>
               <Row className="gy-4">
                 {item1.map((i, index) => (
                   <Col key={index} xs={6} md={6} lg={3}>
-                    <ListProductItem productItem={i} addToCart={addToCart} />
-
-                    {/* <ListProductItem
+                    <ListProductItem
                       srcImg={i?.srcImg}
                       name={i?.name}
                       price={"$ " + i?.price}
                       fs="fs-5"
-                    /> */}
+                    />
                   </Col>
                 ))}
               </Row>
@@ -62,37 +59,12 @@ function MainHome() {
               <Row className="gy-4">
                 {item2.map((i, index) => (
                   <Col key={index} xs={6} md={6} lg={3}>
-                    <ListProductItem productItem={i} addToCart={addToCart} />
-                    {/* <ListProductItem  srcImg={i?.srcImg} name={i?.name} price={"$ " + i?.price} fs="fs-5" /> */}
+                    <ListProductItem productItem={i} fs="fs-5" />
                   </Col>
                 ))}
               </Row>
             </Container>
           </Carousel.Item>
-=======
-            <Carousel.Item>
-                <Container>
-                <Row className="gy-4" >
-                    {item1.map((i, index)=>(
-                    <Col key={index} xs={6}  md={6} lg={3} >
-                        <ListProductItem  srcImg={i?.srcImg} name={i?.name} price={"$ " + i?.price} fs="fs-5"  />
-                    </Col>
-                    ))}
-                </Row>
-                </Container>
-            </Carousel.Item>
-            <Carousel.Item>
-                <Container>
-                <Row className="gy-4">
-                    {item2.map((i,index)=>(
-                    <Col key={index} xs={6} md={6} lg={3} >
-                        <ListProductItem productItem={i} fs="fs-5" />
-                    </Col>
-                    ))}
-                </Row>
-                </Container>
-            </Carousel.Item>
->>>>>>> 82ebb7cf5f3453ac97c07742d7e1e45a7df39899
         </Carousel>
       </Row>
     </>

@@ -12,7 +12,6 @@ function ListProductItem({
   status,
   srcImg,
 }) {
-  console.log(productItem)
   return (
     <Card className="overflow-hidden card__product--item">
       <div className="overflow-hidden">
@@ -37,11 +36,8 @@ function ListProductItem({
         <Card.Title className="text-overflow-1 pe-4">
           {productItem?.name}
         </Card.Title>
-<<<<<<< HEAD
         <Card.Text>{productItem?.price}</Card.Text>
-=======
-        <Card.Text>{"$ " + productItem.price}</Card.Text>
->>>>>>> 7fafd84d9692afce84bfff14854c43c76f2a149a
+        {/* <Card.Text>{"$ " + productItem.price}</Card.Text> */}
         <Row className="justify-content-center">
           <Button
             variant="primary"
