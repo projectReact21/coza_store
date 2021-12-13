@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 import "./Main.css";
-import ProductOverview from './ProductOverview';
+import ProductOverview from './../ProductOverview';
 function Main() {
   return (
     <Container>

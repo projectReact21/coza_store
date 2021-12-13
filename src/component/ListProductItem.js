@@ -12,13 +12,14 @@ function ListProductItem({
   status,
   srcImg,
 }) {
+  console.log(productItem)
   return (
     <Card className="overflow-hidden card__product--item">
       <div className="overflow-hidden">
         <Card.Img
           variant="top"
           className="card__product--item-img"
-          src={productItem.srcImg}
+          src={productItem?.srcImg}
         />
       </div>
       <Card.Body>
@@ -27,22 +28,26 @@ function ListProductItem({
           <i
             className="fa fa-heart fs-4 card__product--item-status  "
             style={
-              parseInt(productItem.status) === 0
+              parseInt(productItem?.status) === 0
                 ? { color: "#eee" }
                 : { color: "red" }
             }
           ></i>
         </Card.Text>
         <Card.Title className="text-overflow-1 pe-4">
-          {productItem.name}
+          {productItem?.name}
         </Card.Title>
+<<<<<<< HEAD
+        <Card.Text>{productItem?.price}</Card.Text>
+=======
         <Card.Text>{"$ " + productItem.price}</Card.Text>
+>>>>>>> 7fafd84d9692afce84bfff14854c43c76f2a149a
         <Row className="justify-content-center">
           <Button
             variant="primary"
             className="position-absolute card__product--item-btn mx-2 col-sm-4 col-md-6 "
-            onClick={addToCart(productItem)}
-            disabled={productItem.quanity === 0}
+            // onClick={addToCart(productItem)}
+            disabled={productItem?.quanity === 0}
           >
             Buy
           </Button>

@@ -25,12 +25,19 @@ function Header() {
     });
   };
   const getData = (data) => {
+    console.log("data",data)
     dispatch({
       type: ActionTypes.LOAD_DATA,
       allproducts: data,
       productFill: data,
     });
   };
+  const getHomeData=data=>{
+    dispatch({
+      type: ActionTypes.FIND_DATA_HOME,
+      productHome:data
+    })
+  }
   useEffect(() => {
     productService.getProduct().then((res) => {
       getData(res.data.data);
@@ -40,13 +47,10 @@ function Header() {
         type: ActionTypes.FIND_LIKE_DATA,
         productLike: res.data.data,
       });
-      productService.getFillProduct('seller').then(res=>{
-        dispatch({
-          type: ActionTypes.FIN_DATA_HOME,
-          productHome:res.data.data
-        })
-    })  
     });
+    productService.getFillProduct('seller').then(res=>{
+      getHomeData(res.data.data)
+  })  
   }, []);
 
   return (
