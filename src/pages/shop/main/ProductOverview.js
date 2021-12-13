@@ -137,10 +137,15 @@ function ProductOverview() {
         {productFill.map((pro) => (
           <Col sm={12} md={6} lg={3} key={pro.id}>
             <ListProductItem
+<<<<<<< HEAD
+              productItem={pro}
+              addToCart={addToCart}
+=======
               srcImg={pro.srcImg}
               status={pro.status}
               name={pro.name}
               price={"$ " + pro.price}
+>>>>>>> 2fc4b3f939caf8c9b8895eacf39338c93cf1ba97
             />
           </Col>
         ))}

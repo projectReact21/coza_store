@@ -37,7 +37,11 @@ function ListProductItem({
         <Card.Title className="text-overflow-1 pe-4">
           {productItem?.name}
         </Card.Title>
+<<<<<<< HEAD
         <Card.Text>{productItem?.price}</Card.Text>
+=======
+        <Card.Text>{"$ " + productItem.price}</Card.Text>
+>>>>>>> 7fafd84d9692afce84bfff14854c43c76f2a149a
         <Row className="justify-content-center">
           <Button
             variant="primary"
