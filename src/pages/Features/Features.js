@@ -4,7 +4,7 @@ import { Container, Dropdown, Row } from "react-bootstrap";
 import mycartService from "../../services/mycartService";
 
 const Features = () => {
-  const [total, setTotal] = useState(100);
+  const [total, setTotal] = useState(0);
   const [quanity, setQuanity] = useState(1);
   const [getid, setGetid] = useState(0);
   const [carts, setCarts] = useState([]);
@@ -29,6 +29,7 @@ const Features = () => {
   });
   useEffect(() => {
     loadData();
+    Total();
   }, []);
   const loadData = () => {
     mycartService.getList().then((res) => {
@@ -181,15 +182,6 @@ const Features = () => {
                     </tbody>
                   </table>
                 </div>
-                {cartTotal === 0 ? (
-                  <div className="d-flex justify-content-end">
-                    <label className="form-control-label">Total</label>
-                    <span>{cartTotal}</span>
-                  </div>
-                ) : (
-                  ""
-                )}
-
                 <div className="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
                   <div className="flex-w flex-m m-r-20 m-tb-5">
                     <input
@@ -227,7 +219,7 @@ const Features = () => {
                   </div>
 
                   <div className="size-209">
-                    <span className="mtext-110 cl2">$79.65</span>
+                    <span className="mtext-110 cl2">$ {cartTotal}</span>
                   </div>
                 </div>
 

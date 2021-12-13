@@ -152,10 +152,6 @@ function ProductOverview() {
             <ListProductItem
               productItem={pro}
               addToCart={addToCart}
-              // srcImg={pro.srcImg}
-              // status={pro.status}
-              // name={pro.name}
-              // price={"$ " + pro.price}
             />
           </Col>
         ))}
