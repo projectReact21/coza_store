@@ -61,7 +61,6 @@ const Features = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("hi");
     // console.log(getid);
     console.log(cart);
     mycartService.update(cart.id, cart).then((res) => {
@@ -86,13 +85,10 @@ const Features = () => {
     mycartService.delete(id).then((res) => {
       if (res.errorCode === 0) {
         console.log("delete success");
+        loadData();
       }
     });
   };
-  // const handleChange = (e) => {
-  //   e.preventDefault();
-  //   setQuanity(e.target.value);
-  // };
   return (
     <>
       <Container>
@@ -131,6 +127,11 @@ const Features = () => {
                           <td className="column-1">
                             <div className="how-itemcart1">
                               <img src={item.srcImg} name="srcImg" alt="IMG" />
+                              <i
+                                className="fa fa-times itemcart-icon"
+                                aria-hidden="true"
+                                onClick={(e) => handleDelete(item.id)}
+                              ></i>
                             </div>
                           </td>
                           <td className="column-2" name="name">

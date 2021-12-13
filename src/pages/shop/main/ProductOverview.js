@@ -18,12 +18,13 @@ function ProductOverview() {
   const [cartTotal, setCartTotal] = useState(0);
 
   const addToCart = (data) => {
-    mycartService.add(data).then((res) => {
-      console.log(res.data);
-      if (res.errorCode === 0) {
-        console.log("Cart added");
-      }
-    });
+    console.log(data);
+    // mycartService.add(data).then((res) => {
+    //   console.log(res.data);
+    //   if (res.errorCode === 0) {
+    //     console.log("Cart added");
+    //   }
+    // });
   };
   const productFill = useSelector((state) => state.auth.productFill);
   useEffect(() => {

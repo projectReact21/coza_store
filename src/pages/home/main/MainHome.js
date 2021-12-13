@@ -59,7 +59,11 @@ function MainHome() {
               <Row className="gy-4">
                 {item2.map((i, index) => (
                   <Col key={index} xs={6} md={6} lg={3}>
-                    <ListProductItem productItem={i} fs="fs-5" />
+                    <ListProductItem
+                      productItem={i}
+                      fs="fs-5"
+                      addToCart={addToCart}
+                    />
                   </Col>
                 ))}
               </Row>
