@@ -10,10 +10,13 @@ import { toast } from "react-toastify";
 
 function ListProductItem({ productItem, status }) {
   const isLogin = useSelector((state) => state.auth.isLogin);
+  const getMyCart = useSelector((state) => state.auth.allmycarts);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const addToCart = (data) => {
     console.log(isLogin);
+    const getitemmycart = getMyCart.find((x) => x.name === data.name);
+    console.log(getitemmycart);
     if (isLogin) {
       const product = data;
       delete product.id;
@@ -32,10 +35,26 @@ function ListProductItem({ productItem, status }) {
       );
       fullproduct.total = product.price;
       console.log(fullproduct);
-      //huy
-      mycartService.add(fullproduct).then((res) => {
-        toast.success("add success");
-      });
+      if (!getitemmycart) {
+        mycartService.add(fullproduct).then((res) => {
+          toast.success("add success");
+        });
+        // mycartService.getList().then((res) => {
+        //   dispatch({
+        //     type: ActionTypes.LOAD_MY_CARTS,
+        //     allmycarts: res.data,
+        //   });
+        // });
+      } else {
+        dispatch({
+          type: ActionTypes.ADD_TO_CART,
+          payload: fullproduct,
+        });
+        fullproduct.quantity = getitemmycart.quantity += 1;
+        mycartService.update(getitemmycart.id, fullproduct).then((res) => {
+          toast.success("Update mycart success");
+        });
+      }
     } else {
       dispatch({
         type: ActionTypes.CURRENT_LOACION,

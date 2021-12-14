@@ -88,15 +88,43 @@ const authReducer = (state = initialState, action) => {
         ...state,
         isShowCanvasCart: false,
       };
+    case ActionTypes.LOAD_MY_CARTS:
+      return {
+        ...state,
+        allmycarts: action.allmycarts,
+      };
     case ActionTypes.ADD_TO_CART:
       return {
         ...state,
+        allmycarts: state.allmycarts.map((mycart) =>
+          mycart.name === action.payload.name
+            ? {
+                ...mycart,
+                quantity: mycart.quantity + 1,
+                total: (mycart.quantity + 1) * mycart.price,
+              }
+            : mycart
+        ),
         allproducts: state.allproducts.map((product) =>
           product.id === action.payload.id
             ? { ...product, quantity: product.quantity - 1 }
             : product
         ),
       };
+    case ActionTypes.REMOVE_FROM_CART:
+      return {
+        ...state,
+        allproducts: state.allproducts.map((product) =>
+          product.id === action.payload.id
+            ? {
+                ...product,
+                quantity: product.quantity + action.payload.quantity,
+              }
+            : product
+        ),
+      };
+    case ActionTypes.CLEAR_CART:
+      break;
     default:
       return { ...state };
   }

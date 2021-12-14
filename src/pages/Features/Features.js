@@ -4,6 +4,7 @@ import { Container, Dropdown, Row } from "react-bootstrap";
 import mycartService from "../../services/mycartService";
 import ConfirmDialog from "../../component/ConfirmDialog";
 import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
 
 const Features = () => {
   const [carts, setCarts] = useState([]);
@@ -26,6 +27,7 @@ const Features = () => {
     quantity: 0,
     total: 0,
   });
+  const dispatch = useDispatch();
   const [confirmOptions, setConfirmOptions] = useState({
     show: false,
     content: "",
@@ -34,7 +36,8 @@ const Features = () => {
   useEffect(() => {
     loadData();
     Total();
-  }, [cartTotal]);
+  }, []);
+  const getCarts = useSelector((state) => state.auth.allmycarts);
   const loadData = () => {
     mycartService.getList().then((res) => {
       setCarts(res.data.data);
@@ -51,14 +54,6 @@ const Features = () => {
     setCart(newData);
     console.log(newData);
   };
-  const handleproductUp = (e, id) => {
-    let getcartitem = carts.find((x) => x.id === id);
-    const newData = { ...getcartitem };
-    newData[e.target.quantity] = e.target.value + 1;
-    newData.total = totalCartSum(newData.price, newData.quantity);
-    setCart(newData);
-    console.log(newData);
-  };
   const handleSubmit = (e) => {
     // console.log(getid);
     console.log(cart);
@@ -66,10 +61,10 @@ const Features = () => {
       loadData();
       toast.info(`Update success ${cart.name}`);
     });
+    // dispatch({
+    //   type: ''
+    // })
     loadData();
-  };
-  const handleproductDown = (e) => {
-    e.preventDefault();
   };
   const Total = () => {
     let totalVal = 0;
@@ -132,7 +127,7 @@ const Features = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {carts.map((item, index) => (
+                      {getCarts.map((item, index) => (
                         <tr className="table_row" key={index}>
                           <td className="column-1">
                             <div className="how-itemcart1">
@@ -152,7 +147,6 @@ const Features = () => {
                           </td>
                           <td className="column-4">
                             <div className="wrap-input">
-                           
                               <input
                                 id="txtquantity"
                                 className="form-control mtext-104 cl3 txt-center"
