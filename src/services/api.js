@@ -2,11 +2,13 @@ import axios from "axios";
 import { hideLoading, showLoading } from "react-redux-loading-bar";
 import store from "./../stores/index";
 const url = {
-  baseUrl: "https://hoanghuy1998.herokuapp.com",
+  // baseUrl: "https://hoanghuy1998.herokuapp.com",
+  baseUrl: "http://localhost:5000",
   allproducts: "/allproduct/list",
   filter: "/allproduct/filter",
   fullSearch: "/allproduct/fullSearch",
   mycart: "/mycartproduct/list",
+  login:"/login"
 };
 const instance = axios.create({
   baseURL: url.baseUrl,

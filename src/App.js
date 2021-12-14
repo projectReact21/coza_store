@@ -10,7 +10,21 @@ import "./cssGlobal/main.css";
 import DefaultLayout from "./layouts/DefaultLayout";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LoadingBar from "react-redux-loading-bar";
-
+import Login from './pages/login/Login';
+import { toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+toast.configure({
+  position: "top-right",
+  autoClose: "5000",
+  hideProgressBar: false,
+  newestOnTop: true,
+  closeOnClick: true,
+  rtl: false,
+  pauseOnFocusLoss: true,
+  draggable: true,
+  pauseOnHover: true,
+  them: "colored",
+});
 function App() {
   return (
     <>
@@ -27,6 +41,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/*" element={<DefaultLayout />} />
+          <Route path="/login" element={<Login/>}/>
         </Routes>
       </BrowserRouter>
     </>

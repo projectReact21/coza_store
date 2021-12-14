@@ -1,12 +1,16 @@
 import ActionTypes from "../action";
 
 const initialState = {
+  isLogin:false,
+  dataUser:[],  
+  currentLocation:'',
   allproducts: [],
   productFill: [],
   productLike: [],
   allmycarts: [],
   productHome:[],
   selectedHome: 'seller',
+  selectedShop:'allproducts',
   isFill: false,
   isCanvasFavorite: false,
   isCanvasCart: false,
@@ -15,8 +19,24 @@ const initialState = {
 };
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
+    case ActionTypes.CURRENT_LOACION:
+      return{
+        ...state,
+        currentLocation: action.currentLocation
+      }
+    case ActionTypes.LOGIN:
+      return{
+        ...state,
+        isLogin:true,
+        dataUser:action.dataUser
+      }
+      case ActionTypes.LOGOUT:
+        return{
+          ...state,
+          isLogin:false,
+          dataUser:[]
+        }
     case ActionTypes.LOAD_DATA:
-      console.log("productFill",action.productFill)
       return {
         ...state,
         allproducts: action.allproducts,
@@ -38,11 +58,16 @@ const authReducer = (state = initialState, action) => {
           ...state,
           productHome:action.productHome
         };
-      case ActionTypes.SELECTED_MAIN_HOME:
+    case ActionTypes.SELECTED_MAIN_HOME:
         return{
           ...state,
           selectedHome: action.selectedHome
         }
+      case ActionTypes.SELECTED_MAIN_SHOP:
+          return{
+            ...state,
+            selectedShop: action.selectedShop
+          }
     case ActionTypes.SHOW_CANVAS_FAVORITE:
       return {
         ...state,
@@ -66,7 +91,6 @@ const authReducer = (state = initialState, action) => {
     case ActionTypes.ADD_TO_CART:
       return {
         ...state,
-
         allproducts: state.allproducts.map((product) =>
           product.id === action.payload.id
             ? { ...product, quantity: product.quantity - 1 }

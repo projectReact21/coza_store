@@ -4,12 +4,19 @@ import { useNavigate } from "react-router-dom";
 import CanvasFavorite from "../component/CanvasFavorite";
 import CanvasCart from "../component/CanvasCart";
 import ActionTypes from "../stores/action";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import productService from "../services/productService";
 
 function Header() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const isLogin=useSelector((state) => state.auth.isLogin)
+  if(!isLogin){
+    dispatch({
+      type: ActionTypes.FIND_LIKE_DATA,
+      productLike:[]
+    })
+  }
   const handlechangePage = (e, param) => {
     e.preventDefault();
     navigate(param);
@@ -25,7 +32,6 @@ function Header() {
     });
   };
   const getData = (data) => {
-    console.log("data",data)
     dispatch({
       type: ActionTypes.LOAD_DATA,
       allproducts: data,
@@ -42,15 +48,9 @@ function Header() {
     productService.getProduct().then((res) => {
       getData(res.data.data);
     });
-    productService.getFillProduct(1).then((res) => {
-      dispatch({
-        type: ActionTypes.FIND_LIKE_DATA,
-        productLike: res.data.data,
-      });
-    });
     productService.getFillProduct('seller').then(res=>{
       getHomeData(res.data.data)
-  })  
+  }) 
   }, []);
 
   return (
