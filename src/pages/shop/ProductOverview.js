@@ -5,12 +5,13 @@ import ListProductItem from "../../component/ListProductItem";
 
 import { useDispatch, useSelector } from "react-redux";
 import ActionTypes from "../../stores/action";
+import mycartService from "../../services/mycartService";
 
 function ProductOverview() {
   const [showFilter, setShowFilter] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const productFill = useSelector((state) => state.auth.productFill);
-  console.log('data',productFill)
+  const dispatch = useDispatch();
 
   const handleFilter = () => {
     setShowFilter(!showFilter);
@@ -39,12 +40,7 @@ function ProductOverview() {
     " price:Low To Hight",
     "price:Hight To Low",
   ];
-  // const addToCart=()=>{
-  //   dispatch({
-  //     type: ActionTypes.ADD_TO_CART,
-
-  //   })
-  // }
+  
   return (
     <>
       <Row className="mb-2">
@@ -138,10 +134,7 @@ function ProductOverview() {
       <Row className="gy-4">
         {productFill.map((pro) => (
           <Col sm={12} md={6} lg={3} key={pro.id}>
-            <ListProductItem
-            productItem={pro}
-              // addToCart={addToCart}
-            />
+            <ListProductItem productItem={pro}/>
           </Col>
         ))}
       </Row>

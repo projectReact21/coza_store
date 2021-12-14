@@ -1,11 +1,54 @@
-import React from "react";
+import React,{useState,useRef} from "react";
 import "./Login.css";
 import imgabout from "./images/about-01.jpg";
 import { useNavigate } from "react-router-dom";
+import { useSelector,useDispatch } from 'react-redux';
+import loginService from './../../services/loginService';
+import ActionTypes from "../../stores/action";
+import productService from "../../services/productService";
 const Login = () => {
   const navigate = useNavigate();
-  const handleLogin = () => {
-    navigate("/home");
+  const dispatch = useDispatch();
+  const emailRef=useRef()
+  const passwordRef=useRef()
+  const [result, setResult] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const location=useSelector((state) => state.auth.currentLocation)
+  const handleChangeEmail = (e) => {
+    setResult('')
+    setEmail(e.target.value)
+  };
+  const handleChangePassword = (e) => {
+    setResult('')
+    setPassword(e.target.value)
+  };
+  const handleLogin = (e) => {
+    e.preventDefault();
+    loginService.login(email,password).then(res=>{
+      if(res.errorCode === 0){
+        dispatch({
+          type: ActionTypes.LOGIN,
+          dataUser:res.data
+        })
+        productService.getFillProduct(1).then((res) => {
+          dispatch({
+            type: ActionTypes.FIND_LIKE_DATA,
+            productLike: res.data.data,
+          });
+        });
+        navigate(location);
+      }else if(res.errorCode===1){
+        setEmail('')
+        emailRef.current.focus()
+        setResult(res.errorMessage)
+      }else {
+        setPassword('')
+        passwordRef.current.focus()
+        setResult(res.errorMessage)
+      }
+    })
+   
   };
   return (
     <>
@@ -16,12 +59,13 @@ const Login = () => {
               <span className="login100-form-title p-b-43">
                 Login to continue
               </span>
+              <strong className="text-danger text-center text-capitalize " >{result}</strong>
 
               <div
-                className="wrap-input100 validate-input"
+                className="wrap-input100 validate-input mt-2"
                 data-validate="Valid email is required: ex@abc.xyz"
               >
-                <input className="input100" type="text" name="email" />
+                <input ref={emailRef} className="input100" type="text" name="email" value={email} onChange={handleChangeEmail} />
                 <span className="focus-input100"></span>
                 <span className="label-input100">Email</span>
               </div>
@@ -30,7 +74,7 @@ const Login = () => {
                 className="wrap-input100 validate-input"
                 data-validate="Password is required"
               >
-                <input className="input100" type="password" name="pass" />
+                <input ref={passwordRef} className="input100" type="password" name="pass" value={password} onChange={handleChangePassword} />
                 <span className="focus-input100"></span>
                 <span className="label-input100">Password</span>
               </div>
@@ -54,9 +98,9 @@ const Login = () => {
                   </a>
                 </div>
               </div>
-
+              
               <div className="container-login100-form-btn">
-                <button className="login100-form-btn" onClick={handleLogin}>
+                <button className="login100-form-btn" onClick={(e)=>handleLogin(e)}>
                   Login
                 </button>
               </div>
@@ -84,7 +128,7 @@ const Login = () => {
 
             <div
               className="login100-more"
-              style={{ "background-image": `url(${imgabout})` }}
+              style={{ "backgroundImage": `url(${imgabout})` }}
             ></div>
           </div>
         </div>

@@ -1,12 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Carousel, Row, Container } from "react-bootstrap";
 import { Col } from "react-bootstrap";
 import MainHomeListText from "./MainHomeListext";
 import { useSelector } from "react-redux";
-import BannerItem from "../../../component/BannerItem";
-import CateloryItem from "../../../component/CateloryItem";
 import ListProductItem from "../../../component/ListProductItem";
-import mycartService from "../../../services/mycartService";
 
 function MainHome() {
   const d = useSelector((state) => state.auth.productHome);
@@ -16,14 +13,6 @@ function MainHome() {
   console.log("item2", item2);
   const lists = ["best seller", "feautured", "sale", "top rate"];
   const names = ["seller", "feature", "sale", "topRate"];
-  const addToCart = (data) => {
-    mycartService.add(data).then((res) => {
-      console.log(res.data);
-      if (res.errorCode === 0) {
-        console.log("Cart added");
-      }
-    });
-  };
   return (
     <>
       <Row className="justify-content-center">
@@ -38,37 +27,28 @@ function MainHome() {
       </Row>
       <Row className="p-5 main__home--carousel">
         <Carousel>
-          <Carousel.Item>
-            <Container>
-              <Row className="gy-4">
-                {item1.map((i, index) => (
-                  <Col key={index} xs={6} md={6} lg={3}>
-                    <ListProductItem
-                      srcImg={i?.srcImg}
-                      name={i?.name}
-                      price={"$ " + i?.price}
-                      fs="fs-5"
-                    />
-                  </Col>
-                ))}
-              </Row>
-            </Container>
-          </Carousel.Item>
-          <Carousel.Item>
-            <Container>
-              <Row className="gy-4">
-                {item2.map((i, index) => (
-                  <Col key={index} xs={6} md={6} lg={3}>
-                    <ListProductItem
-                      productItem={i}
-                      fs="fs-5"
-                      addToCart={addToCart}
-                    />
-                  </Col>
-                ))}
-              </Row>
-            </Container>
-          </Carousel.Item>
+            <Carousel.Item>
+                <Container>
+                <Row className="gy-4" >
+                    {item1.map((i, index)=>(
+                    <Col key={index} xs={6}  md={6} lg={3} >
+                        <ListProductItem  status='no'  productItem={i} fs="fs-5"  />
+                    </Col>
+                    ))}
+                </Row>
+                </Container>
+            </Carousel.Item>
+            <Carousel.Item>
+                <Container>
+                <Row className="gy-4">
+                    {item2.map((i,index)=>(
+                    <Col key={index} xs={6} md={6} lg={3} >
+                        <ListProductItem status='no' productItem={i} fs="fs-5" />
+                    </Col>
+                    ))}
+                </Row>
+                </Container>
+            </Carousel.Item>
         </Carousel>
       </Row>
     </>
