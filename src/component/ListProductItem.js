@@ -4,6 +4,7 @@ import { Card, Row, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import ActionTypes from "../stores/action";
 import mycartService from "../services/mycartService";
+import { toast } from "react-toastify";
 function ListProductItem({
   productItem,
   addToCart,
@@ -36,9 +37,7 @@ function ListProductItem({
     console.log(fullproduct);
     mycartService.add(fullproduct).then((res) => {
       console.log(res.data);
-      if (res.errorCode === 0) {
-        console.log("Cart added");
-      }
+      toast.success("Add Succes");
     });
   };
   return (

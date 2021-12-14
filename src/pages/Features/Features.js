@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import "./Features.css";
 import { Container, Dropdown, Row } from "react-bootstrap";
 import mycartService from "../../services/mycartService";
+import ConfirmDialog from "../../component/ConfirmDialog";
+import { toast } from "react-toastify";
 
 const Features = () => {
-  const [total, setTotal] = useState(0);
-  const [quanity, setQuanity] = useState(1);
-  const [getid, setGetid] = useState(0);
   const [carts, setCarts] = useState([]);
   const [cartTotal, setCartTotal] = useState(0);
   const [cart, setCart] = useState({
@@ -27,10 +26,15 @@ const Features = () => {
     quantity: 0,
     total: 0,
   });
+  const [confirmOptions, setConfirmOptions] = useState({
+    show: false,
+    content: "",
+    dataId: 0,
+  });
   useEffect(() => {
     loadData();
     Total();
-  }, []);
+  }, [cartTotal]);
   const loadData = () => {
     mycartService.getList().then((res) => {
       setCarts(res.data.data);
@@ -50,23 +54,17 @@ const Features = () => {
   const handleproductUp = (e, id) => {
     let getcartitem = carts.find((x) => x.id === id);
     const newData = { ...getcartitem };
-    newData.quantity = newData.quantity + 1;
+    newData[e.target.quantity] = e.target.value + 1;
+    newData.total = totalCartSum(newData.price, newData.quantity);
     setCart(newData);
     console.log(newData);
-    mycartService.update(cart.id, cart).then((res) => {
-      if (res.data.result.errorCode === 0) {
-        console.log("ok");
-      }
-    });
   };
   const handleSubmit = (e) => {
-    e.preventDefault();
     // console.log(getid);
     console.log(cart);
     mycartService.update(cart.id, cart).then((res) => {
-      if (res.data.result.errorCode === 0) {
-        console.log("ok");
-      }
+      loadData();
+      toast.info(`Update success ${cart.name}`);
     });
     loadData();
   };
@@ -81,13 +79,25 @@ const Features = () => {
     console.log(totalVal);
     setCartTotal(totalVal);
   };
-  const handleDelete = (id) => {
-    mycartService.delete(id).then((res) => {
-      if (res.errorCode === 0) {
-        console.log("delete success");
+  const handleDelete = (e, id) => {
+    e.preventDefault();
+    const selecteCartItem = carts.find((x) => x.id === id);
+    if (selecteCartItem) {
+      setConfirmOptions({
+        show: true,
+        content: `Are you sure you want to delete "${selecteCartItem.name}" ? `,
+        dataId: id,
+      });
+    }
+  };
+  const handleConfirm = (id) => {
+    setConfirmOptions({ show: false });
+    if (id) {
+      mycartService.delete(id).then((res) => {
         loadData();
-      }
-    });
+        toast.warning("Delete Success");
+      });
+    }
   };
   return (
     <>
@@ -130,7 +140,7 @@ const Features = () => {
                               <i
                                 className="fa fa-times itemcart-icon"
                                 aria-hidden="true"
-                                onClick={(e) => handleDelete(item.id)}
+                                onClick={(e, id) => handleDelete(e, item.id)}
                               ></i>
                             </div>
                           </td>
@@ -141,20 +151,11 @@ const Features = () => {
                             $ {item.price}
                           </td>
                           <td className="column-4">
-                            <div className="wrap-num-product flex-w m-l-auto m-r-0">
-                              <div className="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-                                <span
-                                  htmlFor="txtquantity"
-                                  className="spanplus"
-                                  onClick={handleproductDown}
-                                >
-                                  -
-                                </span>
-                              </div>
-
+                            <div className="wrap-input">
+                           
                               <input
                                 id="txtquantity"
-                                className="mtext-104 cl3 txt-center num-product"
+                                className="form-control mtext-104 cl3 txt-center"
                                 type="number"
                                 name="quantity"
                                 defaultValue={item.quantity}
@@ -162,19 +163,6 @@ const Features = () => {
                                   handleChangeData(e, item.id);
                                 }}
                               />
-
-                              <div className="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-                                <span
-                                  htmlFor="txtquantity"
-                                  name="quantity"
-                                  className="spanplus"
-                                  onClick={(e, id) =>
-                                    handleproductUp(e, item.id)
-                                  }
-                                >
-                                  +
-                                </span>
-                              </div>
                             </div>
                           </td>
                           <td className="column-5">$ {item.total}</td>
@@ -302,6 +290,7 @@ const Features = () => {
           </Row>
         </Container>
       </form>
+      <ConfirmDialog options={confirmOptions} onConfirm={handleConfirm} />
     </>
   );
 };
