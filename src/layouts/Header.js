@@ -4,18 +4,18 @@ import { useNavigate } from "react-router-dom";
 import CanvasFavorite from "../component/CanvasFavorite";
 import CanvasCart from "../component/CanvasCart";
 import ActionTypes from "../stores/action";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import productService from "../services/productService";
 
 function Header() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const isLogin=useSelector((state) => state.auth.isLogin)
-  if(!isLogin){
+  const isLogin = useSelector((state) => state.auth.isLogin);
+  if (!isLogin) {
     dispatch({
       type: ActionTypes.FIND_LIKE_DATA,
-      productLike:[]
-    })
+      productLike: [],
+    });
   }
   const handlechangePage = (e, param) => {
     e.preventDefault();
@@ -38,19 +38,19 @@ function Header() {
       productFill: data,
     });
   };
-  const getHomeData=data=>{
+  const getHomeData = (data) => {
     dispatch({
       type: ActionTypes.FIND_DATA_HOME,
-      productHome:data
-    })
-  }
+      productHome: data,
+    });
+  };
   useEffect(() => {
     productService.getProduct().then((res) => {
       getData(res.data.data);
     });
-    productService.getFillProduct('seller').then(res=>{
-      getHomeData(res.data.data)
-  }) 
+    productService.getFillProduct("seller").then((res) => {
+      getHomeData(res.data.data);
+    });
   }, []);
 
   return (
@@ -72,7 +72,7 @@ function Header() {
                 </Col>
                 <Col md={4}>
                   {" "}
-                  <Nav.Link href="/#" className="p-0">
+                  <Nav.Link href="/login" className="p-0">
                     {" "}
                     My Account
                   </Nav.Link>

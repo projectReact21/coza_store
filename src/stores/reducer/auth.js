@@ -1,16 +1,16 @@
 import ActionTypes from "../action";
 
 const initialState = {
-  isLogin:false,
-  dataUser:[],  
-  currentLocation:'',
+  isLogin: false,
+  dataUser: [],
+  currentLocation: "",
   allproducts: [],
   productFill: [],
   productLike: [],
   allmycarts: [],
-  productHome:[],
-  selectedHome: 'seller',
-  selectedShop:'allproducts',
+  productHome: [],
+  selectedHome: "seller",
+  selectedShop: "allproducts",
   isFill: false,
   isCanvasFavorite: false,
   isCanvasCart: false,
@@ -20,22 +20,22 @@ const initialState = {
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionTypes.CURRENT_LOACION:
-      return{
+      return {
         ...state,
-        currentLocation: action.currentLocation
-      }
+        currentLocation: action.currentLocation ? action.currentLocation : "/",
+      };
     case ActionTypes.LOGIN:
-      return{
+      return {
         ...state,
-        isLogin:true,
-        dataUser:action.dataUser
-      }
-      case ActionTypes.LOGOUT:
-        return{
-          ...state,
-          isLogin:false,
-          dataUser:[]
-        }
+        isLogin: true,
+        dataUser: action.dataUser,
+      };
+    case ActionTypes.LOGOUT:
+      return {
+        ...state,
+        isLogin: false,
+        dataUser: [],
+      };
     case ActionTypes.LOAD_DATA:
       return {
         ...state,
@@ -53,21 +53,21 @@ const authReducer = (state = initialState, action) => {
         ...state,
         productLike: action.productLike,
       };
-     case ActionTypes.FIND_DATA_HOME:
-        return{
-          ...state,
-          productHome:action.productHome
-        };
+    case ActionTypes.FIND_DATA_HOME:
+      return {
+        ...state,
+        productHome: action.productHome,
+      };
     case ActionTypes.SELECTED_MAIN_HOME:
-        return{
-          ...state,
-          selectedHome: action.selectedHome
-        }
-      case ActionTypes.SELECTED_MAIN_SHOP:
-          return{
-            ...state,
-            selectedShop: action.selectedShop
-          }
+      return {
+        ...state,
+        selectedHome: action.selectedHome,
+      };
+    case ActionTypes.SELECTED_MAIN_SHOP:
+      return {
+        ...state,
+        selectedShop: action.selectedShop,
+      };
     case ActionTypes.SHOW_CANVAS_FAVORITE:
       return {
         ...state,

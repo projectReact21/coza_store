@@ -13,6 +13,7 @@ function ListProductItem({ productItem, status }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const addToCart = (data) => {
+    console.log(isLogin);
     if (isLogin) {
       const product = data;
       delete product.id;
@@ -30,11 +31,10 @@ function ListProductItem({ productItem, status }) {
         { userId: 12345 }
       );
       fullproduct.total = product.price;
-
+      console.log(fullproduct);
       //huy
       mycartService.add(fullproduct).then((res) => {
-        if (res.errorCode === 0) toast.success("add success");
-        else toast.warning("add fail");
+        toast.success("add success");
       });
     } else {
       dispatch({
