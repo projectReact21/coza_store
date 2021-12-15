@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 function ListProductItem({ productItem, status }) {
+  const getUser = useSelector((state) => state.auth.dataUser);
   const isLogin = useSelector((state) => state.auth.isLogin);
   const getMyCart = useSelector((state) => state.auth.allmycarts);
   const dispatch = useDispatch();
@@ -34,17 +35,12 @@ function ListProductItem({ productItem, status }) {
         { userId: 12345 }
       );
       fullproduct.total = product.price;
+      fullproduct.userId = getUser.id;
       console.log(fullproduct);
       if (!getitemmycart) {
         mycartService.add(fullproduct).then((res) => {
           toast.success("add success");
         });
-        // mycartService.getList().then((res) => {
-        //   dispatch({
-        //     type: ActionTypes.LOAD_MY_CARTS,
-        //     allmycarts: res.data,
-        //   });
-        // });
       } else {
         dispatch({
           type: ActionTypes.ADD_TO_CART,
@@ -52,7 +48,7 @@ function ListProductItem({ productItem, status }) {
         });
         fullproduct.quantity = getitemmycart.quantity += 1;
         mycartService.update(getitemmycart.id, fullproduct).then((res) => {
-          toast.success("Update mycart success");
+          toast.info("Update mycart success");
         });
       }
     } else {

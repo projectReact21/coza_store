@@ -5,6 +5,7 @@ import mycartService from "../../services/mycartService";
 import ConfirmDialog from "../../component/ConfirmDialog";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
+import ActionTypes from "../../stores/action";
 
 const Features = () => {
   const [carts, setCarts] = useState([]);
@@ -37,10 +38,17 @@ const Features = () => {
     loadData();
     Total();
   }, []);
+  const getMyCart = (data) => {
+    dispatch({
+      type: ActionTypes.LOAD_MY_CARTS,
+      allmycarts: data,
+    });
+  };
   const getCarts = useSelector((state) => state.auth.allmycarts);
   const loadData = () => {
     mycartService.getList().then((res) => {
       setCarts(res.data.data);
+      getMyCart(res.data.data);
     });
   };
   const totalCartSum = (price, quantity) => {
@@ -55,15 +63,11 @@ const Features = () => {
     console.log(newData);
   };
   const handleSubmit = (e) => {
-    // console.log(getid);
     console.log(cart);
     mycartService.update(cart.id, cart).then((res) => {
       loadData();
       toast.info(`Update success ${cart.name}`);
     });
-    // dispatch({
-    //   type: ''
-    // })
     loadData();
   };
   const Total = () => {

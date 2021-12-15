@@ -6,6 +6,7 @@ import CanvasCart from "../component/CanvasCart";
 import ActionTypes from "../stores/action";
 import { useDispatch, useSelector } from "react-redux";
 import productService from "../services/productService";
+import mycartService from "../services/mycartService";
 
 function Header() {
   const navigate = useNavigate();
@@ -44,7 +45,16 @@ function Header() {
       productHome: data,
     });
   };
+  const getMyCart = (data) => {
+    dispatch({
+      type: ActionTypes.LOAD_MY_CARTS,
+      allmycarts: data,
+    });
+  };
   useEffect(() => {
+    mycartService.getList().then((res) => {
+      getMyCart(res.data.data);
+    });
     productService.getProduct().then((res) => {
       getData(res.data.data);
     });
