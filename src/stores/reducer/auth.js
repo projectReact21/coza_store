@@ -9,6 +9,8 @@ const initialState = {
   productLike: [],
   allmycarts: [],
   productHome: [],
+  page: 0,
+  perpage: 10,
   selectedHome: "seller",
   selectedShop: "allproducts",
   isFill: false,
@@ -19,6 +21,11 @@ const initialState = {
 };
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
+    case ActionTypes.SET_PERPAGE:
+      return {
+        ...state,
+        perpage: action.perpage,
+      };
     case ActionTypes.CURRENT_LOACION:
       return {
         ...state,
@@ -40,7 +47,6 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         allproducts: action.allproducts,
-        productFill: action.productFill,
       };
     case ActionTypes.FIND_DATA:
       return {

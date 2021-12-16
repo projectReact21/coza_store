@@ -12,12 +12,6 @@ function Header() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isLogin = useSelector((state) => state.auth.isLogin);
-  if (!isLogin) {
-    dispatch({
-      type: ActionTypes.FIND_LIKE_DATA,
-      productLike: [],
-    });
-  }
   const handlechangePage = (e, param) => {
     e.preventDefault();
     navigate(param);
@@ -26,23 +20,26 @@ function Header() {
     dispatch({
       type: ActionTypes.SHOW_CANVAS_FAVORITE,
     });
+    if (!isLogin) {
+      dispatch({
+        type: ActionTypes.CURRENT_LOACION,
+        currentLocation: window.location.pathname,
+      });
+      navigate("/login");
+    } else {
+      console.log("do");
+      productService.getFillProduct(1, 10).then((res) => {
+        console.log("res.data", res.data);
+        dispatch({
+          type: ActionTypes.FIND_LIKE_DATA,
+          productLike: res.data.data,
+        });
+      });
+    }
   };
   const handleShowCanvasCartProduct = () => {
     dispatch({
       type: ActionTypes.SHOW_CANVAS_CART,
-    });
-  };
-  const getData = (data) => {
-    dispatch({
-      type: ActionTypes.LOAD_DATA,
-      allproducts: data,
-      productFill: data,
-    });
-  };
-  const getHomeData = (data) => {
-    dispatch({
-      type: ActionTypes.FIND_DATA_HOME,
-      productHome: data,
     });
   };
   const getMyCart = (data) => {
@@ -55,14 +52,7 @@ function Header() {
     mycartService.getList().then((res) => {
       getMyCart(res.data.data);
     });
-    productService.getProduct().then((res) => {
-      getData(res.data.data);
-    });
-    productService.getFillProduct("seller").then((res) => {
-      getHomeData(res.data.data);
-    });
   }, []);
-
   return (
     <>
       <Container fluid className="top-bar" id="header__topBar">

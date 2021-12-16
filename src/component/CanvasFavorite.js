@@ -27,7 +27,7 @@ function CanvasFavorite({ content }) {
           </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          {productLike.map((p) => (
+          {productLike?.map((p) => (
             <Card
               style={{ width: "18rem" }}
               className="flex-row border-0 mb-2 hover-layout "

@@ -8,7 +8,7 @@ import mycartService from "../services/mycartService";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-function ListProductItem({ productItem, status }) {
+function ListProductItem({ productItem, status, home, shop }) {
   const getUser = useSelector((state) => state.auth.dataUser);
   const isLogin = useSelector((state) => state.auth.isLogin);
   const getMyCart = useSelector((state) => state.auth.allmycarts);
@@ -17,6 +17,10 @@ function ListProductItem({ productItem, status }) {
   const addToCart = (data) => {
     console.log(isLogin);
     const getitemmycart = getMyCart.find((x) => x.name === data.name);
+    console.log("data.name", data.name);
+    getMyCart.forEach((c) => {
+      console.log("c", c.name);
+    });
     console.log(getitemmycart);
     if (isLogin) {
       const product = data;
@@ -39,7 +43,16 @@ function ListProductItem({ productItem, status }) {
       console.log(fullproduct);
       if (!getitemmycart) {
         mycartService.add(fullproduct).then((res) => {
-          toast.success("add success");
+          console.log("res", res);
+          if (res.data.errorCode === 0) {
+            toast.success("add success");
+            mycartService.getList().then((res) => {
+              dispatch({
+                type: ActionTypes.LOAD_MY_CARTS,
+                allmycarts: res.data.data,
+              });
+            });
+          } else toast.warning(res.data.errorMessage);
         });
         mycartService.getList().then((res) => {
           dispatch({
@@ -55,7 +68,10 @@ function ListProductItem({ productItem, status }) {
         fullproduct.quantity = getitemmycart.quantity += 1;
         fullproduct.total = getitemmycart.quantity * fullproduct.price;
         mycartService.update(getitemmycart.id, fullproduct).then((res) => {
-          toast.info("Update mycart success");
+          console.log("res.data", res.data.data);
+          if (res.data.errorCode === 0)
+            toast.success(" has increased in number ");
+          else toast.warning(res.data.errorMessage);
         });
       }
     } else {
@@ -73,7 +89,98 @@ function ListProductItem({ productItem, status }) {
           variant="top"
           className="card__product--item-img"
           src={productItem?.srcImg}
+          style={{ height: "300px" }}
         />
+        {home ? (
+          productItem?.seller === "seller" ? (
+            <img
+              className="position-absolute "
+              style={{
+                width: "4rem",
+                height: "4rem",
+                top: "-7px",
+                right: "-12px",
+              }}
+              alt=""
+              src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/seller.png?raw=true"
+            />
+          ) : (
+            ""
+          )
+        ) : (
+          ""
+        )}
+        {home ? (
+          productItem?.sale === "sale" ? (
+            <img
+              className="position-absolute "
+              style={{
+                width: "4rem",
+                height: "4rem",
+                top: "-8px",
+                left: "-2px",
+              }}
+              alt=""
+              src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/sale.png?raw=true"
+            />
+          ) : (
+            ""
+          )
+        ) : (
+          ""
+        )}
+        {home ? (
+          productItem?.topRate === "topRate" ? (
+            <img
+              className="position-absolute top-0 "
+              style={{ width: "4rem", height: "4rem", left: "-2px" }}
+              alt=""
+              src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/toprate.png?raw=true"
+            />
+          ) : (
+            ""
+          )
+        ) : (
+          ""
+        )}
+        {home ? (
+          productItem?.feature === "feature" ? (
+            <img
+              className="position-absolute "
+              style={{
+                width: "4rem",
+                height: "4rem",
+                top: "0px",
+                right: "-5px",
+              }}
+              alt=""
+              src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/feature.png?raw=true"
+            />
+          ) : (
+            ""
+          )
+        ) : (
+          ""
+        )}
+        {shop ? (
+          productItem?.new === "new" ? (
+            <img
+              className="position-absolute "
+              style={{
+                width: "4rem",
+                height: "4rem",
+                top: "0px",
+                right: "-5px",
+              }}
+              alt=""
+              src="https://github.com/projectReact21/coza_store/blob/main/src/resoures/icons/new scale.png?raw=true"
+            />
+          ) : (
+            ""
+          )
+        ) : (
+          ""
+        )}
       </div>
       <Card.Body>
         <Card.Text className="position-absolute top-1 right-0 me-2">

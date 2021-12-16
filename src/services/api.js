@@ -9,6 +9,8 @@ const url = {
   fullSearch: "/allproduct/fullSearch",
   mycart: "/mycartproduct/list",
   login: "/login",
+  getPaging: "/allproduct/get-paging",
+  getpagingAndSearch: "/allproduct/searchAndGet-paging",
 };
 const instance = axios.create({
   baseURL: url.baseUrl,
