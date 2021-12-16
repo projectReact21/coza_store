@@ -186,7 +186,7 @@
   border-radius: 3px;
   /* overflow: hidden; */
 }
-.wrap-input{
+.wrap-input {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -459,6 +459,6 @@ input.num-product::-webkit-inner-spin-button {
   background-color: #fff;
   outline: 0;
 }
-
-
-
+.span-nothing {
+  font-size: 24px;
+}

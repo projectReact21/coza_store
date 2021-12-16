@@ -41,12 +41,19 @@ function ListProductItem({ productItem, status }) {
         mycartService.add(fullproduct).then((res) => {
           toast.success("add success");
         });
+        mycartService.getList().then((res) => {
+          dispatch({
+            type: ActionTypes.LOAD_MY_CARTS,
+            allmycarts: res.data.data,
+          });
+        });
       } else {
         dispatch({
           type: ActionTypes.ADD_TO_CART,
           payload: fullproduct,
         });
         fullproduct.quantity = getitemmycart.quantity += 1;
+        fullproduct.total = getitemmycart.quantity * fullproduct.price;
         mycartService.update(getitemmycart.id, fullproduct).then((res) => {
           toast.info("Update mycart success");
         });
