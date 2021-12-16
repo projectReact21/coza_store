@@ -1,17 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Row, Col, Form } from "react-bootstrap";
 import CateloryListText from "../../component/CateloryListText";
 import ListProductItem from "../../component/ListProductItem";
-
 import { useDispatch, useSelector } from "react-redux";
 import ActionTypes from "../../stores/action";
-import mycartService from "../../services/mycartService";
+import productService from "../../services/productService";
+import { toast } from "react-toastify";
 
 function ProductOverview() {
   const [showFilter, setShowFilter] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
-  const productFill = useSelector((state) => state.auth.productFill);
+  const [data, setDtata] = useState([]);
+  const [pageLength, setPageLength] = useState(0);
+  const fill = useSelector((state) => state.auth.selectedShop);
+  const perPage = useSelector((state) => state.auth.perpage);
+  console.log("fill", fill);
   const dispatch = useDispatch();
+  useEffect(() => {
+    if (fill === "allproducts") {
+      console.log("allproduct");
+      productService.getPaging(0, perPage).then((res) => {
+        setDtata(res.data.data.data);
+        setPageLength(res.data.data.pagingInfo.pageLength);
+      });
+    } else {
+      console.log("else");
+      productService.getPagingSearch(fill, 0, perPage).then((res) => {
+        setDtata(res.data.data.data);
+        setPageLength(res.data.data.pagingInfo.pageLength);
+      });
+    }
+  }, [fill, perPage]);
 
   const handleFilter = () => {
     setShowFilter(!showFilter);
@@ -20,6 +39,16 @@ function ProductOverview() {
   const handleSearch = () => {
     setShowSearch(!showSearch);
     setShowFilter(false);
+  };
+  const handleChangePerPage = (e) => {
+    e.preventDefault();
+    dispatch({
+      type: ActionTypes.SET_PERPAGE,
+      perpage: perPage + 10,
+    });
+    if (perPage + 10 >= pageLength) {
+      toast.warning("end product");
+    }
   };
   const listNav = ["allproducts", "women", "men", "bag", "shoes", "watches"];
   const listPrice = [
@@ -40,7 +69,7 @@ function ProductOverview() {
     " price:Low To Hight",
     "price:Hight To Low",
   ];
-  
+
   return (
     <>
       <Row className="mb-2">
@@ -132,16 +161,23 @@ function ProductOverview() {
         )}
       </Row>
       <Row className="gy-4">
-        {productFill.map((pro) => (
+        {data?.map((pro) => (
           <Col sm={12} md={6} lg={3} key={pro.id}>
-            <ListProductItem productItem={pro}/>
+            <ListProductItem productItem={pro} shop="shop" />
           </Col>
         ))}
       </Row>
       <Row className="justify-content-center mb-5 mt-5">
-        <Button className="text-uppercase col-sm-3 col-md-2 text-dark h-100 btn-loadmore">
-          load more
-        </Button>
+        {perPage >= pageLength ? (
+          ""
+        ) : (
+          <Button
+            onClick={(e) => handleChangePerPage(e)}
+            className="text-uppercase col-sm-3 col-md-2 text-dark h-100 btn-loadmore"
+          >
+            load more
+          </Button>
+        )}
       </Row>
     </>
   );

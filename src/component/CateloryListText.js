@@ -1,26 +1,14 @@
 import React from "react";
 import { Nav } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import ActionTypes from "../stores/action";
-import productService from "../services/productService"
 function CateloryListText({ listText, defaultActive, col, radius, typeFill }) {
   const dispatch = useDispatch();
-  const dataFill = (data) => {
-    dispatch({
-      type: ActionTypes.FIND_DATA,
-      productFill: data,
-    });
-  };
-  const dataAPI = useSelector((state) => state.auth.allproducts);
   const handleFill = (c, t) => {
-    console.log(c);
-    if(c==='allproducts'){
-      dataFill(dataAPI)
-    }else{
-       productService.getFillProduct(c).then(res=>{
-          dataFill(res.data.data)
-      })  
-    }
+    dispatch({
+      type: ActionTypes.SELECTED_MAIN_SHOP,
+      selectedShop: c,
+    });
   };
   return (
     <Nav

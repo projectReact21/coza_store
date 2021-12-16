@@ -2,11 +2,9 @@ import React from "react";
 import { Nav } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import ActionTypes from "../../../stores/action";
-import productService from '../../../services/productService'
+import productService from "../../../services/productService";
 
-
-
-function MainHomeListText({ listText, col, names,center }) {
+function MainHomeListText({ listText, col, names, center }) {
   const dispatch = useDispatch();
   const dataFill = (data) => {
     dispatch({
@@ -16,32 +14,27 @@ function MainHomeListText({ listText, col, names,center }) {
   };
   const selected = useSelector((state) => state.auth.selectedHome);
   const handleFill = (c, t) => {
-    console.log(t)
     dispatch({
-        type: ActionTypes.SELECTED_MAIN_HOME,
-        selectedHome:t
-    })
-    productService.getFillProduct(t).then(res=>{
-      console.log(res.data.data)
-        dataFill(res.data.data)
-    })  
+      type: ActionTypes.SELECTED_MAIN_HOME,
+      selectedHome: t,
+    });
+    productService.getFillProduct(t).then((res) => dataFill(res.data.data));
   };
   return (
     <Nav
       as="ul"
-      className={col 
-          ? "col-sm-12 col-md-8 w-100 mb-2"
-          : "col-sm-12 col-md-8 mb-2"
+      className={
+        col ? "col-sm-12 col-md-8 w-100 mb-2" : "col-sm-12 col-md-8 mb-2"
       }
     >
       {listText.map((l, index) => (
-        <Nav.Item
-          as="li"
-          key={index}
-          className={col ? col : ""}
-        >
+        <Nav.Item as="li" key={index} className={col ? col : ""}>
           <Nav.Link
-            className={selected===names[index]?"text-dark text-capitalize w-100 me-2 active":"text-dark text-capitalize w-100 me-2 "}
+            className={
+              selected === names[index]
+                ? "text-dark text-capitalize w-100 me-2 active"
+                : "text-dark text-capitalize w-100 me-2 "
+            }
             name={names[index]}
             onClick={() => handleFill(l, names[index])}
           >
