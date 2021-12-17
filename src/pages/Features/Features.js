@@ -10,6 +10,7 @@ import ActionTypes from "../../stores/action";
 const Features = () => {
   const [carts, setCarts] = useState([]);
   const [cartTotal, setCartTotal] = useState(0);
+  const getUser = useSelector((state) => state.auth.dataUser);
   const [cart, setCart] = useState({
     id: "",
     name: "",
@@ -47,7 +48,7 @@ const Features = () => {
   const getCarts = useSelector((state) => state.auth.allmycarts);
   console.log(getCarts);
   const loadData = () => {
-    mycartService.getList().then((res) => {
+    mycartService.getListId(getUser.userId).then((res) => {
       setCarts(res.data.data);
       getMyCart(res.data.data);
     });

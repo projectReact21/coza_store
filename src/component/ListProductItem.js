@@ -46,7 +46,7 @@ function ListProductItem({ productItem, status, home, shop }) {
           console.log("res", res);
           if (res.data.errorCode === 0) {
             toast.success("add success");
-            mycartService.getList().then((res) => {
+            mycartService.getListId(getUser.userId).then((res) => {
               dispatch({
                 type: ActionTypes.LOAD_MY_CARTS,
                 allmycarts: res.data.data,
@@ -54,7 +54,7 @@ function ListProductItem({ productItem, status, home, shop }) {
             });
           } else toast.warning(res.data.errorMessage);
         });
-        mycartService.getList().then((res) => {
+        mycartService.getListId(getUser.userId).then((res) => {
           dispatch({
             type: ActionTypes.LOAD_MY_CARTS,
             allmycarts: res.data.data,

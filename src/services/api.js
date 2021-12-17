@@ -8,6 +8,7 @@ const url = {
   filter: "/allproduct/filter",
   fullSearch: "/allproduct/fullSearch",
   mycart: "/mycartproduct/list",
+  mycartid: "/mycartproduct",
   login: "/login",
   getPaging: "/allproduct/get-paging",
   getpagingAndSearch: "/allproduct/searchAndGet-paging",
