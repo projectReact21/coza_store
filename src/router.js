@@ -4,8 +4,8 @@ import Shop from "./pages/shop/Shop";
 import Blog from "./pages/blog/Blog";
 import BlogDetail from "./pages/blog/BlogDetail";
 import About from "./pages/about/about";
-import Contact from "./pages/contact/Contact"
-import Login from './pages/login/Login';
+import Contact from "./pages/contact/Contact";
+import Signup from "./pages/login/Signup";
 
 const router = [
   { path: "/*", component: <Home /> },
@@ -15,7 +15,7 @@ const router = [
   { path: "/feature", component: <Features /> },
   { path: "/blog", component: <Blog /> },
   { path: "/blog/:id", component: <BlogDetail /> },
-  { path: "/contact", component: <Contact /> }
+  { path: "/contact", component: <Contact /> },
 ];
 
 export default router;

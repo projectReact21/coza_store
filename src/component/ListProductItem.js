@@ -39,7 +39,7 @@ function ListProductItem({ productItem, status, home, shop }) {
         { userId: 12345 }
       );
       fullproduct.total = product.price;
-      fullproduct.userId = getUser.id;
+      fullproduct.userId = getUser.userId;
       console.log(fullproduct);
       if (!getitemmycart) {
         mycartService.add(fullproduct).then((res) => {

@@ -18,7 +18,9 @@ a:hover {
   text-decoration: none;
   color: #6675df;
 }
-
+.text-color-primary {
+  color: #6675df !important;
+}
 /*---------------------------------------------*/
 h1,
 h2,
