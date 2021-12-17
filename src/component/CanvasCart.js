@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Offcanvas, Card } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import mycartService from "../services/mycartService";
 import ActionTypes from "./../stores/action";
 function CanvasCart({ content }) {
   const dispatch = useDispatch();
+  const allmycarts = useSelector((state) => state.auth.allmycarts);
   const show = useSelector((state) => state.auth.isShowCanvasCart);
   const productLike = [];
   const handleClose = () => {
@@ -12,16 +14,17 @@ function CanvasCart({ content }) {
       type: ActionTypes.HIDEN_CANVAS_CART,
     });
   };
+
   return (
     <>
       <Offcanvas placement="end" name="end" show={show} onHide={handleClose}>
-        <Offcanvas.Header closeButton className=" bg-primary">
+        <Offcanvas.Header closeButton className=" bg-custom">
           <Offcanvas.Title className="text-capitalize text-white">
             {content}
           </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          {productLike.map((p) => (
+          {allmycarts.map((p) => (
             <Card
               style={{ width: "18rem" }}
               className="flex-row border-0 mb-2 hover-layout "

@@ -1,44 +1,50 @@
 import React, { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import loginService from "../../services/loginService";
 import imgabout from "./images/about-01.jpg";
 import "./Login.css";
 
 function Signup() {
+  const navigate = useNavigate();
   const [result, setResult] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [repassword, setRepassword] = useState("");
-  const [address, setAddress] = useState("");
-  const [phone, setPhone] = useState("");
-  const [age, setAge] = useState();
   const emailRef = useRef();
   const passwordRef = useRef();
   const phoneRef = useRef();
   const ageRef = useRef();
-  const handleChangeEmail = (e) => {
-    setResult("");
-    setEmail(e.target.value);
-  };
-  const handleChangePassword = (e) => {
-    setResult("");
-    setPassword(e.target.value);
+  const [data, setData] = useState({
+    userName: "user",
+    avata: "https://www.w3schools.com/howto/img_avatar.png",
+    gender: 0,
+    email: "",
+    dress: "",
+    phone: "",
+    create_at: "",
+    update_at: "",
+    date: "",
+    age: "",
+    password: "",
+  });
+  const handleChangeData = (e) => {
+    const newData = { ...data };
+    newData[e.target.name] = e.target.value;
+    setData(newData);
+    console.log(newData);
   };
   const handleChangeRePassword = (e) => {
-    setResult("");
-    setRepassword(e.target.value);
+    if (data.password !== e.target.value) {
+      setResult("password incorrect");
+    } else {
+      setResult("");
+    }
   };
-  const handleChangeAddress = (e) => {
-    setResult("");
-    setAddress(e.target.value);
+  const handleSignup = () => {
+    loginService.signup(data).then((res) => {
+      if (res.errorCode === 0) {
+        console.log("ok");
+        navigate("/login");
+      }
+    });
   };
-  const handleChangePhone = (e) => {
-    setResult("");
-    setPhone(e.target.value);
-  };
-  const handleChangeAge = (e) => {
-    setResult("");
-    setAge(e.target.value);
-  };
-
   return (
     <>
       <div className="limiter">
@@ -61,8 +67,7 @@ function Signup() {
                   className="input100"
                   type="text"
                   name="email"
-                  value={email}
-                  onChange={handleChangeEmail}
+                  onChange={handleChangeData}
                 />
                 <span className="focus-input100"></span>
                 <span className="label-input100">Email</span>
@@ -76,9 +81,8 @@ function Signup() {
                   ref={passwordRef}
                   className="input100"
                   type="password"
-                  name="pass"
-                  value={password}
-                  onChange={handleChangePassword}
+                  name="password"
+                  onChange={handleChangeData}
                 />
                 <span className="focus-input100"></span>
                 <span className="label-input100">Password</span>
@@ -92,7 +96,6 @@ function Signup() {
                   className="input100"
                   type="password"
                   name="pass"
-                  value={repassword}
                   onChange={handleChangeRePassword}
                 />
                 <span className="focus-input100"></span>
@@ -106,9 +109,8 @@ function Signup() {
                   ref={passwordRef}
                   className="input100"
                   type="text"
-                  name="address"
-                  value={address}
-                  onChange={handleChangeAddress}
+                  name="dress"
+                  onChange={handleChangeData}
                 />
                 <span className="focus-input100"></span>
                 <span className="label-input100">Address</span>
@@ -120,10 +122,9 @@ function Signup() {
                 <input
                   ref={phoneRef}
                   className="input100"
-                  type="text"
-                  name="pass"
-                  value={phone}
-                  onChange={handleChangePhone}
+                  type="phone"
+                  name="phone"
+                  onChange={handleChangeData}
                 />
                 <span className="focus-input100"></span>
                 <span className="label-input100">Phone</span>
@@ -136,17 +137,17 @@ function Signup() {
                   ref={ageRef}
                   className="input100"
                   type="text"
-                  name="pass"
-                  value={age}
-                  onChange={handleChangeAge}
+                  name="age"
+                  onChange={handleChangeData}
                 />
                 <span className="focus-input100"></span>
                 <span className="label-input100">Age</span>
               </div>
               <div className="container-login100-form-btn">
                 <button
-                  className="login100-form-btn"
-                  // onClick={(e) => handleLogin(e)}
+                  type="button"
+                  className="login100-form-btn btn-signup"
+                  onClick={handleSignup}
                 >
                   Sign Up
                 </button>

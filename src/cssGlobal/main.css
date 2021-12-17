@@ -2984,6 +2984,9 @@ input.num-product::-webkit-inner-spin-button {
   top: 15px;
   left: 10px;
 }
+.bg-custom {
+  background-color: #717fe0;
+}
 
 /*---------------------------------------------*/
 .how-itemcart1 {

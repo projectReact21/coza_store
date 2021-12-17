@@ -1,8 +1,8 @@
 import ActionTypes from "../action";
 
 const initialState = {
-  isLogin: false,
-  dataUser: [],
+  isLogin: JSON.parse(localStorage.getItem("isLoggedIn")) || false,
+  dataUser: JSON.parse(localStorage.getItem("data")) || [],
   currentLocation: "",
   allproducts: [],
   productFill: [],
@@ -32,12 +32,16 @@ const authReducer = (state = initialState, action) => {
         currentLocation: action.currentLocation ? action.currentLocation : "/",
       };
     case ActionTypes.LOGIN:
+      localStorage.setItem("isLoggedIn", true);
+      localStorage.setItem("data", JSON.stringify(action.dataUser));
       return {
         ...state,
         isLogin: true,
         dataUser: action.dataUser,
       };
     case ActionTypes.LOGOUT:
+      localStorage.removeItem("isLoggedIn");
+      localStorage.removeItem("data");
       return {
         ...state,
         isLogin: false,

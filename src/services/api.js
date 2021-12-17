@@ -10,6 +10,7 @@ const url = {
   mycart: "/mycartproduct/list",
   mycartid: "/mycartproduct",
   login: "/login",
+  signup: "/user",
   getPaging: "/allproduct/get-paging",
   getpagingAndSearch: "/allproduct/searchAndGet-paging",
 };

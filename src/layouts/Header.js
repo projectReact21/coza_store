@@ -54,6 +54,19 @@ function Header() {
       getMyCart(res.data.data);
     });
   }, []);
+  const handleLogoutAction = (e) => {
+    e.preventDefault();
+    dispatch({
+      type: ActionTypes.LOGOUT,
+    });
+    navigate("/");
+  };
+  const handleSignin = (e) => {
+    dispatch({
+      type: ActionTypes.CURRENT_LOACION,
+    });
+    navigate("/login");
+  };
   return (
     <>
       {/* <Container fluid className="top-bar" id="header__topBar">
@@ -175,13 +188,26 @@ function Header() {
                 aria-hidden="true"
                 onClick={handleShowCanvasCartProduct}
               ></i>
-              <i
+              {/* <i
                 className="fa fa-heart fs-3 mt-1"
                 aria-hidden="true"
                 onClick={handleShowCanvasFavoriteProduct}
               >
                 <sup className="text-warning mx-1">2</sup>
-              </i>
+              </i> */}
+              {isLogin ? (
+                <i
+                  class="fa fa-sign-out fs-3 mt-1"
+                  aria-hidden="true"
+                  onClick={handleLogoutAction}
+                ></i>
+              ) : (
+                <i
+                  class="fa fa-sign-in fs-3 mt-1"
+                  aria-hidden="true"
+                  onClick={handleSignin}
+                ></i>
+              )}
             </Form>
           </Navbar.Collapse>
         </Container>

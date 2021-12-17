@@ -69,8 +69,7 @@ function ListProductItem({ productItem, status, home, shop }) {
         fullproduct.total = getitemmycart.quantity * fullproduct.price;
         mycartService.update(getitemmycart.id, fullproduct).then((res) => {
           console.log("res.data", res.data.data);
-          if (res.data.errorCode === 0)
-            toast.success(" has increased in number ");
+          if (res.data.errorCode === 0) toast.info(" has increased in number ");
           else toast.warning(res.data.errorMessage);
         });
       }
