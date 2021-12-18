@@ -13,14 +13,31 @@ const initialState = {
   perpage: 10,
   selectedHome: "seller",
   selectedShop: "allproducts",
+  selectedFillShop: "",
   isFill: false,
   isCanvasFavorite: false,
   isCanvasCart: false,
   isShowCanvasFavorite: false,
   isShowCanvasCart: false,
+  // new
+
+  typeFill: 0,
+  sorfBy: "",
+  price: 0,
+  color: "",
+  taps: "",
 };
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
+    //new
+    case ActionTypes.SELECTED_FILTER_SHOP:
+      return {
+        ...state,
+        typeFill: action.typeFill,
+        selectedFillShop: action.selectedFillShop,
+      };
+
+    //
     case ActionTypes.SET_PERPAGE:
       return {
         ...state,
