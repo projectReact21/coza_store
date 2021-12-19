@@ -7,12 +7,14 @@ import ActionTypes from "../stores/action";
 import { useDispatch, useSelector } from "react-redux";
 import productService from "../services/productService";
 import mycartService from "../services/mycartService";
+import blogService from "../services/blogService";
 
 function Header() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isLogin = useSelector((state) => state.auth.isLogin);
   const getUser = useSelector((state) => state.auth.dataUser);
+
   const handlechangePage = (e, param) => {
     e.preventDefault();
     navigate(param);
@@ -49,9 +51,18 @@ function Header() {
       allmycarts: data,
     });
   };
+  const getBlog = (data) => {
+    dispatch({
+      type: ActionTypes.LOAD_BLOG,
+      blogs: data,
+    });
+  };
   useEffect(() => {
     mycartService.getListId(getUser.userId).then((res) => {
       getMyCart(res.data.data);
+    });
+    blogService.getList().then((res) => {
+      getBlog(res.data.data);
     });
   }, []);
   const handleLogoutAction = (e) => {

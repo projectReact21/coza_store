@@ -13,6 +13,8 @@ const url = {
   signup: "/user",
   getPaging: "/allproduct/get-paging",
   getpagingAndSearch: "/allproduct/searchAndGet-paging",
+  blogs: "/blogs",
+  comment: "/comment",
 };
 const instance = axios.create({
   baseURL: url.baseUrl,
