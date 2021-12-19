@@ -6,38 +6,161 @@ import { useDispatch, useSelector } from "react-redux";
 import ActionTypes from "../../stores/action";
 import productService from "../../services/productService";
 import { toast } from "react-toastify";
+import { DebounceInput } from "react-debounce-input";
 
 function ProductOverview() {
   const [showFilter, setShowFilter] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
-  const [data, setDtata] = useState([]);
+  const [result, setResult] = useState("");
+  const [search, setSearch] = useState(false);
+  const [inputValue, setInputValue] = useState("");
+  const [data, setData] = useState([]);
   const [pageLength, setPageLength] = useState(0);
   const fill = useSelector((state) => state.auth.selectedShop);
   const perPage = useSelector((state) => state.auth.perpage);
-  console.log("fill", fill);
+  const typeFill = useSelector((state) => state.auth.typeFill);
+  const selectedFillShop = useSelector((state) => state.auth.selectedFillShop);
+  console.log("selectedFillShop", selectedFillShop);
+  console.log("data", data);
   const dispatch = useDispatch();
+  const datafill = (x) => {
+    setData(x.data);
+    setSearch(true);
+  };
+  //
   useEffect(() => {
+    console.log("typeFill", typeof typeFill);
+
+    switch (parseInt(typeFill)) {
+      case 1:
+        console.log("do 1");
+        if (fill === "allproducts") {
+          switch (selectedFillShop) {
+            case "asc":
+              productService
+                .getSortProduct("price", selectedFillShop)
+                .then((res) => datafill(res));
+              break;
+            case "desc":
+              productService
+                .getSortProduct("price", selectedFillShop)
+                .then((res) => datafill(res));
+              break;
+            case "price0":
+              productService.getPaging(0, perPage).then((res) => {
+                setData(res.data.data.data);
+                setPageLength(res.data.data.pagingInfo.pageLength);
+              });
+              break;
+            case "price1":
+              productService.getSlice(0, 50).then((res) => datafill(res));
+              break;
+            case "price2":
+              productService.getSlice(50, 100).then((res) => datafill(res));
+              break;
+            case "price3":
+              productService.getSlice(100, 150).then((res) => datafill(res));
+              break;
+            case "price4":
+              productService.getSlice(150, 200).then((res) => datafill(res));
+              break;
+            case "price5":
+              productService.getSlice(200).then((res) => datafill(res));
+              break;
+            default:
+              productService
+                .getFillProduct(selectedFillShop)
+                .then((res) => datafill(res));
+              break;
+          }
+        } else {
+          switch (selectedFillShop) {
+            case "desc":
+              productService
+                .getSortProductQuery(fill, "price", selectedFillShop)
+                .then((res) => datafill(res.data));
+              break;
+            case "asc":
+              productService
+                .getSortProductQuery(fill, "price", selectedFillShop)
+                .then((res) => datafill(res.data));
+              break;
+            case "price0":
+              productService.getPagingSearch(fill, 0, perPage).then((res) => {
+                setData(res.data.data.data);
+                setPageLength(res.data.data.pagingInfo.pageLength);
+              });
+              break;
+            case "price1":
+              productService
+                .getSliceQuery(fill, 0, 50)
+                .then((res) => datafill(res.data));
+              break;
+            case "price2":
+              productService
+                .getSliceQuery(fill, 50, 100)
+                .then((res) => datafill(res.data));
+              break;
+            case "price3":
+              productService
+                .getSliceQuery(fill, 100, 150)
+                .then((res) => datafill(res.data));
+              break;
+            case "price4":
+              productService
+                .getSliceQuery(fill, 150, 200)
+                .then((res) => datafill(res.data));
+              break;
+            case "price5":
+              productService
+                .getSliceQuery(fill, 200)
+                .then((res) => datafill(res.data));
+              break;
+            default:
+              productService
+                .getFillProductQuery(fill, selectedFillShop)
+                .then((res) => datafill(res.data));
+              break;
+          }
+        }
+        break;
+
+      default:
+        break;
+    }
+  }, [typeFill, selectedFillShop]);
+  //
+  const loadData = () => {
     if (fill === "allproducts") {
-      console.log("allproduct");
       productService.getPaging(0, perPage).then((res) => {
-        setDtata(res.data.data.data);
+        setData(res.data.data.data);
         setPageLength(res.data.data.pagingInfo.pageLength);
       });
     } else {
-      console.log("else");
       productService.getPagingSearch(fill, 0, perPage).then((res) => {
-        setDtata(res.data.data.data);
+        setData(res.data.data.data);
         setPageLength(res.data.data.pagingInfo.pageLength);
       });
     }
+  };
+  useEffect(() => {
+    loadData();
   }, [fill, perPage]);
 
   const handleFilter = () => {
+    setSearch(false);
     setShowFilter(!showFilter);
     setShowSearch(false);
+    if (showFilter) {
+      loadData();
+    }
   };
   const handleSearch = () => {
+    setInputValue("");
     setShowSearch(!showSearch);
+    if (showSearch) {
+      loadData();
+    }
     setShowFilter(false);
   };
   const handleChangePerPage = (e) => {
@@ -51,6 +174,14 @@ function ProductOverview() {
     }
   };
   const listNav = ["allproducts", "women", "men", "bag", "shoes", "watches"];
+  const listNavNames = [
+    "allproducts",
+    "women",
+    "men",
+    "bag",
+    "shoes",
+    "watches",
+  ];
   const listPrice = [
     "all",
     "$0.00 - $50.00",
@@ -59,24 +190,89 @@ function ProductOverview() {
     "$150.00 - $200.00",
     " $200.00+",
   ];
+  const priceNames = [
+    "price0",
+    "price1",
+    "price2",
+    "price3",
+    "price4",
+    "price5",
+  ];
   const listColor = ["black", "blue", "grey", "green", "red", "white"];
+  const colorNames = ["black", "blue", "grey", "green", "red", "white"];
   const listTags = ["fashion", "lifestyle", "denim", "streetstyle", "crafts"];
+  const tapsName = ["fashion", "lifestyle", "denim", "streetstyle", "crafts"];
   const listFilter = [
     "default",
     "popularity",
-    "average raing",
+    "average rating",
     "newness",
     " price:Low To Hight",
     "price:Hight To Low",
   ];
+  const sorfByNames = [
+    "default",
+    "popularity",
+    "average rating",
+    "newness",
+    "asc",
+    "desc",
+  ];
+  const handleChangeInputSearch = (e) => {
+    setResult("");
+    if (e.target.value) {
+      setSearch(true);
+      setInputValue(e.target.value);
+    } else setSearch(false);
+  };
+  useEffect(() => {
+    if (search) {
+      console.log("do search");
+      console.log("input", inputValue);
 
+      if (fill === "allproducts") {
+        productService.getFullSearch(inputValue).then((res) => {
+          console.log("allproduct");
+          if (res.data.errorCode === 0) {
+            setData(res.data.data);
+            setResult("");
+          } else {
+            setResult("không có sản phẩm phù hợp");
+            setData([]);
+          }
+        });
+      } else {
+        productService.getFullSearchQuery(fill, inputValue).then((res) => {
+          console.log("query", fill);
+          if (res.data.errorCode === 0) {
+            setData(res.data.data);
+            setResult("");
+          } else {
+            setResult("không có sản phẩm phù hợp");
+            setData([]);
+          }
+        });
+      }
+    } else {
+      loadData();
+    }
+  }, [search, inputValue]);
+  useEffect(() => {
+    setShowFilter(false);
+    setShowSearch(false);
+    setInputValue("");
+  }, [fill]);
+  useEffect(() => {
+    if (data.length === 0) setResult("không có sản phẩm phù hợp");
+    else setResult("");
+  }, [data]);
   return (
     <>
       <Row className="mb-2">
         <CateloryListText
           listText={listNav}
           typeFill="theme"
-          defaultActive="allproducts"
+          names={listNavNames}
         />
         <Col sm={12} md={4}>
           <Row className="justify-content-around g-3 px-2 pe-2 ">
@@ -115,8 +311,8 @@ function ProductOverview() {
             <CateloryListText
               col="col-12"
               listText={listFilter}
-              typeFill="sorfby"
-              // defaultActive="average raing"
+              typeFill="sorfBy"
+              names={sorfByNames}
             />
           </Col>
           <Col sm={12} md={6} lg={3}>
@@ -125,7 +321,7 @@ function ProductOverview() {
               col="col-12"
               listText={listPrice}
               typeFill="price"
-              // defaultActive="all"
+              names={priceNames}
             />
           </Col>
           <Col sm={12} md={6} lg={3}>
@@ -134,7 +330,7 @@ function ProductOverview() {
               col="col-12"
               listText={listColor}
               typeFill="color"
-              // defaultActive="green"
+              names={colorNames}
             />
           </Col>
           <Col sm={12} md={6} lg={3}>
@@ -142,8 +338,8 @@ function ProductOverview() {
             <CateloryListText
               listText={listTags}
               typeFill="tag"
-              // defaultActive="lifestyle"
               radius="2rem"
+              names={tapsName}
             />
           </Col>
         </Row>
@@ -151,11 +347,15 @@ function ProductOverview() {
       <Row>
         {showSearch && (
           <Form>
-            <Form.Control
+            <DebounceInput
+              minLength={2}
+              debounceTimeout={300}
               type="search"
               placeholder="Search"
               className="me-2 form-control mt-1 mb-5"
               aria-label="Search"
+              value={inputValue}
+              onChange={handleChangeInputSearch}
             />
           </Form>
         )}
@@ -167,8 +367,13 @@ function ProductOverview() {
           </Col>
         ))}
       </Row>
+      <Row>
+        <strong className="fs-4 text-capitalize text-danger">{result}</strong>
+      </Row>
       <Row className="justify-content-center mb-5 mt-5">
-        {perPage >= pageLength ? (
+        {search ? (
+          ""
+        ) : perPage >= pageLength ? (
           ""
         ) : (
           <Button

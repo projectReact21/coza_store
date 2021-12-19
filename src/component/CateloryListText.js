@@ -1,18 +1,34 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Nav } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ActionTypes from "../stores/action";
-function CateloryListText({ listText, defaultActive, col, radius, typeFill }) {
+function CateloryListText({
+  listText,
+  names,
+  defaultActive,
+  col,
+  radius,
+  typeFill,
+}) {
+  const allproductsRef = useRef();
+  const selectedShop = useSelector((state) => state.auth.selectedShop);
   const dispatch = useDispatch();
-  const handleFill = (c, t) => {
-    dispatch({
-      type: ActionTypes.SELECTED_MAIN_SHOP,
-      selectedShop: c,
-    });
+  const handleFill = (typeFill, name) => {
+    if (typeFill === "theme") {
+      dispatch({
+        type: ActionTypes.SELECTED_MAIN_SHOP,
+        selectedShop: name,
+      });
+    } else {
+      dispatch({
+        type: ActionTypes.SELECTED_FILTER_SHOP,
+        typeFill: 1,
+        selectedFillShop: name,
+      });
+    }
   };
   return (
     <Nav
-      defaultActiveKey={defaultActive}
       as="ul"
       className={
         col || radius
@@ -37,9 +53,13 @@ function CateloryListText({ listText, defaultActive, col, radius, typeFill }) {
                   }
                 : {}
             }
-            className="text-dark text-capitalize w-100 me-2 "
-            name={typeFill}
-            onClick={() => handleFill(l, typeFill)}
+            className={
+              selectedShop === names[index]
+                ? "text-dark text-capitalize w-100 me-2 active "
+                : "text-dark text-capitalize w-100 me-2 "
+            }
+            name={names[index]}
+            onClick={() => handleFill(typeFill, names[index])}
           >
             {l}
           </Nav.Link>

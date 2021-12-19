@@ -2,11 +2,14 @@ import axios from "axios";
 import { hideLoading, showLoading } from "react-redux-loading-bar";
 import store from "./../stores/index";
 const url = {
-  baseUrl: "https://hoanghuy1998.herokuapp.com",
-  // baseUrl: "http://localhost:5000",
+  // baseUrl: "https://hoanghuy1998.herokuapp.com",
+  baseUrl: "http://localhost:5000",
   allproducts: "/allproduct/list",
   filter: "/allproduct/filter",
+  filterQuery: "/allproduct/filterQuery",
+  filterSortQuery: "/allproduct/filterSortQuery",
   fullSearch: "/allproduct/fullSearch",
+  fullSearchQuery: "/allproduct/fullSearchQuery",
   mycart: "/mycartproduct/list",
   mycartid: "/mycartproduct",
   login: "/login",

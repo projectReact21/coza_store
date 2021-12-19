@@ -10,15 +10,15 @@ function MainHome() {
   const fill = useSelector((state) => state.auth.selectedHome);
 
   useEffect(() => {
-    productService
-      .getFillProduct(fill)
-      .then((res) => setDataHome(res.data.data));
+    productService.getFillProduct(fill).then((res) => {
+      console.log("res.data", res.data);
+      setDataHome(res.data);
+    });
   }, [fill]);
   const item1 = [dataHome[0], dataHome[1], dataHome[2], dataHome[3]];
   const item2 = [dataHome[4], dataHome[5], dataHome[6], dataHome[7]];
-
-  console.log("item1", item1);
-  console.log("item2", item2);
+  // console.log("item1", item1);
+  // console.log("item2", item2);
   const lists = ["best seller", "feautured", "sale", "top rate"];
   const names = ["seller", "feature", "sale", "topRate"];
   return (
