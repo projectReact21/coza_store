@@ -21,10 +21,10 @@ function ProductOverview() {
   const typeFill = useSelector((state) => state.auth.typeFill);
   const selectedFillShop = useSelector((state) => state.auth.selectedFillShop);
   console.log("selectedFillShop", selectedFillShop);
-  console.log("fill", fill);
+  console.log("data", data);
   const dispatch = useDispatch();
   const datafill = (x) => {
-    setData(x.data.data);
+    setData(x.data);
     setSearch(true);
   };
   //
@@ -36,7 +36,12 @@ function ProductOverview() {
         console.log("do 1");
         if (fill === "allproducts") {
           switch (selectedFillShop) {
-            case "asc" || "desc":
+            case "asc":
+              productService
+                .getSortProduct("price", selectedFillShop)
+                .then((res) => datafill(res));
+              break;
+            case "desc":
               productService
                 .getSortProduct("price", selectedFillShop)
                 .then((res) => datafill(res));
@@ -73,12 +78,12 @@ function ProductOverview() {
             case "desc":
               productService
                 .getSortProductQuery(fill, "price", selectedFillShop)
-                .then((res) => datafill(res));
+                .then((res) => datafill(res.data));
               break;
             case "asc":
               productService
                 .getSortProductQuery(fill, "price", selectedFillShop)
-                .then((res) => datafill(res));
+                .then((res) => datafill(res.data));
               break;
             case "price0":
               productService.getPagingSearch(fill, 0, perPage).then((res) => {
@@ -87,32 +92,34 @@ function ProductOverview() {
               });
               break;
             case "price1":
-              productService.getSliceQuery(0, 50).then((res) => datafill(res));
+              productService
+                .getSliceQuery(fill, 0, 50)
+                .then((res) => datafill(res.data));
               break;
             case "price2":
               productService
                 .getSliceQuery(fill, 50, 100)
-                .then((res) => datafill(res));
+                .then((res) => datafill(res.data));
               break;
             case "price3":
               productService
                 .getSliceQuery(fill, 100, 150)
-                .then((res) => datafill(res));
+                .then((res) => datafill(res.data));
               break;
             case "price4":
               productService
                 .getSliceQuery(fill, 150, 200)
-                .then((res) => datafill(res));
+                .then((res) => datafill(res.data));
               break;
             case "price5":
               productService
                 .getSliceQuery(fill, 200)
-                .then((res) => datafill(res));
+                .then((res) => datafill(res.data));
               break;
             default:
               productService
                 .getFillProductQuery(fill, selectedFillShop)
-                .then((res) => datafill(res));
+                .then((res) => datafill(res.data));
               break;
           }
         }
