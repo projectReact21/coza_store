@@ -65,19 +65,28 @@ const Features = () => {
     console.log(newData);
   };
   const handleSubmit = (e) => {
-    console.log(cart);
-    mycartService.update(cart.id, cart).then((res) => {
-      loadData();
-      toast.info(`Update success ${cart.name}`);
-    });
-    loadData();
+    console.log(cart.quantity);
+    if (parseInt(cart.quantity) === 0) {
+      mycartService.delete(cart.id).then((res) => {
+        if (res.data.errorCode === 0) {
+          toast.success(`đã xóa thành công ${cart.name} ra khỏi giỏ hàng`);
+          loadData();
+        } else {
+          toast.warning("update fail");
+        }
+      });
+    } else {
+      mycartService.update(cart.id, cart).then((res) => {
+        toast.info(`Update success ${cart.name}`);
+        loadData();
+      });
+    }
   };
   const Total = () => {
     let totalVal = 0;
     for (let i = 0; i < carts.length; i++) {
       totalVal += carts[i].total;
     }
-    console.log(totalVal);
     setCartTotal(totalVal);
   };
   const handleDelete = (e, id) => {

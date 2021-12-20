@@ -2,15 +2,7 @@ import React, { useRef } from "react";
 import { Nav } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import ActionTypes from "../stores/action";
-function CateloryListText({
-  listText,
-  names,
-  defaultActive,
-  col,
-  radius,
-  typeFill,
-}) {
-  const allproductsRef = useRef();
+function CateloryListText({ listText, names, col, radius, typeFill }) {
   const selectedShop = useSelector((state) => state.auth.selectedShop);
   const dispatch = useDispatch();
   const handleFill = (typeFill, name) => {
@@ -54,11 +46,13 @@ function CateloryListText({
                 : {}
             }
             className={
-              selectedShop === names[index]
-                ? "text-dark text-capitalize w-100 me-2 active "
-                : "text-dark text-capitalize w-100 me-2 "
+              names
+                ? selectedShop === names[index]
+                  ? "text-dark text-capitalize w-100 me-2 active "
+                  : "text-dark text-capitalize w-100 me-2 "
+                : ""
             }
-            name={names[index]}
+            name={names ? names[index] : ""}
             onClick={() => handleFill(typeFill, names[index])}
           >
             {l}
