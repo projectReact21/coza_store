@@ -11,7 +11,7 @@ const Blog = () => {
     navigate(`/blog/${id}`);
   };
   const getblogs = useSelector((state) => state.blog.blogs);
-  console.log(getblogs);
+  // console.log(getblogs);
 
   return (
     <>
@@ -29,7 +29,7 @@ const Blog = () => {
               <div className="p-r-45 p-r-0-lg">
                 {getblogs.map((blog, index) => (
                   <>
-                    <div className="p-b-63" key={index}>
+                    <div className="p-b-63" key={blog.id}>
                       <a
                         href="blog-detail.html"
                         className="hov-img0 how-pos5-parent"
@@ -77,7 +77,7 @@ const Blog = () => {
                           <a
                             href="/#"
                             className="stext-101 cl2 hov-cl1 trans-04 m-tb-10 text-decoration-none fw-bold "
-                            onClick={(e) => handleShowPage(e)}
+                            onClick={(e) => handleShowPage(e, blog.id)}
                           >
                             Continue Reading
                             <i className="fa fa-long-arrow-right m-l-9"></i>

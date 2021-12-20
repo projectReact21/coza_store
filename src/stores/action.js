@@ -18,12 +18,9 @@ const ActionTypes = {
   ADD_TO_CART: "ADD_TO_CART",
   REMOVE_FROM_CART: "REMOVE_FROM_CART",
   CLEAR_CART: " CLEAR_CART",
-<<<<<<< HEAD
   LOAD_BLOG: "LOAD_BLOG",
   BLOG: "BLOG",
-=======
   //NEW
   SELECTED_FILTER_SHOP: "SELECTED_FILTER_SHOP",
->>>>>>> f8ec7ae589b02e5335718eb99011d979a715598e
 };
 export default ActionTypes;

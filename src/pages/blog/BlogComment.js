@@ -2,16 +2,20 @@ import React, { useEffect, useState } from "react";
 import commentService from "../../services/commentService";
 // import { useFormik } from "formik";
 // import * as Yup from "yup";
-import blogService from "../../services/blogService";
 import { toast } from "react-toastify";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import ActionTypes from "../../stores/action";
+import { useNavigate } from "react-router-dom";
 
-const BlogComment = () => {
+const BlogComment = ({ blogId }) => {
   const [comments, setComments] = useState([]);
+  const isLogin = useSelector((state) => state.auth.isLogin);
   const user = useSelector((state) => state.auth.dataUser);
-  console.log(user);
+  const getCmtId = useSelector((state) => state.blog.blog);
+  console.log(getCmtId);
   const [comment, setComment] = useState({
     commentId: 123,
+    userName: "",
     contents: "",
     avataUser: "",
     create_at: "2021-12-16T05:56:53.000Z",
@@ -21,9 +25,11 @@ const BlogComment = () => {
 
   useEffect(() => {
     loadData();
-  }, []);
+  });
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const loadData = () => {
-    commentService.list().then((res) => {
+    commentService.getListCmt(getCmtId.commentId).then((res) => {
       console.log(res.data);
       if (res.data.errorCode === 0) {
         setComments(res.data.data);
@@ -39,14 +45,24 @@ const BlogComment = () => {
     console.log(newData);
   };
   const handleSave = () => {
-    comment.avataUser = user.avata;
-    comment.userId = user.userId;
-    commentService.add(comment).then((res) => {
-      loadData(res.data);
-      toast.success("Comment success");
-      console.log(res.result);
-      console.log("ok");
-    });
+    if (isLogin) {
+      comment.commentId = getCmtId.commentId;
+      comment.avataUser = user.avata;
+      comment.userId = user.userId;
+      comment.userName = user.userName;
+      commentService.add(comment).then((res) => {
+        loadData(res.data);
+        toast.success("Comment success");
+        console.log(res.result);
+        console.log("ok");
+      });
+    } else {
+      dispatch({
+        type: ActionTypes.CURRENT_LOACION,
+        currentLocation: window.location.pathname,
+      });
+      navigate("/login");
+    }
   };
   const handleDelete = (e, id) => {
     commentService.delete(id).then((res) => {
@@ -80,7 +96,7 @@ const BlogComment = () => {
                     />{" "}
                     <span>
                       <small className="font-weight-bold text-primary">
-                        james_olesenn
+                        {comment.userName}
                       </small>{" "}
                       <small className="font-weight-bold">
                         {comment.contents}
