@@ -6,7 +6,7 @@ const listSecond = ["track order", "returns", "shipping", "FAQs"];
 function Footer() {
   return (
     <footer>
-      <Container fluid className="bg-dark">
+      <Container fluid className="bg-dark navbar-fixed-bottom">
         <Container className="bg-dark">
           <Row className="justify-content-center">
             <Col xs={12} sm={6} md={3} className=" mt-5 col-lg-3 p-b-50">

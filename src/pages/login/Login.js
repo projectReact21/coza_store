@@ -50,6 +50,9 @@ const Login = () => {
       }
     });
   };
+  const handleSignup = (e) => {
+    navigate("/signup");
+  };
   return (
     <>
       <div className="limiter">
@@ -121,6 +124,12 @@ const Login = () => {
                   onClick={(e) => handleLogin(e)}
                 >
                   Login
+                </button>
+                <button
+                  className="login100-form-btn"
+                  onClick={(e) => handleSignup(e)}
+                >
+                  signup
                 </button>
               </div>
 

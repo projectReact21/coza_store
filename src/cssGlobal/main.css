@@ -2978,6 +2978,14 @@ input.num-product::-webkit-inner-spin-button {
 .how-pos5-parent {
   position: relative;
 }
+.Description {
+  margin-top: 10px;
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  flex-wrap: wrap;
+  gap: 0 10px;
+}
 
 .how-pos5 {
   position: absolute;

@@ -437,7 +437,8 @@ input.input100 {
   display: -moz-box;
   display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  gap: 0 20px;
   justify-content: center;
 }
 

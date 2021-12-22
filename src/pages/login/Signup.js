@@ -3,10 +3,13 @@ import { useNavigate } from "react-router-dom";
 import loginService from "../../services/loginService";
 import imgabout from "./images/about-01.jpg";
 import "./Login.css";
+import { toast } from "react-toastify";
 
 function Signup() {
   const navigate = useNavigate();
   const [result, setResult] = useState("");
+
+  const userRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
   const phoneRef = useRef();
@@ -39,10 +42,9 @@ function Signup() {
   };
   const handleSignup = () => {
     loginService.signup(data).then((res) => {
-      if (res.errorCode === 0) {
-        console.log("ok");
-        navigate("/login");
-      }
+      toast.success("Signup success");
+      console.log("ok");
+      navigate("/login");
     });
   };
   return (
@@ -58,6 +60,20 @@ function Signup() {
                 {result}
               </strong>
 
+              <div
+                className="wrap-input100 validate-input mt-2"
+                data-validate="Valid email is required: ex@abc.xyz"
+              >
+                <input
+                  ref={userRef}
+                  className="input100"
+                  type="text"
+                  name="userName"
+                  onChange={handleChangeData}
+                />
+                <span className="focus-input100"></span>
+                <span className="label-input100">UserName</span>
+              </div>
               <div
                 className="wrap-input100 validate-input mt-2"
                 data-validate="Valid email is required: ex@abc.xyz"

@@ -25,11 +25,11 @@ const BlogComment = ({ blogId }) => {
 
   useEffect(() => {
     loadData();
-  });
+  }, [blogId]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const loadData = () => {
-    commentService.getListCmt(getCmtId.commentId).then((res) => {
+    commentService.getListCmt(blogId).then((res) => {
       console.log(res.data);
       if (res.data.errorCode === 0) {
         setComments(res.data.data);
