@@ -65,7 +65,6 @@ const Features = () => {
     console.log(newData);
   };
   const handleSubmit = (e) => {
-    console.log(cart.quantity);
     if (parseInt(cart.quantity) === 0) {
       mycartService.delete(cart.id).then((res) => {
         if (res.data.errorCode === 0) {

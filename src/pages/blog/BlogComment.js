@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 const BlogComment = () => {
   const [comments, setComments] = useState([]);
   const user = useSelector((state) => state.auth.dataUser);
+  const isLogin = useSelector((state) => state.auth.isLogin);
   console.log(user);
   const [comment, setComment] = useState({
     commentId: 123,

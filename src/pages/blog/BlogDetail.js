@@ -29,6 +29,7 @@ const BlogDetail = () => {
     console.log(param.id);
     if (param.id) {
       blogService.get(param.id).then((res) => {
+        console.log(res.data);
         // if (res.errorCode === 0) {
         setBlog(res.data[0]);
         // } else {

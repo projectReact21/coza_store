@@ -189,6 +189,7 @@ const BlogSideMenu = () => {
           <h4 className="mtext-112 cl2 p-b-27">Tags</h4>
           <CateloryListText
             listText={listTags}
+            names={[]}
             col2="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5 text-decoration-none"
             defaultActive="lifestyle"
           />
