@@ -2,6 +2,8 @@ import ActionTypes from "../action";
 
 const initialState = {
   isLogin: JSON.parse(localStorage.getItem("isLoggedIn")) || false,
+  // isLogin: false,
+  // dataUser: [],
   dataUser: JSON.parse(localStorage.getItem("data")) || [],
   currentLocation: "",
   allproducts: [],
@@ -15,12 +17,13 @@ const initialState = {
   selectedShop: "allproducts",
   selectedFillShop: "",
   isFill: false,
+
   isCanvasFavorite: false,
   isCanvasCart: false,
   isShowCanvasFavorite: false,
   isShowCanvasCart: false,
   // new
-
+  changeStatus: false,
   typeFill: 0,
   sorfBy: "",
   price: 0,
@@ -30,6 +33,11 @@ const initialState = {
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     //new
+    case ActionTypes.CHANGE_STATUS:
+      return {
+        ...state,
+        changeStatus: !state.changeStatus,
+      };
     case ActionTypes.SELECTED_FILTER_SHOP:
       return {
         ...state,

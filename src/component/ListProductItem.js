@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "font-awesome/css/font-awesome.css";
 import { Card, Row, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,6 +7,7 @@ import mycartService from "../services/mycartService";
 
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import loginService from "./../services/loginService";
 
 function ListProductItem({ productItem, status, home, shop }) {
   const getUser = useSelector((state) => state.auth.dataUser);
@@ -14,14 +15,8 @@ function ListProductItem({ productItem, status, home, shop }) {
   const getMyCart = useSelector((state) => state.auth.allmycarts);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const addToCart = (data) => {
-    console.log(isLogin);
+  const addToCart = (data, n) => {
     const getitemmycart = getMyCart.find((x) => x.name === data.name);
-    console.log("data.name", data.name);
-    getMyCart.forEach((c) => {
-      console.log("c", c.name);
-    });
-    console.log(getitemmycart);
     if (isLogin) {
       const product = data;
       delete product.id;
@@ -40,12 +35,10 @@ function ListProductItem({ productItem, status, home, shop }) {
       );
       fullproduct.total = product.price;
       fullproduct.userId = getUser.userId;
-      console.log(fullproduct);
       if (!getitemmycart) {
         mycartService.add(fullproduct).then((res) => {
-          console.log("res", res);
           if (res.data.errorCode === 0) {
-            toast.success("add success");
+            toast.success(`đã thêm ${n} vào giỏ hàng `);
             mycartService.getListId(getUser.userId).then((res) => {
               dispatch({
                 type: ActionTypes.LOAD_MY_CARTS,
@@ -68,8 +61,8 @@ function ListProductItem({ productItem, status, home, shop }) {
         fullproduct.quantity = getitemmycart.quantity += 1;
         fullproduct.total = getitemmycart.quantity * fullproduct.price;
         mycartService.update(getitemmycart.id, fullproduct).then((res) => {
-          console.log("res.data", res.data.data);
-          if (res.data.errorCode === 0) toast.info(" has increased in number ");
+          if (res.data.errorCode === 0)
+            toast.info(`đã tăng ${n} thêm 1 sản phẩm `);
           else toast.warning(res.data.errorMessage);
         });
       }
@@ -80,6 +73,30 @@ function ListProductItem({ productItem, status, home, shop }) {
       });
       navigate("/login");
     }
+  };
+  const handleChangStatus = (p, id, n) => {
+    const d = new Date();
+    var date = d.getDate() + "-" + (d.getMonth() + 1) + "-" + d.getFullYear();
+    var time = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+    const x = p.listProductLike.find((l) => l === id);
+    if (x === "undefined") {
+    } else {
+    }
+    if (x) {
+      p.listProductLike.splice(p.listProductLike.indexOf(x), 1);
+      toast.info(`đã xóa ${n} ra khỏi  danh sách yêu thích `);
+    } else {
+      p.listProductLike.push(id);
+      toast.success(`đã thêm ${n} vào  danh sách yêu thích `);
+    }
+    p.update_at = date + " " + time;
+    loginService.putdata(p, p.id).then((res) => {
+      console.log(res.data.data);
+      dispatch({
+        type: ActionTypes.LOGIN,
+        dataUser: res.data.data,
+      });
+    });
   };
   return (
     <Card className="overflow-hidden card__product--item">
@@ -187,12 +204,15 @@ function ListProductItem({ productItem, status, home, shop }) {
             ""
           ) : (
             <i
+              onClick={() =>
+                handleChangStatus(getUser, productItem.id, productItem.name)
+              }
               className="fa fa-heart fs-4 card__product--item-status  "
               style={
                 isLogin
-                  ? parseInt(productItem?.status) === 0
-                    ? { color: "#eee" }
-                    : { color: "red" }
+                  ? getUser.listProductLike.find((l) => l === productItem.id)
+                    ? { color: "red" }
+                    : { color: "#eee" }
                   : { color: "#eee" }
               }
             ></i>
@@ -208,7 +228,9 @@ function ListProductItem({ productItem, status, home, shop }) {
           <Button
             variant="primary"
             className="position-absolute card__product--item-btn mx-2 col-sm-4 col-md-6 "
-            onClick={() => addToCart(productItem ? productItem : [])}
+            onClick={() =>
+              addToCart(productItem ? productItem : [], productItem.name)
+            }
             // disabled={productItem?.quanity === 0}
           >
             Buy

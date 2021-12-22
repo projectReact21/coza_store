@@ -12,7 +12,6 @@ const BlogComment = ({ blogId }) => {
   const isLogin = useSelector((state) => state.auth.isLogin);
   const user = useSelector((state) => state.auth.dataUser);
   const getCmtId = useSelector((state) => state.blog.blog);
-  console.log(getCmtId);
   const [comment, setComment] = useState({
     commentId: 123,
     userName: "",

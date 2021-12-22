@@ -11,8 +11,6 @@ const Blog = () => {
     navigate(`/blog/${id}`);
   };
   const getblogs = useSelector((state) => state.blog.blogs);
-  // console.log(getblogs);
-
   return (
     <>
       <section

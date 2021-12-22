@@ -1,7 +1,8 @@
-import React, { useRef } from "react";
+import React from "react";
 import { Nav } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import ActionTypes from "../stores/action";
+
 function CateloryListText({ listText, names, col, radius, typeFill }) {
   const selectedShop = useSelector((state) => state.auth.selectedShop);
   const dispatch = useDispatch();

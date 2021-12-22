@@ -17,6 +17,7 @@ const url = {
   getPaging: "/allproduct/get-paging",
   getpagingAndSearch: "/allproduct/searchAndGet-paging",
   blogs: "/blogs",
+  blogsgetpaging: "/blogs/get-paging",
   comment: "/comment",
 };
 const instance = axios.create({

@@ -32,6 +32,29 @@
   transition: all 0.3s;
   cursor: pointer;
 }
+.hover-scale {
+  transition: all 0.3s;
+}
+.hover-scale:hover {
+  transform: scale(1.2);
+}
+.line-3 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  cursor: default;
+}
+.read-more {
+  transition: all 0.3;
+  animation: ease changeColor 2s 2s infinite;
+  text-transform: capitalize;
+}
+.read-more:hover {
+  text-decoration: underline;
+  color: #717fe0 !important;
+}
 .hover-layout:hover {
   color: #717fe0 !important;
 }
@@ -45,21 +68,29 @@
 .bg-custom {
   background-color: #717fe0;
 }
-.map-container{
-overflow:hidden;
-padding-bottom:56.25%;
-position:relative;
-height:0;
+.map-container {
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  position: relative;
+  height: 0;
 }
-.map-container iframe{
-left:0;
-top:0;
-height:100%;
-width:100%;
-position:absolute;
+.map-container iframe {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
 }
 @media screen and (max-width: 999px) {
   #header__topBar {
     display: none;
+  }
+}
+@keyframes changeColor {
+  from {
+    color: black;
+  }
+  to {
+    color: rgb(216, 102, 102);
   }
 }

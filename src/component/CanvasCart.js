@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Offcanvas, Card, Row, Col, Button } from "react-bootstrap";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import mycartService from "../services/mycartService";
 import ActionTypes from "./../stores/action";
 import { toast } from "react-toastify";
@@ -13,7 +12,6 @@ function CanvasCart({ content }) {
   const user = useSelector((state) => state.auth.dataUser);
   const [total, setTotal] = useState(0);
   const navigate = useNavigate();
-  console.log(allmycarts);
   const handleClose = () => {
     dispatch({
       type: ActionTypes.HIDEN_CANVAS_CART,
@@ -25,10 +23,8 @@ function CanvasCart({ content }) {
       setTotal((total) => (total += parseInt(a.total)))
     );
   }, [allmycarts]);
-  console.log("allmycarts", allmycarts);
   const handleDeleteProduct = (p) => {
     mycartService.delete(p.id).then((res) => {
-      console.log(res.data);
       if (res.data.errorCode === 0) {
         mycartService.getListId(user.userId).then((res) => {
           dispatch({

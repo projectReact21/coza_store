@@ -25,6 +25,9 @@ const getPagingSearch = (search, page, perpage) =>
   api.get(
     `${api.url.getpagingAndSearch}?search=${search}&page=${page}&perpage=${perpage}`
   );
+const putAllproduct = (data, id) => {
+  api.put(`${api.url.allproducts}/${id}`, data);
+};
 const productService = {
   getProduct,
   getFillProduct,
@@ -37,5 +40,6 @@ const productService = {
   getSlice,
   getSliceQuery,
   getFillProductQuery,
+  putAllproduct,
 };
 export default productService;
