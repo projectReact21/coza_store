@@ -77,7 +77,7 @@ const Features = () => {
       });
     } else {
       mycartService.update(cart.id, cart).then((res) => {
-        toast.info(`Update success ${cart.name}`);
+        toast.info(`đã cập nhật lại số lượng  ${cart.name} thành công `);
         loadData();
       });
     }

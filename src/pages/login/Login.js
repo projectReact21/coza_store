@@ -27,6 +27,7 @@ const Login = () => {
     e.preventDefault();
     loginService.login(email, password).then((res) => {
       if (res.errorCode === 0) {
+        console.log(res.data);
         dispatch({
           type: ActionTypes.LOGIN,
           dataUser: res.data,
@@ -37,7 +38,6 @@ const Login = () => {
             productLike: res.data.data,
           });
         });
-        console.log(location);
         navigate(location);
       } else if (res.errorCode === 1) {
         setEmail("");

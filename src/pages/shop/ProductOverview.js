@@ -20,8 +20,8 @@ function ProductOverview() {
   const perPage = useSelector((state) => state.auth.perpage);
   const typeFill = useSelector((state) => state.auth.typeFill);
   const selectedFillShop = useSelector((state) => state.auth.selectedFillShop);
-  console.log("selectedFillShop", selectedFillShop);
-  console.log("data", data);
+  const changeStatus = useSelector((state) => state.auth.changeStatus);
+
   const dispatch = useDispatch();
   const datafill = (x) => {
     setData(x.data);
@@ -29,11 +29,8 @@ function ProductOverview() {
   };
   //
   useEffect(() => {
-    console.log("typeFill", typeof typeFill);
-
     switch (parseInt(typeFill)) {
       case 1:
-        console.log("do 1");
         if (fill === "allproducts") {
           switch (selectedFillShop) {
             case "asc":
@@ -128,7 +125,7 @@ function ProductOverview() {
       default:
         break;
     }
-  }, [typeFill, selectedFillShop]);
+  }, [typeFill, selectedFillShop, changeStatus]);
   //
   const loadData = () => {
     if (fill === "allproducts") {
@@ -227,12 +224,8 @@ function ProductOverview() {
   };
   useEffect(() => {
     if (search) {
-      console.log("do search");
-      console.log("input", inputValue);
-
       if (fill === "allproducts") {
         productService.getFullSearch(inputValue).then((res) => {
-          console.log("allproduct");
           if (res.data.errorCode === 0) {
             setData(res.data.data);
             setResult("");
@@ -243,7 +236,6 @@ function ProductOverview() {
         });
       } else {
         productService.getFullSearchQuery(fill, inputValue).then((res) => {
-          console.log("query", fill);
           if (res.data.errorCode === 0) {
             setData(res.data.data);
             setResult("");

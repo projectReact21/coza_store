@@ -11,7 +11,7 @@ const Blog = () => {
     navigate(`/blog/${id}`);
   };
   const getblogs = useSelector((state) => state.blog.blogs);
-  console.log(getblogs);
+  console.log(typeof getblogs[0]?.taps);
 
   return (
     <>

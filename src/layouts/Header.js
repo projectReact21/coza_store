@@ -44,6 +44,13 @@ function Header() {
     dispatch({
       type: ActionTypes.SHOW_CANVAS_CART,
     });
+    if (!isLogin) {
+      dispatch({
+        type: ActionTypes.CURRENT_LOACION,
+        currentLocation: window.location.pathname,
+      });
+      navigate("/login");
+    }
   };
   const getMyCart = (data) => {
     dispatch({
@@ -58,19 +65,23 @@ function Header() {
     });
   };
   useEffect(() => {
-    mycartService.getListId(getUser.userId).then((res) => {
-      getMyCart(res.data.data);
-    });
+    if (isLogin) {
+      mycartService.getListId(getUser.userId).then((res) => {
+        getMyCart(res.data.data);
+      });
+    } else {
+      getMyCart([]);
+    }
     blogService.getList().then((res) => {
       getBlog(res.data.data);
     });
-  }, []);
+  }, [isLogin]);
   const handleLogoutAction = (e) => {
     e.preventDefault();
     dispatch({
       type: ActionTypes.LOGOUT,
     });
-    navigate("/");
+    navigate(`${window.location.pathname}`);
   };
   const handleSignin = (e) => {
     dispatch({
@@ -208,13 +219,13 @@ function Header() {
               </i> */}
               {isLogin ? (
                 <i
-                  class="fa fa-sign-out fs-3 mt-1"
+                  className="fa fa-sign-out fs-3 mt-1"
                   aria-hidden="true"
                   onClick={handleLogoutAction}
                 ></i>
               ) : (
                 <i
-                  class="fa fa-sign-in fs-3 mt-1"
+                  className="fa fa-sign-in fs-3 mt-1"
                   aria-hidden="true"
                   onClick={handleSignin}
                 ></i>
