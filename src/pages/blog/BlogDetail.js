@@ -1,40 +1,32 @@
 import React, { useEffect, useState } from "react";
 import "./Blog.css";
 import { useParams } from "react-router-dom";
-import blog1 from "../../resoures/img/blog-01.jpg";
 import BlogSideMenu from "./BlogSideMenu";
 import blogService from "./../../services/blogService";
-import { useDispatch, useSelector } from "react-redux";
-import ActionTypes from "../../stores/action";
 import BlogComment from "./BlogComment";
+import { useDispatch } from "react-redux";
+import ActionTypes from "../../stores/action";
 
 const BlogDetail = () => {
   const param = useParams();
   const [blog, setBlog] = useState({});
-
-  // const blog = useSelector((state) => state.blog.blog);
-  // console.log(blog);
   useEffect(() => {
     loadData();
   }, []);
-  console.log(blog);
   const dispatch = useDispatch();
-  // const getBlog = (data) => {
-  //   dispatch({
-  //     type: ActionTypes.BLOG,
-  //     blog: data,
-  //   });
-  // };
+  const getBlog = (data) => {
+    dispatch({
+      type: ActionTypes.BLOG,
+      blog: data,
+    });
+  };
+  console.log(blog);
   const loadData = () => {
     console.log(param.id);
     if (param.id) {
       blogService.get(param.id).then((res) => {
-        console.log(res.data);
-        // if (res.errorCode === 0) {
         setBlog(res.data[0]);
-        // } else {
-        //   console.log("error");
-        // }
+        getBlog(res.data[0]);
       });
     } else {
       console.log("error id");
@@ -77,10 +69,7 @@ const BlogDetail = () => {
               <div className="p-r-45 p-r-0-lg">
                 {/* item blog */}
                 <div className="p-b-50">
-                  <a
-                    href="blog-detail.html"
-                    className="hov-img0 how-pos5-parent"
-                  >
+                  <div className="hov-img0 how-pos5-parent">
                     <img src={blog.srcImg} alt="IMG-BLOG" />
 
                     <div className="flex-col-c-m size-123 bg9 how-pos5">
@@ -88,7 +77,7 @@ const BlogDetail = () => {
 
                       <span className="stext-109 cl3 txt-center">Jan 2018</span>
                     </div>
-                  </a>
+                  </div>
                 </div>
                 <div className="p-t-10">
                   <span className="flex-w flex-m stext-111 cl2 p-b-19">
@@ -136,7 +125,7 @@ const BlogDetail = () => {
                     </a>
                   </div>
                 </div>
-                <BlogComment />
+                <BlogComment blogId={blog.commentId} />
               </div>
             </div>
             <div className="col-md-4 col-lg-3 p-b-80">
