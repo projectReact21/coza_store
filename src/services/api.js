@@ -2,8 +2,8 @@ import axios from "axios";
 import { hideLoading, showLoading } from "react-redux-loading-bar";
 import store from "./../stores/index";
 const url = {
-  baseUrl: "https://hoanghuy1998.herokuapp.com",
-  // baseUrl: "http://localhost:5000",
+  // baseUrl: "https://hoanghuy1998.herokuapp.com",
+  baseUrl: "http://localhost:5000",
   allproducts: "/allproduct/list",
   filter: "/allproduct/filter",
   filterQuery: "/allproduct/filterQuery",
@@ -19,16 +19,17 @@ const url = {
   blogs: "/blogs",
   blogsgetpaging: "/blogs/get-paging",
   comment: "/comment",
+  productSolded: "/productSolded",
 };
 const instance = axios.create({
   baseURL: url.baseUrl,
   headers: {
-    "Content-Tyle": "application/json",
+    "Content-type": "application/json",
     Accept: "application/json",
   },
 });
 instance.interceptors.request.use((request) => {
-  console.log("da ket noi api");
+  // console.log("da ket noi api");
   return request;
 });
 instance.interceptors.response.use(

@@ -26,6 +26,7 @@ function Signup() {
     date: "",
     age: "",
     password: "",
+    listProductLike: [],
   });
   const handleChangeData = (e) => {
     const newData = { ...data };
@@ -42,9 +43,13 @@ function Signup() {
   };
   const handleSignup = () => {
     loginService.signup(data).then((res) => {
-      toast.success("Signup success");
-      console.log("ok");
-      navigate("/login");
+      if (res.errorCode === 0) {
+        toast.success(res.errorMessage);
+        console.log("ok");
+        navigate("/login");
+      } else {
+        toast.danger(res.errorMessage);
+      }
     });
   };
   return (

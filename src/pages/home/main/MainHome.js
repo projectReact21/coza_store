@@ -87,8 +87,8 @@ function MainHome() {
       </Row>
       <Row>
         <h2
-          className="text-uppercase text-center mt-4 mb-4 "
-          style={{ fontWeight: "800" }}
+          className="text-uppercase fs-1 mt-5 mb-5 text-center"
+          // style={{ fontWeight: "800" }}
         >
           our blog
         </h2>

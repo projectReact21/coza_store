@@ -4,7 +4,7 @@ import "./Main.css";
 import MainHome from "./MainHome";
 function Main() {
   return (
-    <Container>
+    <Container className="mb-lg-5">
       <h2 className="text-uppercase fs-1 mt-5 mb-5 text-center ">
         store Overview
       </h2>

@@ -6,11 +6,41 @@ import ConfirmDialog from "../../component/ConfirmDialog";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import ActionTypes from "../../stores/action";
+import cityService from "../../services/cityService";
+import productSolded from "../../services/productSolded";
 
 const Features = () => {
   const [carts, setCarts] = useState([]);
   const [cartTotal, setCartTotal] = useState(0);
+  const [city, setCity] = useState([]);
+  const [districts, setDistricts] = useState([]);
+  const [wards, setWards] = useState([]);
   const getUser = useSelector((state) => state.auth.dataUser);
+  const getCarts = useSelector((state) => state.auth.allmycarts);
+  const [checkouts, setCheckouts] = useState([]);
+  const [tp, setTp] = useState({
+    dress: "",
+    city: "",
+    district: "",
+    ward: "",
+  });
+  const [checkout, setCheckout] = useState({
+    userId: 0,
+    userName: "",
+    productName: "",
+    dress: "",
+    phone: "",
+    status: 0,
+    create_at: "",
+    update_at: "",
+    ward: "",
+    district: "",
+    city: "",
+    price: "",
+    quantitys: "",
+    total: "",
+    srcImg: "",
+  });
   const [cart, setCart] = useState({
     id: "",
     name: "",
@@ -38,20 +68,30 @@ const Features = () => {
   useEffect(() => {
     loadData();
     Total();
-  }, []);
+  }, [carts, wards]);
+  const Total = () => {
+    let totalVal = 0;
+    for (let i = 0; i < carts.length; i++) {
+      totalVal += carts[i].total;
+    }
+    setCartTotal(parseFloat(totalVal).toFixed(2));
+  };
   const getMyCart = (data) => {
     dispatch({
       type: ActionTypes.LOAD_MY_CARTS,
       allmycarts: data,
     });
   };
-  const getCarts = useSelector((state) => state.auth.allmycarts);
-  console.log(getCarts);
   const loadData = () => {
     mycartService.getListId(getUser.userId).then((res) => {
       setCarts(res.data.data);
       getMyCart(res.data.data);
     });
+    fetch("https://provinces.open-api.vn/api/?depth=2")
+      .then((res) => res.json())
+      .then((result) => {
+        setCity(result);
+      });
   };
   const totalCartSum = (price, quantity) => {
     return price * quantity;
@@ -62,6 +102,12 @@ const Features = () => {
     newData[e.target.name] = e.target.value;
     newData.total = totalCartSum(newData.price, newData.quantity);
     setCart(newData);
+    console.log(newData);
+  };
+  const ChangeTp = (e) => {
+    const newData = { ...tp };
+    newData[e.target.name] = e.target.value;
+    setTp(newData);
     console.log(newData);
   };
   const handleSubmit = (e) => {
@@ -80,13 +126,6 @@ const Features = () => {
         loadData();
       });
     }
-  };
-  const Total = () => {
-    let totalVal = 0;
-    for (let i = 0; i < carts.length; i++) {
-      totalVal += carts[i].total;
-    }
-    setCartTotal(totalVal);
   };
   const handleDelete = (e, id) => {
     e.preventDefault();
@@ -107,6 +146,73 @@ const Features = () => {
         toast.warning("Delete Success");
       });
     }
+  };
+  const handleChangeCity = (e) => {
+    e.preventDefault();
+    const dis = city.find((x) => x.codename === e.target.value);
+    console.log(dis.districts);
+    setDistricts(dis.districts);
+    const newData = { ...tp };
+    newData[e.target.name] = e.target.value;
+    setTp(newData);
+  };
+  const handleChangeDistrict = (e) => {
+    e.preventDefault();
+    console.log(e.target.value);
+    const newData = { ...tp };
+    newData[e.target.name] = e.target.value;
+    setTp(newData);
+    fetch("https://provinces.open-api.vn/api/w")
+      .then((res) => res.json())
+      .then((result) => {
+        // setWards([]);
+        wards.length = 0;
+        // console.log(result);
+        for (var i = 0; i <= result.length - 1; i++) {
+          if (parseInt(result[i].district_code) === parseInt(e.target.value))
+            wards.push(result[i]);
+        }
+      });
+  };
+  const handleCheckout = (e) => {
+    e.preventDefault();
+    const newData = getCarts;
+    // console.log(newData);
+    checkouts.length = 0;
+    for (var i = 0; i < newData.length; i++) {
+      const fullproduct = Object.assign({}, newData[i], {
+        productName: newData[i].name,
+        dress: tp.dress,
+        phone: getUser.phone,
+        ward: tp.ward,
+        district: tp.district,
+        city: tp.city,
+        quantitys: newData[i].quantity,
+      });
+      delete fullproduct.id;
+      delete fullproduct.type;
+      delete fullproduct.color;
+      delete fullproduct.theme;
+      delete fullproduct.sorfby;
+      delete fullproduct.tag;
+      delete fullproduct.name;
+      delete fullproduct.quantity;
+      delete fullproduct.description;
+
+      console.log(fullproduct);
+      checkouts.push(fullproduct);
+    }
+    productSolded.add(checkouts).then((res) => {
+      console.log(res);
+      if (res.data.errorCode === 0)
+        toast.success(
+          `Checkout Success with codeOrder "${res.data.codeOrder}"`
+        );
+    });
+  };
+  const handleTest = (e) => {
+    e.preventDefault();
+    console.log(checkouts);
   };
   return (
     <>
@@ -205,7 +311,7 @@ const Features = () => {
                         </div>
                       </div>
 
-                      <div className="flex-c-m   hov-btn3 p-lr-15 trans-04 pointer m-tb-10 btn-Apply ">
+                      <div className="flex-c-m p-lr-15 trans-04 pointer m-tb-10 btn-Apply ">
                         <button
                           type="button"
                           className=" btn-Apply"
@@ -221,7 +327,7 @@ const Features = () => {
                   <div className="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
                     <h4 className="mtext-109 cl2 p-b-30">Cart Totals</h4>
 
-                    <div className="flex-w flex-t bor12 p-b-13">
+                    {/* <div className="flex-w flex-t bor12 p-b-13">
                       <div className="size-208">
                         <span className="stext-110 cl2">Subtotal:</span>
                       </div>
@@ -229,7 +335,7 @@ const Features = () => {
                       <div className="size-209">
                         <span className="mtext-110 cl2">$ {cartTotal}</span>
                       </div>
-                    </div>
+                    </div> */}
 
                     <div className="flex-w flex-t bor12 p-t-15 p-b-30">
                       <div className="size-208 w-full-ssm">
@@ -247,51 +353,63 @@ const Features = () => {
                           <span className="stext-112 cl8">
                             Calculate Shipping
                           </span>
-
-                          <div className="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-                            <Dropdown>
-                              <Dropdown.Toggle
-                                variant="info"
-                                id="dropdown-basic"
-                              >
-                                Select a country...
-                              </Dropdown.Toggle>
-
-                              <Dropdown.Menu>
-                                <Dropdown.Item>USA</Dropdown.Item>
-                                <Dropdown.Item>UK</Dropdown.Item>
-                              </Dropdown.Menu>
-                            </Dropdown>
-                            {/* <select className="js-select2" name="time">
-                                  <option>Select a country...</option>
-                                  <option>USA</option>
-                                  <option>UK</option>
-                                </select> */}
-                            <div className="dropDownSelect2"></div>
-                          </div>
-
                           <div className="bor8 bg0 m-b-12">
                             <input
                               className="stext-111 cl8 plh3 size-111 p-lr-15"
                               type="text"
-                              name="state"
-                              placeholder="State /  country"
+                              name="dress"
+                              placeholder="Adress"
+                              onChange={ChangeTp}
                             />
                           </div>
 
-                          <div className="bor8 bg0 m-b-22">
-                            <input
-                              className="stext-111 cl8 plh3 size-111 p-lr-15"
-                              type="text"
-                              name="postcode"
-                              placeholder="Postcode / Zip"
-                            />
+                          <div className="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
+                            <select
+                              name="city"
+                              className="form-select"
+                              onChange={(e) => handleChangeCity(e)}
+                              aria-label="Default select example"
+                              defaultValue={checkout.city}
+                            >
+                              {city.map((c, index) => (
+                                <option key={index} value={c.codename}>
+                                  {c.name}
+                                </option>
+                              ))}
+                            </select>
+                            <div className="dropDownSelect2"></div>
                           </div>
-
-                          <div className="flex-w">
-                            <div className="flex-c-m btn-Apply p-lr-15 trans-04 pointer">
-                              Update Totals
-                            </div>
+                          <div className="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
+                            <select
+                              name="district"
+                              className="form-select"
+                              onChange={(e) => handleChangeDistrict(e)}
+                              aria-label="Default select example"
+                              defaultValue={checkout.district}
+                            >
+                              {districts.map((c, index) => (
+                                <option key={index} value={c.code}>
+                                  {c.name}
+                                </option>
+                              ))}
+                            </select>
+                            <div className="dropDownSelect2"></div>
+                          </div>
+                          <div className="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
+                            <select
+                              name="ward"
+                              className="form-select"
+                              aria-label="Default select example"
+                              onChange={ChangeTp}
+                              defaultValue={checkout.ward}
+                            >
+                              {wards.map((c, index) => (
+                                <option key={index} value={c.codename}>
+                                  {c.name}
+                                </option>
+                              ))}
+                            </select>
+                            <div className="dropDownSelect2"></div>
                           </div>
                         </div>
                       </div>
@@ -303,13 +421,22 @@ const Features = () => {
                       </div>
 
                       <div className="size-209 p-t-1">
-                        <span className="mtext-110 cl2">$79.65</span>
+                        <span className="mtext-110 cl2">{cartTotal}</span>
                       </div>
                     </div>
 
-                    <button className="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+                    <button
+                      className="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer"
+                      onClick={handleCheckout}
+                    >
                       Proceed to Checkout
                     </button>
+                    {/* <button
+                      className="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer"
+                      onClick={handleTest}
+                    >
+                      Test
+                    </button> */}
                   </div>
                 </div>
               </>
