@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Navbar, Container, Nav, Form, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import CanvasFavorite from "../component/CanvasFavorite";
@@ -66,9 +66,9 @@ function Header() {
   };
   useEffect(() => {
     if (isLogin) {
-      mycartService.getListId(getUser.userId).then((res) => {
-        getMyCart(res.data.data);
-      });
+      mycartService
+        .getListId(getUser.userId)
+        .then((res) => getMyCart(res.data.data));
     } else {
       getMyCart([]);
     }

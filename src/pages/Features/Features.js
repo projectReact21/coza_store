@@ -6,10 +6,15 @@ import ConfirmDialog from "../../component/ConfirmDialog";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import ActionTypes from "../../stores/action";
+<<<<<<< HEAD
 import cityService from "../../services/cityService";
 import productSolded from "../../services/productSolded";
+=======
+import { DebounceInput } from "react-debounce-input";
+>>>>>>> 16e6e14d63d189d7bb7c0b75006c78f56254ddde
 
 const Features = () => {
+  const [inputValue, setInputValue] = useState();
   const [carts, setCarts] = useState([]);
   const [cartTotal, setCartTotal] = useState(0);
   const [city, setCity] = useState([]);
@@ -93,6 +98,7 @@ const Features = () => {
         setCity(result);
       });
   };
+<<<<<<< HEAD
   const totalCartSum = (price, quantity) => {
     return price * quantity;
   };
@@ -113,6 +119,15 @@ const Features = () => {
   const handleSubmit = (e) => {
     if (parseInt(cart.quantity) === 0) {
       mycartService.delete(cart.id).then((res) => {
+=======
+  const handleChangeData = (e, id, quantity) => {
+    console.log("e.target.value", e.target.value);
+    console.log("id", id);
+    if (parseInt(e.target.value) === 0) {
+      console.log("do delete");
+      mycartService.delete(id).then((res) => {
+        console.log(res.data);
+>>>>>>> 16e6e14d63d189d7bb7c0b75006c78f56254ddde
         if (res.data.errorCode === 0) {
           toast.success(`đã xóa thành công ${cart.name} ra khỏi giỏ hàng`);
           loadData();
@@ -121,7 +136,10 @@ const Features = () => {
         }
       });
     } else {
-      mycartService.update(cart.id, cart).then((res) => {
+      let data = { quantity: parseInt(e.target.value) };
+      console.log(cart.id);
+      mycartService.update(id, data).then((res) => {
+        console.log(res.data);
         toast.info(`đã cập nhật lại số lượng  ${cart.name} thành công `);
         loadData();
       });
@@ -279,15 +297,22 @@ const Features = () => {
                               </td>
                               <td className="column-4">
                                 <div className="wrap-input">
-                                  <input
+                                  <DebounceInput
+                                    minLength={1}
+                                    debounceTimeout={500}
+                                    maxLength={3}
                                     id="txtquantity"
                                     className="form-control mtext-104 cl3 txt-center"
                                     type="number"
                                     name="quantity"
-                                    defaultValue={item.quantity}
-                                    onChange={(e, id) => {
-                                      handleChangeData(e, item.id);
-                                    }}
+                                    value={item.quantity}
+                                    onChange={(e) =>
+                                      handleChangeData(
+                                        e,
+                                        item.id,
+                                        item.quantity
+                                      )
+                                    }
                                   />
                                 </div>
                               </td>
@@ -315,7 +340,7 @@ const Features = () => {
                         <button
                           type="button"
                           className=" btn-Apply"
-                          onClick={handleSubmit}
+                          // onClick={handleSubmit}
                         >
                           Update Cart
                         </button>

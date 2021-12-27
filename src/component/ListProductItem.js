@@ -15,28 +15,16 @@ function ListProductItem({ productItem, status, home, shop }) {
   const getMyCart = useSelector((state) => state.auth.allmycarts);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const addToCart = (data, n) => {
-    const getitemmycart = getMyCart.find((x) => x.name === data.name);
+  const addToCart = (data, n, id) => {
+    const getitemmycart = getMyCart.find((x) => x.name === n);
     if (isLogin) {
-      const product = data;
-      delete product.id;
-      delete product.productId;
-      delete product.seller;
-      delete product.feature;
-      delete product.topRate;
-      delete product.old;
-      delete product.new;
-      const fullproduct = Object.assign(
-        {},
-        product,
-        { quantity: 1 },
-        { total: 0 },
-        { userId: 12345 }
-      );
-      fullproduct.total = product.price;
-      fullproduct.userId = getUser.userId;
+      const newData = {
+        id: data.id,
+        quantity: 1,
+        userId: id,
+      };
       if (!getitemmycart) {
-        mycartService.add(fullproduct).then((res) => {
+        mycartService.add(newData).then((res) => {
           if (res.data.errorCode === 0) {
             toast.success(`đã thêm ${n} vào giỏ hàng `);
             mycartService.getListId(getUser.userId).then((res) => {
@@ -54,13 +42,11 @@ function ListProductItem({ productItem, status, home, shop }) {
           });
         });
       } else {
-        dispatch({
-          type: ActionTypes.ADD_TO_CART,
-          payload: fullproduct,
-        });
-        fullproduct.quantity = getitemmycart.quantity += 1;
-        fullproduct.total = getitemmycart.quantity * fullproduct.price;
-        mycartService.update(getitemmycart.id, fullproduct).then((res) => {
+        // quantity=1
+        const data = { quantity: parseInt(getitemmycart.quantity) + 1 };
+        console.log(data.quantity);
+        mycartService.update(getitemmycart.id, data).then((res) => {
+          console.log(res.data);
           if (res.data.errorCode === 0)
             toast.info(`đã tăng ${n} thêm 1 sản phẩm `);
           else toast.warning(res.data.errorMessage);
@@ -78,6 +64,7 @@ function ListProductItem({ productItem, status, home, shop }) {
     const d = new Date();
     var date = d.getDate() + "-" + (d.getMonth() + 1) + "-" + d.getFullYear();
     var time = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+    console.log(p);
     const x = p.listProductLike.find((l) => l === id);
     if (x === "undefined") {
     } else {
@@ -90,14 +77,16 @@ function ListProductItem({ productItem, status, home, shop }) {
       toast.success(`đã thêm ${n} vào  danh sách yêu thích `);
     }
     p.update_at = date + " " + time;
+    console.log("p.email", p.email);
     loginService.putdata(p, p.id).then((res) => {
-      console.log(res.data.data);
+      console.log(res.data);
       dispatch({
         type: ActionTypes.LOGIN,
         dataUser: res.data.data,
       });
     });
   };
+  console.log(productItem?.status);
   return (
     <Card className="overflow-hidden card__product--item">
       <div className="overflow-hidden">
@@ -108,7 +97,7 @@ function ListProductItem({ productItem, status, home, shop }) {
           style={{ height: "300px" }}
         />
         {home ? (
-          productItem?.seller === "seller" ? (
+          productItem?.status.find((s) => s === "seller") ? (
             <img
               className="position-absolute "
               style={{
@@ -127,7 +116,7 @@ function ListProductItem({ productItem, status, home, shop }) {
           ""
         )}
         {home ? (
-          productItem?.sale === "sale" ? (
+          productItem?.status.find((s) => s === "sale") ? (
             <img
               className="position-absolute "
               style={{
@@ -146,7 +135,7 @@ function ListProductItem({ productItem, status, home, shop }) {
           ""
         )}
         {home ? (
-          productItem?.topRate === "topRate" ? (
+          productItem?.status.find((s) => s === "toprate") ? (
             <img
               className="position-absolute top-0 "
               style={{ width: "4rem", height: "4rem", left: "-2px" }}
@@ -160,7 +149,7 @@ function ListProductItem({ productItem, status, home, shop }) {
           ""
         )}
         {home ? (
-          productItem?.feature === "feature" ? (
+          productItem?.status.find((s) => s === "feature") ? (
             <img
               className="position-absolute "
               style={{
@@ -179,7 +168,7 @@ function ListProductItem({ productItem, status, home, shop }) {
           ""
         )}
         {shop ? (
-          productItem?.new === "new" ? (
+          productItem?.status.find((s) => s === "new") ? (
             <img
               className="position-absolute "
               style={{
@@ -229,7 +218,11 @@ function ListProductItem({ productItem, status, home, shop }) {
             variant="primary"
             className="position-absolute card__product--item-btn mx-2 col-sm-4 col-md-6 "
             onClick={() =>
-              addToCart(productItem ? productItem : [], productItem.name)
+              addToCart(
+                productItem ? productItem : [],
+                productItem.name,
+                getUser.userId
+              )
             }
             // disabled={productItem?.quanity === 0}
           >

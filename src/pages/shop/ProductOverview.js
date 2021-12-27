@@ -45,24 +45,34 @@ function ProductOverview() {
               break;
             case "price0":
               productService.getPaging(0, perPage).then((res) => {
+                console.log(res.data.data.data);
                 setData(res.data.data.data);
                 setPageLength(res.data.data.pagingInfo.pageLength);
               });
               break;
             case "price1":
-              productService.getSlice(0, 50).then((res) => datafill(res));
+              productService.getSlice(0, 50).then((res) => {
+                console.log(res);
+                datafill(res.data);
+              });
               break;
             case "price2":
-              productService.getSlice(50, 100).then((res) => datafill(res));
+              productService
+                .getSlice(50, 100)
+                .then((res) => datafill(res.data));
               break;
             case "price3":
-              productService.getSlice(100, 150).then((res) => datafill(res));
+              productService
+                .getSlice(100, 150)
+                .then((res) => datafill(res.data));
               break;
             case "price4":
-              productService.getSlice(150, 200).then((res) => datafill(res));
+              productService
+                .getSlice(150, 200)
+                .then((res) => datafill(res.data));
               break;
             case "price5":
-              productService.getSlice(200).then((res) => datafill(res));
+              productService.getSlice(200).then((res) => datafill(res.data));
               break;
             default:
               productService
@@ -136,7 +146,7 @@ function ProductOverview() {
     } else {
       productService.getPagingSearch(fill, 0, perPage).then((res) => {
         setData(res.data.data.data);
-        setPageLength(res.data.data.pagingInfo.pageLength);
+        // setPageLength(res.data.data.pagingInfo.pageLength);
       });
     }
   };
@@ -170,12 +180,12 @@ function ProductOverview() {
       toast.warning("end product");
     }
   };
-  const listNav = ["allproducts", "women", "men", "bag", "shoes", "watches"];
+  const listNav = ["allproducts", "women", "men", "belt", "shoes", "watches"];
   const listNavNames = [
     "allproducts",
     "women",
     "men",
-    "bag",
+    "belt",
     "shoes",
     "watches",
   ];
@@ -225,7 +235,9 @@ function ProductOverview() {
   useEffect(() => {
     if (search) {
       if (fill === "allproducts") {
+        console.log("do search");
         productService.getFullSearch(inputValue).then((res) => {
+          console.log(res.data);
           if (res.data.errorCode === 0) {
             setData(res.data.data);
             setResult("");
@@ -340,7 +352,7 @@ function ProductOverview() {
         {showSearch && (
           <Form>
             <DebounceInput
-              minLength={2}
+              minLength={1}
               debounceTimeout={300}
               type="search"
               placeholder="Search"

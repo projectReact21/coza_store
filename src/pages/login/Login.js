@@ -26,19 +26,14 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     loginService.login(email, password).then((res) => {
+      console.log(res);
       if (res.errorCode === 0) {
         console.log(res.data);
         dispatch({
           type: ActionTypes.LOGIN,
           dataUser: res.data,
         });
-        productService.getFillProduct(1).then((res) => {
-          dispatch({
-            type: ActionTypes.FIND_LIKE_DATA,
-            productLike: res.data.data,
-          });
-        });
-        navigate(location);
+        location ? navigate(location) : navigate("/home");
       } else if (res.errorCode === 1) {
         setEmail("");
         emailRef.current.focus();

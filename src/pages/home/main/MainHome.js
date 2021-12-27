@@ -17,7 +17,7 @@ function MainHome() {
   useEffect(() => {
     productService.getFillProduct(fill).then((res) => {
       console.log("res.data", res.data);
-      setDataHome(res.data);
+      setDataHome(res.data.data);
     });
   }, [fill]);
   useEffect(() => {
@@ -32,7 +32,7 @@ function MainHome() {
   const item1 = [dataHome[0], dataHome[1], dataHome[2], dataHome[3]];
   const item2 = [dataHome[4], dataHome[5], dataHome[6], dataHome[7]];
   const lists = ["best seller", "feautured", "sale", "top rate"];
-  const names = ["seller", "feature", "sale", "topRate"];
+  const names = ["seller", "feature", "sale", "toprate"];
   const handleChangePage = (e, id) => {
     e.preventDefault();
     navigate(`/blog/${id}`);

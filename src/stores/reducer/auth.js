@@ -8,7 +8,6 @@ const initialState = {
   currentLocation: "",
   allproducts: [],
   productFill: [],
-  productLike: [],
   allmycarts: [],
   productHome: [],
   page: 0,
@@ -83,11 +82,7 @@ const authReducer = (state = initialState, action) => {
         isFill: true,
         productFill: action.productFill,
       };
-    case ActionTypes.FIND_LIKE_DATA:
-      return {
-        ...state,
-        productLike: action.productLike,
-      };
+
     case ActionTypes.FIND_DATA_HOME:
       return {
         ...state,
