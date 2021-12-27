@@ -6,12 +6,10 @@ import ConfirmDialog from "../../component/ConfirmDialog";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import ActionTypes from "../../stores/action";
-<<<<<<< HEAD
-import cityService from "../../services/cityService";
+
 import productSolded from "../../services/productSolded";
-=======
+
 import { DebounceInput } from "react-debounce-input";
->>>>>>> 16e6e14d63d189d7bb7c0b75006c78f56254ddde
 
 const Features = () => {
   const [inputValue, setInputValue] = useState();
@@ -98,28 +96,10 @@ const Features = () => {
         setCity(result);
       });
   };
-<<<<<<< HEAD
   const totalCartSum = (price, quantity) => {
     return price * quantity;
   };
-  const handleChangeData = (e, id) => {
-    let getcartitem = carts.find((x) => x.id === id);
-    const newData = { ...getcartitem };
-    newData[e.target.name] = e.target.value;
-    newData.total = totalCartSum(newData.price, newData.quantity);
-    setCart(newData);
-    console.log(newData);
-  };
-  const ChangeTp = (e) => {
-    const newData = { ...tp };
-    newData[e.target.name] = e.target.value;
-    setTp(newData);
-    console.log(newData);
-  };
-  const handleSubmit = (e) => {
-    if (parseInt(cart.quantity) === 0) {
-      mycartService.delete(cart.id).then((res) => {
-=======
+
   const handleChangeData = (e, id, quantity) => {
     console.log("e.target.value", e.target.value);
     console.log("id", id);
@@ -127,7 +107,6 @@ const Features = () => {
       console.log("do delete");
       mycartService.delete(id).then((res) => {
         console.log(res.data);
->>>>>>> 16e6e14d63d189d7bb7c0b75006c78f56254ddde
         if (res.data.errorCode === 0) {
           toast.success(`đã xóa thành công ${cart.name} ra khỏi giỏ hàng`);
           loadData();
@@ -144,6 +123,12 @@ const Features = () => {
         loadData();
       });
     }
+  };
+  const ChangeTp = (e) => {
+    const newData = { ...tp };
+    newData[e.target.name] = e.target.value;
+    setTp(newData);
+    console.log(newData);
   };
   const handleDelete = (e, id) => {
     e.preventDefault();
