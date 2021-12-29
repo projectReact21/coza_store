@@ -12,7 +12,16 @@ import productSolded from "../../services/productSolded";
 import { DebounceInput } from "react-debounce-input";
 
 const Features = () => {
-  const [inputValue, setInputValue] = useState();
+  const [data, setData] = useState({
+    userId: "",
+    userName: "",
+    detail: [],
+    phone: "",
+    dress: "",
+    ward: "",
+    city: "",
+    district: "",
+  });
   const [carts, setCarts] = useState([]);
   const [cartTotal, setCartTotal] = useState(0);
   const [city, setCity] = useState([]);
@@ -127,9 +136,9 @@ const Features = () => {
     }
   };
   const ChangeTp = (e) => {
-    const newData = { ...tp };
+    const newData = { ...data };
     newData[e.target.name] = e.target.value;
-    setTp(newData);
+    setData(newData);
     console.log(newData);
   };
   const handleDelete = (e, id) => {
@@ -157,16 +166,16 @@ const Features = () => {
     const dis = city.find((x) => x.codename === e.target.value);
     console.log(dis.districts);
     setDistricts(dis.districts);
-    const newData = { ...tp };
+    const newData = { ...data };
     newData[e.target.name] = e.target.value;
-    setTp(newData);
+    setData(newData);
   };
   const handleChangeDistrict = (e) => {
     e.preventDefault();
     console.log(e.target.value);
-    const newData = { ...tp };
+    const newData = { ...data };
     newData[e.target.name] = e.target.value;
-    setTp(newData);
+    setData(newData);
     fetch("https://provinces.open-api.vn/api/w")
       .then((res) => res.json())
       .then((result) => {
@@ -178,41 +187,45 @@ const Features = () => {
         loadData();
       });
   };
+  // const handleCheckout = (e) => {
+  //   e.preventDefault();
+  //   const newData = getCarts;
+  //   // console.log(newData);
+  //   checkouts.length = 0;
+  //   for (var i = 0; i < newData.length; i++) {
+  //     const fullproduct = Object.assign({}, newData[i], {
+  //       productName: newData[i].name,
+  //       dress: tp.dress,
+  //       phone: getUser.phone,
+  //       ward: tp.ward,
+  //       district: tp.district,
+  //       city: tp.city,
+  //       quantitys: newData[i].quantity,
+  //     });
+  //     delete fullproduct.id;
+  //     delete fullproduct.type;
+  //     delete fullproduct.color;
+  //     delete fullproduct.theme;
+  //     delete fullproduct.sorfby;
+  //     delete fullproduct.tag;
+  //     delete fullproduct.name;
+  //     delete fullproduct.quantity;
+  //     delete fullproduct.description;
+
+  //     console.log(fullproduct);
+  //     checkouts.push(fullproduct);
+  //   }
+  //   productSolded.add(checkouts).then((res) => {
+  //     console.log(res);
+  //     if (res.data.errorCode === 0)
+  //       toast.success(
+  //         `Checkout Success with codeOrder "${res.data.codeOrder}"`
+  //       );
+  //   });
+  // };
   const handleCheckout = (e) => {
     e.preventDefault();
-    const newData = getCarts;
-    // console.log(newData);
-    checkouts.length = 0;
-    for (var i = 0; i < newData.length; i++) {
-      const fullproduct = Object.assign({}, newData[i], {
-        productName: newData[i].name,
-        dress: tp.dress,
-        phone: getUser.phone,
-        ward: tp.ward,
-        district: tp.district,
-        city: tp.city,
-        quantitys: newData[i].quantity,
-      });
-      delete fullproduct.id;
-      delete fullproduct.type;
-      delete fullproduct.color;
-      delete fullproduct.theme;
-      delete fullproduct.sorfby;
-      delete fullproduct.tag;
-      delete fullproduct.name;
-      delete fullproduct.quantity;
-      delete fullproduct.description;
-
-      console.log(fullproduct);
-      checkouts.push(fullproduct);
-    }
-    productSolded.add(checkouts).then((res) => {
-      console.log(res);
-      if (res.data.errorCode === 0)
-        toast.success(
-          `Checkout Success with codeOrder "${res.data.codeOrder}"`
-        );
-    });
+    console.log(data);
   };
   const handleTest = (e) => {
     e.preventDefault();
@@ -364,6 +377,16 @@ const Features = () => {
                           <span className="stext-112 cl8">
                             Calculate Shipping
                           </span>
+                          <div className="bor8 bg0 m-b-12">
+                            <input
+                              className="stext-111 cl8 plh3 size-111 p-lr-15"
+                              type="text"
+                              name="phone"
+                              placeholder="phone"
+                              onChange={ChangeTp}
+                              defaultValue={getUser.phone}
+                            />
+                          </div>
                           <div className="bor8 bg0 m-b-12">
                             <input
                               className="stext-111 cl8 plh3 size-111 p-lr-15"

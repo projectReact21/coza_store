@@ -20,13 +20,14 @@ const BlogDetail = () => {
       blog: data,
     });
   };
-  console.log(blog);
+  // console.log(blog);
   const loadData = () => {
     console.log(param.id);
     if (param.id) {
       blogService.get(param.id).then((res) => {
-        setBlog(res.data[0]);
-        getBlog(res.data[0]);
+        // console.log(res);
+        setBlog(res.data.data[0]);
+        getBlog(res.data.data[0]);
       });
     } else {
       console.log("error id");

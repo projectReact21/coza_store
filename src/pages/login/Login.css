@@ -589,3 +589,12 @@ input.input100 {
   background: #333333;
   color: #fff;
 }
+.form-city {
+  background: #f7f7f7 !important;
+  font-size: 18px;
+  color: #999999;
+  padding: 0 26px;
+  line-height: 3;
+  border: none;
+  font-weight: normal;
+}

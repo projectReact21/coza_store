@@ -198,12 +198,11 @@ function ListProductItem({ productItem, status, home, shop }) {
               }
               className="fa fa-heart fs-4 card__product--item-status"
               style={
-                // isLogin
-                //   ? getUser.listProductLike.find((l) => l === productItem.id)
-                //     ? { color: "red" }
-                //     : { color: "#eee" }
-                // :
-                { color: "#eee" }
+                isLogin
+                  ? getUser.listProductLike.find((l) => l === productItem.id)
+                    ? { color: "red" }
+                    : { color: "#eee" }
+                  : { color: "#eee" }
               }
             ></i>
           )}
