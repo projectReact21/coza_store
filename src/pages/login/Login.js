@@ -31,6 +31,7 @@ const Login = () => {
         console.log(res.data);
         dispatch({
           type: ActionTypes.LOGIN,
+          token: res.token,
           dataUser: res.data,
         });
         location ? navigate(location) : navigate("/home");

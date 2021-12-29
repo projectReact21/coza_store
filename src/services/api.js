@@ -20,6 +20,7 @@ const url = {
   blogsgetpaging: "/blogs/get-paging",
   comment: "/comment",
   productSolded: "/productSolded",
+  user: "/user",
 };
 const instance = axios.create({
   baseURL: url.baseUrl,

@@ -6,10 +6,12 @@ const login = (email, password) => {
 const getId = (id) => api.get(`${api.url.signup}/${id}`);
 const signup = (data) => api.post(api.url.signup, data);
 const putdata = (data, id) => api.put(`${api.url.signup}/${id}`, data);
+const getUser = (id) => api.get(`${api.url.user}/${id}`);
 const loginService = {
   login,
   signup,
   putdata,
   getId,
+  getUser,
 };
 export default loginService;

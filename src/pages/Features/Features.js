@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Features.css";
-import { Container, Dropdown, Row } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import mycartService from "../../services/mycartService";
 import ConfirmDialog from "../../component/ConfirmDialog";
 import { toast } from "react-toastify";
@@ -10,12 +10,14 @@ import ActionTypes from "../../stores/action";
 import productSolded from "../../services/productSolded";
 
 import { DebounceInput } from "react-debounce-input";
+import loginService from "../../services/loginService";
+import { get } from "jquery";
 
 const Features = () => {
   const [data, setData] = useState({
     userId: "",
     userName: "",
-    detail: [],
+    details: [],
     phone: "",
     dress: "",
     ward: "",
@@ -24,9 +26,10 @@ const Features = () => {
   });
   const [carts, setCarts] = useState([]);
   const [cartTotal, setCartTotal] = useState(0);
-  const [city, setCity] = useState([]);
+  const [cities, setCities] = useState([]);
   const [districts, setDistricts] = useState([]);
   const [wards, setWards] = useState([]);
+  const [user, setUser] = useState({});
   const getUser = useSelector((state) => state.auth.dataUser);
   const getCarts = useSelector((state) => state.auth.allmycarts);
   const [checkouts, setCheckouts] = useState([]);
@@ -79,6 +82,13 @@ const Features = () => {
   });
   useEffect(() => {
     loadData();
+    setData({
+      userId: getUser.userId,
+      userName: getUser.userName,
+      details: [],
+      phone: user.phone,
+      dress: user.dress,
+    });
     // Total();
   }, [cartTotal, wards]);
   const Total = () => {
@@ -100,10 +110,14 @@ const Features = () => {
       getMyCart(res.data.data);
       Total();
     });
+    loginService.getUser(getUser.id).then((res) => {
+      setUser(res.data.data[0]);
+      console.log(res.data.data[0]);
+    });
     fetch("https://provinces.open-api.vn/api/?depth=2")
       .then((res) => res.json())
       .then((result) => {
-        setCity(result);
+        setCities(result);
       });
   };
   const totalCartSum = (price, quantity) => {
@@ -162,19 +176,23 @@ const Features = () => {
     }
   };
   const handleChangeCity = (e) => {
-    e.preventDefault();
-    const dis = city.find((x) => x.codename === e.target.value);
-    console.log(dis.districts);
-    setDistricts(dis.districts);
+    // e.preventDefault();
     const newData = { ...data };
     newData[e.target.name] = e.target.value;
     setData(newData);
+    // console.log(newData);
+    const dis = cities.find((x) => x.codename === e.target.value);
+    console.log(dis.districts);
+    setDistricts(dis.districts);
+    console.log(e.target.value);
   };
   const handleChangeDistrict = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
+    const dis = districts.find((x) => x.code === parseInt(e.target.value));
+    console.log(dis);
     console.log(e.target.value);
     const newData = { ...data };
-    newData[e.target.name] = e.target.value;
+    newData[e.target.name] = dis.codename;
     setData(newData);
     fetch("https://provinces.open-api.vn/api/w")
       .then((res) => res.json())
@@ -187,45 +205,23 @@ const Features = () => {
         loadData();
       });
   };
-  // const handleCheckout = (e) => {
-  //   e.preventDefault();
-  //   const newData = getCarts;
-  //   // console.log(newData);
-  //   checkouts.length = 0;
-  //   for (var i = 0; i < newData.length; i++) {
-  //     const fullproduct = Object.assign({}, newData[i], {
-  //       productName: newData[i].name,
-  //       dress: tp.dress,
-  //       phone: getUser.phone,
-  //       ward: tp.ward,
-  //       district: tp.district,
-  //       city: tp.city,
-  //       quantitys: newData[i].quantity,
-  //     });
-  //     delete fullproduct.id;
-  //     delete fullproduct.type;
-  //     delete fullproduct.color;
-  //     delete fullproduct.theme;
-  //     delete fullproduct.sorfby;
-  //     delete fullproduct.tag;
-  //     delete fullproduct.name;
-  //     delete fullproduct.quantity;
-  //     delete fullproduct.description;
 
-  //     console.log(fullproduct);
-  //     checkouts.push(fullproduct);
-  //   }
-  //   productSolded.add(checkouts).then((res) => {
-  //     console.log(res);
-  //     if (res.data.errorCode === 0)
-  //       toast.success(
-  //         `Checkout Success with codeOrder "${res.data.codeOrder}"`
-  //       );
-  //   });
-  // };
   const handleCheckout = (e) => {
     e.preventDefault();
-    console.log(data);
+    // console.log(data);
+    const newData = { ...data };
+    getCarts.forEach((x) => newData.details.push(x.id));
+
+    setData(newData);
+    console.log(newData);
+    productSolded.add(newData).then((res) => {
+      if (res.data.errorCode === 0) {
+        toast.success(
+          `Checkout Success with codeOrder "${res.data.codeOrder}"`
+        );
+        loadData();
+      }
+    });
   };
   const handleTest = (e) => {
     e.preventDefault();
@@ -384,7 +380,7 @@ const Features = () => {
                               name="phone"
                               placeholder="phone"
                               onChange={ChangeTp}
-                              defaultValue={getUser.phone}
+                              defaultValue={user.phone}
                             />
                           </div>
                           <div className="bor8 bg0 m-b-12">
@@ -394,6 +390,7 @@ const Features = () => {
                               name="dress"
                               placeholder="Adress"
                               onChange={ChangeTp}
+                              defaultValue={user.dress}
                             />
                           </div>
 
@@ -401,11 +398,10 @@ const Features = () => {
                             <select
                               name="city"
                               className="form-select"
-                              onChange={(e) => handleChangeCity(e)}
+                              onChange={handleChangeCity}
                               aria-label="Default select example"
-                              defaultValue={checkout.city}
                             >
-                              {city.map((c, index) => (
+                              {cities.map((c, index) => (
                                 <option key={index} value={c.codename}>
                                   {c.name}
                                 </option>
@@ -417,9 +413,8 @@ const Features = () => {
                             <select
                               name="district"
                               className="form-select"
-                              onChange={(e) => handleChangeDistrict(e)}
+                              onChange={handleChangeDistrict}
                               aria-label="Default select example"
-                              defaultValue={checkout.district}
                             >
                               {districts.map((c, index) => (
                                 <option key={index} value={c.code}>
@@ -435,7 +430,7 @@ const Features = () => {
                               className="form-select"
                               aria-label="Default select example"
                               onChange={ChangeTp}
-                              defaultValue={checkout.ward}
+                              defaultValue={user.ward}
                             >
                               {wards.map((c, index) => (
                                 <option key={index} value={c.codename}>

@@ -21,7 +21,7 @@ function MainHome() {
     });
   }, [fill]);
   useEffect(() => {
-    blogService.getpaging(0, 3).then((res) => setBlogs(res.data.data));
+    blogService.getpaging(0, 3).then((res) => setBlogs(res.data));
   }, []);
   // useEffect(() => {
   //   setDate([]);

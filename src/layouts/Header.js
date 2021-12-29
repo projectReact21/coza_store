@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Navbar, Container, Nav, Form, Row, Col } from "react-bootstrap";
+import React, { useEffect } from "react";
+import { Navbar, Container, Nav, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import CanvasFavorite from "../component/CanvasFavorite";
 import CanvasCart from "../component/CanvasCart";
@@ -72,9 +72,9 @@ function Header() {
     } else {
       getMyCart([]);
     }
-    blogService.getList().then((res) => {
-      getBlog(res.data.data);
-    });
+    // blogService.getList().then((res) => {
+    //   getBlog(res.data.data);
+    // });
   }, [isLogin]);
   const handleLogoutAction = (e) => {
     e.preventDefault();

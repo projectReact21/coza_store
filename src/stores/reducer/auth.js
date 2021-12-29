@@ -2,6 +2,8 @@ import ActionTypes from "../action";
 
 const initialState = {
   isLogin: JSON.parse(localStorage.getItem("isLoggedIn")) || false,
+
+  token: localStorage.getItem("token"),
   // isLogin: false,
   // dataUser: [],
   dataUser: JSON.parse(localStorage.getItem("data")) || [],
@@ -57,18 +59,22 @@ const authReducer = (state = initialState, action) => {
       };
     case ActionTypes.LOGIN:
       localStorage.setItem("isLoggedIn", true);
+      localStorage.setItem("token", action.token);
       localStorage.setItem("data", JSON.stringify(action.dataUser));
       return {
         ...state,
         isLogin: true,
+        token: action.token,
         dataUser: action.dataUser,
       };
     case ActionTypes.LOGOUT:
       localStorage.removeItem("isLoggedIn");
+      localStorage.removeItem("token");
       localStorage.removeItem("data");
       return {
         ...state,
         isLogin: false,
+        token: "",
         dataUser: [],
       };
     case ActionTypes.LOAD_DATA:
