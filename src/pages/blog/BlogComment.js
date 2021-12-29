@@ -43,12 +43,24 @@ const BlogComment = ({ blogId }) => {
     setComment(newData);
     console.log(newData);
   };
+  const getdate = () => {
+    var today = new Date(),
+      date =
+        today.getFullYear() +
+        "-" +
+        (today.getMonth() + 1) +
+        "-" +
+        today.getDate();
+    return date;
+  };
   const handleSave = () => {
     if (isLogin) {
       comment.commentId = getCmtId.commentId;
       comment.avataUser = user.avata;
       comment.userId = user.userId;
       comment.userName = user.userName;
+      comment.create_at = getdate();
+
       commentService.add(comment).then((res) => {
         loadData(res.data);
         toast.success("Comment success");
@@ -72,6 +84,7 @@ const BlogComment = ({ blogId }) => {
       }
     });
   };
+
   return (
     <>
       <div className="p-t-40">
@@ -102,7 +115,8 @@ const BlogComment = ({ blogId }) => {
                       </small>
                     </span>{" "}
                   </div>{" "}
-                  <small>2 days ago</small>
+                  {/* <small>{formatDate(comment.create_at)}</small> */}
+                  <small>{comment.create_at.slice(0, 10)}</small>
                 </div>
                 <div className="action d-flex justify-content-between mt-2 align-items-center">
                   <div

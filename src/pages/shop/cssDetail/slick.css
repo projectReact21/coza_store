@@ -1,0 +1,18 @@
+.slick-slide img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+.slick-dots img {
+  width: 200%;
+  height: 200%;
+  object-fit: cover;
+  vertical-align: middle;
+}
+.slick-dots {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  gap: 0 20px;
+}

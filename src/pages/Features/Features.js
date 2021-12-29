@@ -70,8 +70,8 @@ const Features = () => {
   });
   useEffect(() => {
     loadData();
-    Total();
-  }, [carts, wards]);
+    // Total();
+  }, [cartTotal, wards]);
   const Total = () => {
     let totalVal = 0;
     for (let i = 0; i < carts.length; i++) {
@@ -89,6 +89,7 @@ const Features = () => {
     mycartService.getListId(getUser.userId).then((res) => {
       setCarts(res.data.data);
       getMyCart(res.data.data);
+      Total();
     });
     fetch("https://provinces.open-api.vn/api/?depth=2")
       .then((res) => res.json())
@@ -120,8 +121,9 @@ const Features = () => {
       mycartService.update(id, data).then((res) => {
         console.log(res.data);
         toast.info(`đã cập nhật lại số lượng  ${cart.name} thành công `);
-        loadData();
+        loadData(res.data);
       });
+      loadData();
     }
   };
   const ChangeTp = (e) => {
@@ -168,13 +170,12 @@ const Features = () => {
     fetch("https://provinces.open-api.vn/api/w")
       .then((res) => res.json())
       .then((result) => {
-        // setWards([]);
         wards.length = 0;
-        // console.log(result);
         for (var i = 0; i <= result.length - 1; i++) {
           if (parseInt(result[i].district_code) === parseInt(e.target.value))
             wards.push(result[i]);
         }
+        loadData();
       });
   };
   const handleCheckout = (e) => {
@@ -321,7 +322,7 @@ const Features = () => {
                         </div>
                       </div>
 
-                      <div className="flex-c-m p-lr-15 trans-04 pointer m-tb-10 btn-Apply ">
+                      {/* <div className="flex-c-m p-lr-15 trans-04 pointer m-tb-10 btn-Apply ">
                         <button
                           type="button"
                           className=" btn-Apply"
@@ -329,7 +330,7 @@ const Features = () => {
                         >
                           Update Cart
                         </button>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </div>
@@ -431,7 +432,7 @@ const Features = () => {
                       </div>
 
                       <div className="size-209 p-t-1">
-                        <span className="mtext-110 cl2">{cartTotal}</span>
+                        <span className="mtext-110 cl2">$ {cartTotal}</span>
                       </div>
                     </div>
 

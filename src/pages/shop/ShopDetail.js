@@ -1,7 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import pduct1 from "./images/product-01.jpg";
+import pduct2 from "./images/product-02.jpg";
+import pduct3 from "./images/product-11.jpg";
+// import "../../../node_modules/slick-carousel/";
+import "../../../node_modules/slick-carousel/slick/slick.css";
+import "../../../node_modules/slick-carousel/slick/slick-theme.css";
+
+import Slider from "react-slick";
+import "./cssDetail/slick.css";
+// import "./cssDetail/slick-theme.css";
 
 const ShopDetail = () => {
+  const [imgs, setImgs] = useState([pduct1, pduct2, pduct3]);
+  const settings = {
+    customPaging: function (i) {
+      return (
+        <a>
+          <img src={imgs[i]} alt="" />
+        </a>
+      );
+    },
+    dots: true,
+    dotsClass: "slick-dots slick-thumb",
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    vertical: false,
+  };
   return (
     <>
       <div className="container ">
@@ -21,14 +47,14 @@ const ShopDetail = () => {
             href="/blog"
             className="stext-109 cl3 hov-cl1 trans-04 text-decoration-none text-size"
           >
-            Blog
+            Shop
             <i
               className="fa fa-angle-right m-l-9 m-r-10"
               aria-hidden="true"
             ></i>
           </a>
 
-          <span className="stext-109 cl4 text-size"></span>
+          <span className="stext-109 cl4 text-size">Lightweight Jacket</span>
         </div>
       </div>
 
@@ -42,21 +68,56 @@ const ShopDetail = () => {
                   <div className="wrap-slick3-arrows flex-sb-m flex-w"></div>
 
                   <div className="slick3 gallery-lb">
-                    <div
-                      className="item-slick3"
-                      data-thumb="images/product-detail-01.jpg"
-                    >
+                    <Slider {...settings}>
+                      {imgs.map((img, index) => (
+                        <div key={index} data-thumb={img}>
+                          <img src={img} alt="" />
+                          <a
+                            className="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
+                            href={img}
+                          >
+                            <i className="fa fa-expand"></i>
+                          </a>
+                        </div>
+                      ))}
+                    </Slider>
+                    {/* <div className="item-slick3" data-thumb={pduct1}>
                       <div className="wrap-pic-w pos-relative">
                         <img src={pduct1} alt="IMG-PRODUCT" />
 
                         <a
                           className="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-                          href="/#"
+                          href={pduct1}
                         >
                           <i className="fa fa-expand"></i>
                         </a>
                       </div>
                     </div>
+
+                    <div className="item-slick3" data-thumb={pduct1}>
+                      <div className="wrap-pic-w pos-relative">
+                        <img src={pduct1} alt="IMG-PRODUCT" />
+
+                        <a
+                          className="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
+                          href={pduct1}
+                        >
+                          <i className="fa fa-expand"></i>
+                        </a>
+                      </div>
+                    </div>
+                    <div className="item-slick3" data-thumb={pduct1}>
+                      <div className="wrap-pic-w pos-relative">
+                        <img src={pduct1} alt="IMG-PRODUCT" />
+
+                        <a
+                          className="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
+                          href={pduct1}
+                        >
+                          <i className="fa fa-expand"></i>
+                        </a>
+                      </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
@@ -92,9 +153,18 @@ const ShopDetail = () => {
                   </p>
                 </div>
 
-                <div className="p-t-33">
-                  <div className="flex-w flex-r-m p-b-10">
+                <div className="pt-3">
+                  <div className="flex-w  p-b-10">
                     <div className="size-204 flex-w flex-m respon6-next">
+                      <div className=" flex-w m-r-20 m-tb-10">
+                        <input
+                          style={{ width: "100px" }}
+                          className="form-control mtext-104 cl3 txt-center"
+                          type="number"
+                          name="num-product"
+                          value="1"
+                        />
+                      </div>
                       <button className="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
                         Add to cart
                       </button>

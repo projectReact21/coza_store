@@ -23,12 +23,12 @@ function MainHome() {
   useEffect(() => {
     blogService.getpaging(0, 3).then((res) => setBlogs(res.data.data));
   }, []);
-  useEffect(() => {
-    setDate([]);
-    blogs.forEach((b) => {
-      setDate((date) => [...date, b?.create_at.slice(0, 10)]);
-    });
-  }, [blogs]);
+  // useEffect(() => {
+  //   setDate([]);
+  //   blogs.forEach((b) => {
+  //     setDate((date) => [...date, b?.create_at.slice(0, 10)]);
+  //   });
+  // }, [blogs]);
   const item1 = [dataHome[0], dataHome[1], dataHome[2], dataHome[3]];
   const item2 = [dataHome[4], dataHome[5], dataHome[6], dataHome[7]];
   const lists = ["best seller", "feautured", "sale", "top rate"];
@@ -93,7 +93,7 @@ function MainHome() {
           our blog
         </h2>
       </Row>
-      <Row>
+      {/* <Row>
         {blogs.map((b, index) => (
           <Col xs={12} sm={12} md={4} key={b.id}>
             <Card>
@@ -140,7 +140,7 @@ function MainHome() {
             </Card>
           </Col>
         ))}
-      </Row>
+      </Row> */}
     </>
   );
 }

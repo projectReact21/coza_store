@@ -13,7 +13,7 @@ function Signup() {
   const emailRef = useRef();
   const passwordRef = useRef();
   const phoneRef = useRef();
-  const ageRef = useRef();
+  // const ageRef = useRef();
   const [data, setData] = useState({
     userName: "user",
     avata: "https://www.w3schools.com/howto/img_avatar.png",
@@ -21,12 +21,7 @@ function Signup() {
     email: "",
     dress: "",
     phone: "",
-    create_at: "",
-    update_at: "",
-    date: "",
-    age: "",
     password: "",
-    listProductLike: [],
   });
   const handleChangeData = (e) => {
     const newData = { ...data };
@@ -41,14 +36,26 @@ function Signup() {
       setResult("");
     }
   };
+  const getdate = () => {
+    var today = new Date(),
+      date =
+        today.getFullYear() +
+        "-" +
+        (today.getMonth() + 1) +
+        "-" +
+        today.getDate();
+    return date;
+  };
   const handleSignup = () => {
+    // data.create_at = getdate();
     loginService.signup(data).then((res) => {
-      if (res.errorCode === 0) {
-        toast.success(res.errorMessage);
+      console.log(res);
+      if (res.data.errorCode === 0) {
+        toast.success(res.data.errorMessage);
         console.log("ok");
         navigate("/login");
       } else {
-        toast.danger(res.errorMessage);
+        toast.danger(res.data.errorMessage);
       }
     });
   };
@@ -150,7 +157,7 @@ function Signup() {
                 <span className="focus-input100"></span>
                 <span className="label-input100">Phone</span>
               </div>
-              <div
+              {/* <div
                 className="wrap-input100 validate-input"
                 data-validate="Password is required"
               >
@@ -163,7 +170,7 @@ function Signup() {
                 />
                 <span className="focus-input100"></span>
                 <span className="label-input100">Age</span>
-              </div>
+              </div> */}
               <div className="container-login100-form-btn">
                 <button
                   type="button"
