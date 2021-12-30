@@ -4,9 +4,12 @@ import loginService from "../../services/loginService";
 import imgabout from "./images/about-01.jpg";
 import "./Login.css";
 import { toast } from "react-toastify";
+import { Button } from "react-bootstrap";
 
 function Signup() {
+  const defaultImage = "https://restfulapi.dnd-group.net/public/photo-icon.png";
   const navigate = useNavigate();
+  const [imagePreview, setImagePreview] = useState(defaultImage);
   const [result, setResult] = useState("");
   const [city, setCity] = useState([]);
   const [districts, setDistricts] = useState([]);
@@ -25,7 +28,7 @@ function Signup() {
   // const ageRef = useRef();
   const [data, setData] = useState({
     userName: "user",
-    avata: "https://www.w3schools.com/howto/img_avatar.png",
+    avata: imagePreview,
     gender: 0,
     email: "",
     password: "",
@@ -47,6 +50,14 @@ function Signup() {
       .then((result) => {
         setCity(result);
       });
+  };
+  const inputFieldRef = useRef();
+  const handleChaneImage = (e) => {
+    if (e.target.files && e.target.files[0])
+      setImagePreview(URL.createObjectURL(e.target.files[0]));
+    const newData = { ...data };
+    newData.avata = e.target.files[0].name;
+    setData(newData);
   };
   const handleChangeData = (e) => {
     const newData = { ...data };
@@ -73,10 +84,12 @@ function Signup() {
   };
   const handleChangeDistrict = (e) => {
     e.preventDefault();
+    const dis = districts.find((x) => x.code === parseInt(e.target.value));
     console.log(e.target);
     const newData = { ...data };
-    newData[e.target.name] = e.target.value;
+    newData[e.target.name] = dis.codename;
     setData(newData);
+    console.log(newData);
     fetch("https://provinces.open-api.vn/api/w")
       .then((res) => res.json())
       .then((result) => {
@@ -126,7 +139,26 @@ function Signup() {
               <strong className="text-danger text-center text-capitalize ">
                 {result}
               </strong>
-
+              <img
+                src={imagePreview}
+                alt=""
+                className="img-thumbnail img rounded-circle border-primary d-block"
+              />
+              <input
+                type="file"
+                ref={inputFieldRef}
+                className="d-none"
+                onChange={handleChaneImage}
+              />
+              <div className="mt-3 d-flex justify-content-center gap-2">
+                <Button
+                  variant="primary"
+                  size="sm"
+                  onClick={() => inputFieldRef.current.click()}
+                >
+                  Change
+                </Button>
+              </div>
               <div
                 className="wrap-input100 validate-input mt-2"
                 data-validate="Valid email is required: ex@abc.xyz"
@@ -204,7 +236,6 @@ function Signup() {
                   className="form-select form-select-lg input form-city"
                   onChange={handleChangeData}
                   aria-label="Default select example"
-                  // defaultValue={checkout.city}
                 >
                   {age.map((c, index) => (
                     <option key={index} value={c}>

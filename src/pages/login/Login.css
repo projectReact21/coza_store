@@ -598,3 +598,12 @@ input.input100 {
   border: none;
   font-weight: normal;
 }
+.img {
+  /* display: flex !important;
+  justify-content: center !important;
+  align-items: center !important; */
+  margin: 0 auto;
+  text-align: center;
+  width: 250px !important;
+  height: 250px !important;
+}
