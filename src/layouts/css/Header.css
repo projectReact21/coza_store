@@ -1,0 +1,35 @@
+.user-show,
+.dropdown {
+  max-width: 300px;
+}
+.user {
+  margin-left: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0 5px;
+  width: auto;
+}
+.user-img {
+  width: 30px;
+  height: 30px;
+  border-radius: 100rem;
+}
+.user-username {
+  width: 90px;
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.55);
+}
+.dropdown:hover > .dropdown-menu {
+  display: block;
+}
+i .fa {
+  color: rgba(0, 0, 0, 0.55);
+}
+a.fa {
+  text-decoration: none;
+}
+.fa span {
+  font-weight: 500;
+  font-size: 20px;
+}

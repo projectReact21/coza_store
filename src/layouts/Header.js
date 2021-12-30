@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import productService from "../services/productService";
 import mycartService from "../services/mycartService";
 import blogService from "../services/blogService";
+import "./css/Header.css";
+import Order from "./../pages/order/Order";
 
 function Header() {
   const navigate = useNavigate();
@@ -84,10 +86,15 @@ function Header() {
     navigate(`${window.location.pathname}`);
   };
   const handleSignin = (e) => {
+    e.preventDefault();
     dispatch({
       type: ActionTypes.CURRENT_LOACION,
     });
     navigate("/login");
+  };
+  const handleOder = (e) => {
+    e.preventDefault();
+    navigate("/order");
   };
   return (
     <>
@@ -217,18 +224,72 @@ function Header() {
               >
                 <sup className="text-warning mx-1">2</sup>
               </i> */}
-              {isLogin ? (
-                <i
-                  className="fa fa-sign-out fs-3 mt-1"
-                  aria-hidden="true"
-                  onClick={handleLogoutAction}
-                ></i>
-              ) : (
-                <i
-                  className="fa fa-sign-in fs-3 mt-1"
+              {!isLogin ? (
+                <a
+                  href="/#"
+                  className="fa fs-3 mt-1"
                   aria-hidden="true"
                   onClick={handleSignin}
-                ></i>
+                >
+                  <span>Login</span>
+                </a>
+              ) : (
+                // <i
+                //   className="fa fa-sign-in fs-3 mt-1"
+                //   aria-hidden="true"
+                //   onClick={handleSignin}
+                // ></i>
+
+                <li className="user-show">
+                  <div className="log-res">
+                    <div className="dropdown">
+                      {/* <strong className="text-uppercase"> */}
+                      <div className="user " aria-hidden="true">
+                        <img
+                          src={`http://${getUser.avata}`}
+                          alt=""
+                          className="user-img"
+                        />
+                        <span className="user-username">
+                          {getUser.userName}
+                        </span>
+                      </div>
+                      <div className="dropdown-menu">
+                        <a
+                          className="dropdown-item"
+                          href="/#"
+                          onClick={handleOder}
+                        >
+                          Order
+                        </a>
+
+                        <a className="dropdown-item" href="{% url 'report' %}">
+                          Thống kê
+                        </a>
+                        <a
+                          className="dropdown-item"
+                          href="{% url 'reportproduct' %}"
+                        >
+                          Số lượng tồn
+                        </a>
+                        <a
+                          className="dropdown-item"
+                          href="{% url 'user_password' %}"
+                        >
+                          Thay đổi mật khẩu
+                        </a>
+                        <a
+                          className="dropdown-item"
+                          href="/#"
+                          onClick={handleLogoutAction}
+                        >
+                          {" "}
+                          <span>Logout</span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </li>
               )}
             </Form>
           </Navbar.Collapse>

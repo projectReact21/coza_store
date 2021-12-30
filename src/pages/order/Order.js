@@ -1,18 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Order.css";
 import { Container } from "react-bootstrap";
+import productSolded from "../../services/productSolded";
+import { useSelector } from "react-redux";
 
 const Order = () => {
+  const [listcheckout, setListcheckout] = useState([]);
+  const getUser = useSelector((state) => state.auth.dataUser);
+  useEffect(() => {
+    loadData();
+  }, []);
+  const loadData = () => {
+    productSolded.getCheckout(getUser.userId).then((res) => {
+      console.log(res);
+      if (res.data.errorCode === 0) {
+        setListcheckout(res.data.data);
+      }
+    });
+  };
+  const hanhdleCode = (e, id) => {
+    e.preventDefault();
+  };
   return (
     <Container fuild className="oder">
       <section
         className="ftco-section ftco-cart"
-        style={{ "padding-top": "0 !important" }}
+        style={{ paddingTop: "0 !important" }}
       >
         <div className="row">
           <div
             className="col-md-12 ftco-animate"
-            style={{ "padding-top": "0 !important" }}
+            style={{ paddingTop: "0 !important" }}
           >
             <h4 className="text-center m-b-20">Đơn hàng của tôi</h4>
             <div className="cart-list">
@@ -29,51 +47,57 @@ const Order = () => {
                 </thead>
 
                 <tbody>
-                  <tr className="text-center">
-                    <td className="product-name" width="10%">
-                      <a href="/#" style={{ color: "blue" }}>
-                        code
-                      </a>
-                    </td>
-                    <td className="price" width="20%">
-                      Thanh Hieu
-                    </td>
-                    <td className="total" width="20%">
-                      900000
-                    </td>
+                  {listcheckout.map((list, index) => (
+                    <tr className="text-center" key={index}>
+                      <td className="product-name" width="10%">
+                        <a
+                          href="/#"
+                          style={{ color: "blue" }}
+                          onClick={(e) => hanhdleCode(e, list.codeOrder)}
+                        >
+                          {list.codeOrder}
+                        </a>
+                      </td>
+                      <td className="price" width="20%">
+                        {list.userName}
+                      </td>
+                      <td className="total" width="20%">
+                        {""}
+                      </td>
 
-                    <td
-                      className="product-name"
-                      style={{ color: "red", "font-weight": "bold" }}
-                      id="status"
-                      width="20%"
-                    >
-                      Mới
-                    </td>
+                      <td
+                        className="product-name"
+                        style={{ color: "red", fontWeight: "bold" }}
+                        id="status"
+                        width="20%"
+                      >
+                        {list.status === 0 ? "New" : "Cancel"}
+                      </td>
 
-                    <td
-                      className="product-name"
-                      style={{ color: "#82ae46", " font-weight": "bold" }}
-                      id="status"
-                      width="20%"
-                    >
-                      Ngày
-                    </td>
+                      <td
+                        className="product-name"
+                        style={{ color: "#82ae46", " fontWeight": "bold" }}
+                        id="status"
+                        width="20%"
+                      >
+                        {list.create_at.slice(0, 10)}
+                      </td>
 
-                    {/* <td className="product-name" width="30%">
+                      {/* <td className="product-name" width="30%">
 
                     </td> */}
 
-                    <td className="product-name">
-                      <a
-                        href="/order/deleteshop/{{ sc.id}}"
-                        style={{ color: "blue" }}
-                        // onclick="return confirm('Bạn có chắc muốn hủy đơn hàng này !!!')"
-                      >
-                        <span id="huy">Hủy</span>
-                      </a>
-                    </td>
-                  </tr>
+                      <td className="product-name">
+                        <a
+                          href="/order/deleteshop/{{ sc.id}}"
+                          style={{ color: "blue" }}
+                          // onclick="return confirm('Bạn có chắc muốn hủy đơn hàng này !!!')"
+                        >
+                          <span id="huy">Hủy</span>
+                        </a>
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>

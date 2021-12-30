@@ -56,7 +56,7 @@ function Signup() {
     if (e.target.files && e.target.files[0])
       setImagePreview(URL.createObjectURL(e.target.files[0]));
     const newData = { ...data };
-    newData.avata = e.target.files[0].name;
+    newData.avata = e.target.files[0];
     setData(newData);
   };
   const handleChangeData = (e) => {
