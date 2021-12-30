@@ -143,7 +143,7 @@ const authReducer = (state = initialState, action) => {
         ),
         allproducts: state.allproducts.map((product) =>
           product.id === action.payload.id
-            ? { ...product, quantity: product.quantity - 1 }
+            ? { ...product, totalquantitys: product.totalquantitys - 1 }
             : product
         ),
       };
@@ -154,7 +154,8 @@ const authReducer = (state = initialState, action) => {
           product.id === action.payload.id
             ? {
                 ...product,
-                quantity: product.quantity + action.payload.quantity,
+                totalquantitys:
+                  product.totalquantitys + action.payload.quantity,
               }
             : product
         ),

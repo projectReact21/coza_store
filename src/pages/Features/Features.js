@@ -12,6 +12,7 @@ import productSolded from "../../services/productSolded";
 import { DebounceInput } from "react-debounce-input";
 import loginService from "../../services/loginService";
 import { get } from "jquery";
+import { useNavigate } from "react-router-dom";
 
 const Features = () => {
   const [data, setData] = useState({
@@ -33,6 +34,7 @@ const Features = () => {
   const getUser = useSelector((state) => state.auth.dataUser);
   const getCarts = useSelector((state) => state.auth.allmycarts);
   const [checkouts, setCheckouts] = useState([]);
+  const navigate = useNavigate();
   const [tp, setTp] = useState({
     dress: "",
     city: "",
@@ -97,6 +99,10 @@ const Features = () => {
       totalVal += carts[i].total;
     }
     setCartTotal(parseFloat(totalVal).toFixed(2));
+  };
+  const handleDetails = (e, id) => {
+    e.preventDefault();
+    navigate(`/shopdetail/${id}`);
   };
   const getMyCart = (data) => {
     dispatch({
@@ -285,7 +291,15 @@ const Features = () => {
                                 </div>
                               </td>
                               <td className="column-2" name="name">
-                                {item.name}
+                                <a
+                                  href="/#"
+                                  className="link-detail"
+                                  onClick={(e) =>
+                                    handleDetails(e, item.productId)
+                                  }
+                                >
+                                  {item.name}
+                                </a>
                               </td>
                               <td className="column-3" name="price">
                                 $ {item.price}

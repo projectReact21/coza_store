@@ -86,6 +86,9 @@ function ListProductItem({ productItem, status, home, shop }) {
       });
     });
   };
+  const handleDetails = (e, id) => {
+    navigate(`/shopdetail/${id}`);
+  };
   console.log(productItem?.status);
   return (
     <Card className="overflow-hidden card__product--item">
@@ -213,10 +216,17 @@ function ListProductItem({ productItem, status, home, shop }) {
         <Card.Text
           style={{ fontSize: "1rem" }}
         >{`$ ${productItem?.price}`}</Card.Text>
-        <Row className="justify-content-center">
+        <Row className="justify-content-between flex-row">
           <Button
             variant="primary"
             className="position-absolute card__product--item-btn mx-2 col-sm-4 col-md-6 "
+            onClick={(e) => handleDetails(e, productItem.productId)}
+          >
+            Details
+          </Button>
+          <Button
+            variant="primary"
+            className="position-absolute right-0 card__product--item-btn mx-2 col-sm-4 col-md-6 "
             onClick={() =>
               addToCart(
                 productItem ? productItem : [],
@@ -224,7 +234,6 @@ function ListProductItem({ productItem, status, home, shop }) {
                 getUser.userId
               )
             }
-            // disabled={productItem?.quanity === 0}
           >
             Buy
           </Button>

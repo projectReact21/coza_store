@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import pduct1 from "./images/product-01.jpg";
 import pduct2 from "./images/product-02.jpg";
 import pduct3 from "./images/product-11.jpg";
@@ -8,10 +8,109 @@ import "../../../node_modules/slick-carousel/slick/slick-theme.css";
 
 import Slider from "react-slick";
 import "./cssDetail/slick.css";
+import productSolded from "../../services/productSolded";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import productService from "../../services/productService";
+import { parseHTML } from "jquery";
+import mycartService from "../../services/mycartService";
+import { toast } from "react-toastify";
+import ActionTypes from "../../stores/action";
 // import "./cssDetail/slick-theme.css";
 
 const ShopDetail = () => {
-  const [imgs, setImgs] = useState([pduct1, pduct2, pduct3]);
+  const param = useParams();
+  const [number, setNumber] = useState(1);
+  const getUser = useSelector((state) => state.auth.dataUser);
+  const isLogin = useSelector((state) => state.auth.isLogin);
+  const getMyCart = useSelector((state) => state.auth.allmycarts);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [imgs, setImgs] = useState([]);
+  const [product, setProduct] = useState([]);
+  const [getproducts, setGetproducts] = useState([]);
+  useEffect(() => {
+    loadData();
+    loadData();
+  }, []);
+  const loadData = () => {
+    if (param.id > 0) {
+      productSolded.getDescriptors(param.id).then((res) => {
+        // console.log(res.data.data);
+        if (res.data.errorCode === 0) {
+          // setProduct(res.data.data);
+          imgs.length = 0;
+          res.data.data.forEach((x) => imgs.push(x.srcImg));
+          console.log(imgs);
+        }
+      });
+    }
+    productService.getProduct().then((res) => {
+      console.log(res.data.data);
+      if (res.data.errorCode === 0) {
+        setGetproducts(res.data.data);
+        const data = res.data.data.find(
+          (product) => product.productId === parseInt(param.id)
+        );
+        setProduct(data);
+        console.log(data);
+      }
+    });
+  };
+  const handleChaneNumber = (e) => {
+    e.preventDefault();
+    console.log(e.target.value);
+    setNumber(e.target.value);
+  };
+
+  const addToCart = (data, n, id) => {
+    const getitemmycart = getMyCart.find((x) => x.name === n);
+    if (isLogin) {
+      const newData = {
+        id: data.id,
+        quantity: number,
+        userId: id,
+      };
+      if (!getitemmycart) {
+        mycartService.add(newData).then((res) => {
+          if (res.data.errorCode === 0) {
+            toast.success(`đã thêm ${n} vào giỏ hàng với ${number} sản phẩm `);
+            mycartService.getListId(getUser.userId).then((res) => {
+              dispatch({
+                type: ActionTypes.LOAD_MY_CARTS,
+                allmycarts: res.data.data,
+              });
+            });
+          } else toast.warning(res.data.errorMessage);
+        });
+        mycartService.getListId(getUser.userId).then((res) => {
+          dispatch({
+            type: ActionTypes.LOAD_MY_CARTS,
+            allmycarts: res.data.data,
+          });
+        });
+      } else {
+        // quantity=1
+        const data = {
+          quantity: parseInt(getitemmycart.quantity) + parseInt(number),
+        };
+        console.log(data.quantity);
+        mycartService.update(getitemmycart.id, data).then((res) => {
+          console.log(res.data);
+          if (res.data.errorCode === 0)
+            toast.info(`đã tăng ${n} thêm ${number} sản phẩm `);
+          else toast.warning(res.data.errorMessage);
+        });
+      }
+    } else {
+      dispatch({
+        type: ActionTypes.CURRENT_LOACION,
+        currentLocation: window.location.pathname,
+      });
+      navigate("/login");
+    }
+  };
+
   const settings = {
     customPaging: function (i) {
       return (
@@ -44,7 +143,7 @@ const ShopDetail = () => {
           </a>
 
           <a
-            href="/blog"
+            href="/shop"
             className="stext-109 cl3 hov-cl1 trans-04 text-decoration-none text-size"
           >
             Shop
@@ -54,7 +153,7 @@ const ShopDetail = () => {
             ></i>
           </a>
 
-          <span className="stext-109 cl4 text-size">Lightweight Jacket</span>
+          <span className="stext-109 cl4 text-size">{product.name}</span>
         </div>
       </div>
 
@@ -81,43 +180,6 @@ const ShopDetail = () => {
                         </div>
                       ))}
                     </Slider>
-                    {/* <div className="item-slick3" data-thumb={pduct1}>
-                      <div className="wrap-pic-w pos-relative">
-                        <img src={pduct1} alt="IMG-PRODUCT" />
-
-                        <a
-                          className="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-                          href={pduct1}
-                        >
-                          <i className="fa fa-expand"></i>
-                        </a>
-                      </div>
-                    </div>
-
-                    <div className="item-slick3" data-thumb={pduct1}>
-                      <div className="wrap-pic-w pos-relative">
-                        <img src={pduct1} alt="IMG-PRODUCT" />
-
-                        <a
-                          className="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-                          href={pduct1}
-                        >
-                          <i className="fa fa-expand"></i>
-                        </a>
-                      </div>
-                    </div>
-                    <div className="item-slick3" data-thumb={pduct1}>
-                      <div className="wrap-pic-w pos-relative">
-                        <img src={pduct1} alt="IMG-PRODUCT" />
-
-                        <a
-                          className="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-                          href={pduct1}
-                        >
-                          <i className="fa fa-expand"></i>
-                        </a>
-                      </div>
-                    </div> */}
                   </div>
                 </div>
               </div>
@@ -126,31 +188,15 @@ const ShopDetail = () => {
             <div className="col-md-6 col-lg-5 p-b-30">
               <div className="p-r-50 p-t-5 p-lr-0-lg">
                 <h4 className="mtext-105 cl2 js-name-detail p-b-14">
-                  Lightweight Jacket
+                  {product.name}
                 </h4>
 
-                <span className="mtext-106 cl2">$58.79</span>
+                <span className="mtext-106 cl2">$ {product.price}</span>
 
-                <p className="stext-102 cl3 p-t-23">
-                  Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus
-                  ligula. Mauris consequat ornare feugiat.
-                </p>
+                <p className="stext-102 cl3 p-t-23">{product.name}</p>
                 <div className="Description ">
                   <span>Description</span>
-                  <p className="stext-102 cl6">
-                    Aenean sit amet gravida nisi. Nam fermentum est felis, quis
-                    feugiat nunc fringilla sit amet. Ut in blandit ipsum.
-                    Quisque luctus dui at ante aliquet, in hendrerit lectus
-                    interdum. Morbi elementum sapien rhoncus pretium maximus.
-                    Nulla lectus enim, cursus et elementum sed, sodales vitae
-                    eros. Ut ex quam, porta consequat interdum in, faucibus eu
-                    velit. Quisque rhoncus ex ac libero varius molestie. Aenean
-                    tempor sit amet orci nec iaculis. Cras sit amet nulla
-                    libero. Curabitur dignissim, nunc nec laoreet consequat,
-                    purus nunc porta lacus, vel efficitur tellus augue in ipsum.
-                    Cras in arcu sed metus rutrum iaculis. Nulla non tempor
-                    erat. Duis in egestas nunc.
-                  </p>
+                  <p className="stext-102 cl6">{product.description}</p>
                 </div>
 
                 <div className="pt-3">
@@ -161,11 +207,17 @@ const ShopDetail = () => {
                           style={{ width: "100px" }}
                           className="form-control mtext-104 cl3 txt-center"
                           type="number"
+                          onChange={handleChaneNumber}
                           name="num-product"
-                          value="1"
+                          defaultValue="1"
                         />
                       </div>
-                      <button className="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+                      <button
+                        className="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail"
+                        onClick={() =>
+                          addToCart(product, product.name, getUser.userId)
+                        }
+                      >
                         Add to cart
                       </button>
                     </div>

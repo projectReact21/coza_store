@@ -22,6 +22,7 @@ const url = {
   productSolded: "/productSolded",
   user: "/user",
   productSoldedQuery: "/productSoldedQuery",
+  productDescription: "/productDesription",
 };
 const instance = axios.create({
   baseURL: url.baseUrl,

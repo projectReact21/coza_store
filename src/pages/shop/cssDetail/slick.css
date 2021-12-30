@@ -1,7 +1,8 @@
 .slick-slide img {
-  width: 100% !important;
-  height: 100% !important;
+  width: 600px !important;
+  height: 600px !important;
   object-fit: cover !important;
+  border: none;
 }
 
 .slick-dots img {

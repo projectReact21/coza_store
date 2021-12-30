@@ -32,12 +32,13 @@
 .card__product--item-btn {
   transition: all 0.5s;
   transform: translateY(1rem);
+  width: 150px;
   background-color: white !important;
   border-radius: 1rem !important;
   border: none;
 }
 .card__product--item-btn:hover {
-  background-color: black !important;
+  background-color: #717fe0 !important ;
   color: white !important;
 }
 .card__product--item-status {

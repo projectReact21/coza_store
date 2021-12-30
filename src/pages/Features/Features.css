@@ -462,3 +462,6 @@ input.num-product::-webkit-inner-spin-button {
 .span-nothing {
   font-size: 24px;
 }
+.link-detail {
+  text-decoration: none;
+}
