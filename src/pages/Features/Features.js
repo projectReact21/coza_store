@@ -153,7 +153,7 @@ const Features = () => {
     if (selecteCartItem) {
       setConfirmOptions({
         show: true,
-        content: `Are you sure you want to delete "${selecteCartItem.name}" ? `,
+        content: `Bạn có muốn xóa  "${selecteCartItem.name}" khỏi giỏ hàng không ? `,
         dataId: id,
       });
     }

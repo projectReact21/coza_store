@@ -47,7 +47,7 @@ const Blog = () => {
     setPage((page) => {
       if (page === totalPage) {
         page();
-      } else setPage((page) => page + 1);
+      } else setPage((page) => parseInt(page) + 1);
     });
   };
   const handlechangeCurrentPage = (e) => {
@@ -55,7 +55,7 @@ const Blog = () => {
     setPage((page) => {
       if (page === 0) {
         page();
-      } else setPage((page) => page - 1);
+      } else setPage((page) => parseInt(page) - 1);
     });
   };
   return (
@@ -81,13 +81,13 @@ const Blog = () => {
                     >
                       <img src={blog.srcImg} alt="IMG-BLOG" />
 
-                      <div className="flex-col-c-m size-123 bg9 how-pos5">
+                      {/* <div className="flex-col-c-m size-123 bg9 how-pos5">
                         <span className="ltext-107 cl2 txt-center">22</span>
 
                         <span className="stext-109 cl3 txt-center">
                           Jan 2018
                         </span>
-                      </div>
+                      </div> */}
                     </a>
 
                     <div className="p-t-32">
@@ -114,7 +114,7 @@ const Blog = () => {
                         <span className="flex-w flex-m stext-111 cl2 p-r-30 m-tb-10">
                           <span>
                             <span className="cl4 ">Tác Giả</span>
-                            <span className="fw-bolder fs-3 mx-2 text-danger">
+                            <span className="fw-bolder fs-3 mx-2 color-authur">
                               {blog.author}
                             </span>{" "}
                             {/* <span>8 Comments</span> */}

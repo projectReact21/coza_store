@@ -18,7 +18,7 @@ const BlogDetail = () => {
       <div className="container">
         <div className="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
           <a
-            href="/"
+            href="/home"
             className="stext-109 cl8 hov-cl1 trans-04 text-decoration-none text-size"
           >
             Trang Chủ
@@ -53,11 +53,11 @@ const BlogDetail = () => {
                   <div className="hov-img0 how-pos5-parent">
                     <img src={blog?.srcImg} alt="IMG-BLOG" />
 
-                    <div className="flex-col-c-m size-123 bg9 how-pos5">
+                    {/* <div className="flex-col-c-m size-123 bg9 how-pos5">
                       <span className="ltext-107 cl2 txt-center">22</span>
 
                       <span className="stext-109 cl3 txt-center">Jan 2018</span>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
                 <div className="p-t-10">

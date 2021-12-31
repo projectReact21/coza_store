@@ -45,10 +45,10 @@ const OrderDetail = () => {
         <Row className=" align-items-start mt-5">
           <div className="kHWfJY col-8">
             <div className="ipnhKS">
-              <div className="name-content title">Tên khách Hàng :</div>
-              <span className="mx-2 fs-4 text-primary">{user?.userName} </span>
-              <div className="title">Địa chỉ người nhận :</div>
-              <span className="mx-2 fs-4 text-primary">
+              {/* <div className="name-content title">Tên khách Hàng :</div>
+              <span className="mx-2 fs-4 color-authur ">{user?.userName} </span>
+              <div className="title name-content ">Địa chỉ người nhận :</div>
+              <span className="mx-2 fs-4 color-authur ">
                 {"Số Nhà : " +
                   user?.dress +
                   " , " +
@@ -57,11 +57,38 @@ const OrderDetail = () => {
                   user?.district +
                   " , " +
                   user?.city}
-              </span>
+              </span> */}
+              <div className="content">
+                <p>
+                  <span className="name-content title text-name">
+                    Tên khách Hàng :
+                  </span>
+                  <span className="mx-2 fs-4 color-authur ">
+                    {user?.userName}{" "}
+                  </span>
+                </p>
+              </div>
               <div className="content">
                 <p className="phone-content">
-                  <span>Điện thoại :</span>
-                  <span className="mx-2 fs-4 text-primary">0{user?.phone}</span>
+                  <span className="title name-content text-name ">
+                    Địa chỉ người nhận :
+                  </span>
+                  <span className="mx-2 fs-4 color-authur ">
+                    {"Số nhà " +
+                      user?.dress +
+                      " , " +
+                      user?.ward +
+                      " , " +
+                      user?.district +
+                      " , " +
+                      user?.city}
+                  </span>
+                </p>
+              </div>
+              <div className="content">
+                <p className="phone-content ">
+                  <span className="text-name">Điện thoại :</span>
+                  <span className="mx-2 fs-4 color-authur">0{user?.phone}</span>
                 </p>
               </div>
             </div>

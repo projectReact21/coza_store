@@ -23,6 +23,10 @@ function CanvasCart({ content }) {
       setTotal((total) => (total += parseInt(a.total)))
     );
   }, [allmycarts]);
+  const handleDetails = (e, id) => {
+    e.preventDefault();
+    navigate(`/shopdetail/${id}`);
+  };
   const handleDeleteProduct = (p) => {
     mycartService.delete(p.id).then((res) => {
       if (res.data.errorCode === 0) {
@@ -64,7 +68,12 @@ function CanvasCart({ content }) {
               />
               <Card.Body className="flex-row justify-content-around mx-2 ">
                 <Col>
-                  <Card.Text as={Row} className="mb-1" style={{ width: "80%" }}>
+                  <Card.Text
+                    as={Row}
+                    className="mb-1"
+                    style={{ width: "80%" }}
+                    onClick={(e) => handleDetails(e, p.productId)}
+                  >
                     {p.name}
                   </Card.Text>
                   <Row>

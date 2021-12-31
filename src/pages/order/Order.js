@@ -80,8 +80,7 @@ const Order = () => {
                   <span
                     className="text-primary text-uppercase fs-4 hover-layout"
                     style={{ cursor: "pointer" }}
-                    onC
-                    lick={() => navigate("/shop")}
+                    onClick={() => navigate("/shop")}
                   >
                     cửa hàng
                   </span>
@@ -115,6 +114,7 @@ const Order = () => {
                         <td className="product-name" width="10%">
                           <a
                             href="/#"
+                            className="textunderline"
                             style={{ color: "blue" }}
                             onClick={(e) => hanhdleCode(e, list, index)}
                           >
@@ -134,7 +134,7 @@ const Order = () => {
                           id="status"
                           width="20%"
                         >
-                          {list.status === 0 ? "New" : "Cancel"}
+                          {list.status === 0 ? "Mới" : "Hoàn Tất"}
                         </td>
 
                         <td

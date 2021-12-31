@@ -17,15 +17,15 @@ const ConfirmDialog = (props) => {
       centered
     >
       <Modal.Header closeButton>
-        <Modal.Title>{title ? title : "Confirmation?"}</Modal.Title>
+        <Modal.Title>{title ? title : "Xác Nhận?"}</Modal.Title>
       </Modal.Header>
       <Modal.Body>{content}</Modal.Body>
       <Modal.Footer className="d-flex justify-content-center">
         <Button variant="secondary" onClick={handleClose}>
-          {noTitle ? noTitle : "Close"}
+          {noTitle ? noTitle : "Không"}
         </Button>
         <Button variant="primary" onClick={handleOk}>
-          {yesTitle ? yesTitle : "Ok"}
+          {yesTitle ? yesTitle : "Có"}
         </Button>
       </Modal.Footer>
     </Modal>
