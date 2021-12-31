@@ -36,12 +36,12 @@ function ProductOverview() {
             case "asc":
               productService
                 .getSortProduct("price", selectedFillShop)
-                .then((res) => datafill(res));
+                .then((res) => datafill(res.data));
               break;
             case "desc":
               productService
                 .getSortProduct("price", selectedFillShop)
-                .then((res) => datafill(res));
+                .then((res) => datafill(res.data));
               break;
             case "price0":
               productService.getPaging(0, perPage).then((res) => {
@@ -77,7 +77,7 @@ function ProductOverview() {
             default:
               productService
                 .getFillProduct(selectedFillShop)
-                .then((res) => datafill(res));
+                .then((res) => datafill(res.data));
               break;
           }
         } else {

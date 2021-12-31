@@ -30,9 +30,24 @@ const initialState = {
   price: 0,
   color: "",
   taps: "",
+  //
+  dataCheckOut: [],
+  dataUserCheckOut: {},
 };
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
+    //
+    case ActionTypes.DATA_USER_CHECK_OUT:
+      return {
+        ...state,
+        dataUserCheckOut: action.dataUserCheckOut,
+      };
+    case ActionTypes.DATA_CHECKOUT:
+      return {
+        ...state,
+        dataCheckOut: action.dataCheckOut,
+      };
+    //
     //new
     case ActionTypes.CHANGE_STATUS:
       return {

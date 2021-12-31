@@ -3,24 +3,26 @@ import { Carousel, Row, Container, Card } from "react-bootstrap";
 import { Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import MainHomeListText from "./MainHomeListext";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import ListProductItem from "../../../component/ListProductItem";
 import productService from "../../../services/productService";
 import blogService from "./../../../services/blogService";
+import commentService from "./../../../services/commentService";
+import ActionTypes from "./../../../stores/action";
 function MainHome() {
   const navigate = useNavigate();
   const [dataHome, setDataHome] = useState([]);
   const [blogs, setBlogs] = useState([]);
-  const [date, setDate] = useState([]);
   const fill = useSelector((state) => state.auth.selectedHome);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     productService.getFillProduct(fill).then((res) => {
-      console.log("res.data", res.data);
       setDataHome(res.data.data);
     });
   }, [fill]);
   useEffect(() => {
+<<<<<<< HEAD
     blogService.getpaging(0, 3).then((res) => {
       setBlogs(res.data.data.data);
       // console.log(res);
@@ -32,13 +34,32 @@ function MainHome() {
       setDate((date) => [...date, b?.create_at.slice(0, 10)]);
     });
   }, [blogs]);
+=======
+    blogService.getpaging(0, 3).then((res) => setBlogs(res.data.data.data));
+  }, []);
+>>>>>>> 6e323da89931a4f0b99ea01599f59f4d731b13e6
   const item1 = [dataHome[0], dataHome[1], dataHome[2], dataHome[3]];
   const item2 = [dataHome[4], dataHome[5], dataHome[6], dataHome[7]];
   const lists = ["best seller", "feautured", "sale", "top rate"];
   const names = ["seller", "feature", "sale", "toprate"];
-  const handleChangePage = (e, id) => {
+  const handleShowPage = (e, blog) => {
     e.preventDefault();
-    navigate(`/blog/${id}`);
+    blogService.get(blog.id).then((res) => {
+      console.log(res.data.data);
+      dispatch({
+        type: ActionTypes.BLOG,
+        blog: res.data.data,
+      });
+      commentService.getListCmt(res.data.data.commentId).then((res) => {
+        console.log(res.data.data);
+        dispatch({
+          type: ActionTypes.COMMENTS,
+          comments: res.data.data,
+        });
+      });
+    });
+
+    navigate(`/blog/${blog.id}`);
   };
   return (
     <>
@@ -110,18 +131,28 @@ function MainHome() {
                 <Card.Text>
                   <Row className="gx-4 gy-2">
                     <Col xs="auto">
+<<<<<<< HEAD
                       bởi <strong className="fs-4 text-bold">{b.author}</strong>
                     </Col>
                     <Col xs="auto">
                       vào
                       <strong className="fs-5 text-bold">
                         {date[index]}
+=======
+                      Tác Giả{" "}
+                      <strong className="fs-4 text-bold">{b.author}</strong>
+                    </Col>
+                    <Col xs="auto">
+                      on
+                      <strong className="fs-5 text-bold mx-2">
+                        {b.create_at.slice(0, 10)}
+>>>>>>> 6e323da89931a4f0b99ea01599f59f4d731b13e6
                       </strong>{" "}
                     </Col>
                   </Row>
                   <Row>
                     <a
-                      onClick={(e) => handleChangePage(e, b.id)}
+                      onClick={(e) => handleShowPage(e, b)}
                       href="/"
                       className="fs-4 fw-bold"
                       style={{ textDecoration: "none" }}
@@ -135,7 +166,11 @@ function MainHome() {
                       className="fs-4 read-more"
                       onClick={() => navigate(`/blog/${b.id}`)}
                     >
+<<<<<<< HEAD
                       Đọc thêm
+=======
+                      Đọc Thêm
+>>>>>>> 6e323da89931a4f0b99ea01599f59f4d731b13e6
                     </span>
                   </Row>
                 </Card.Text>

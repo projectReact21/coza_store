@@ -37,7 +37,7 @@ function Signup() {
     create_at: "",
     dress: "",
     ward: "",
-    distrist: "",
+    district: "",
     city: "",
   });
   useEffect(() => {
@@ -282,7 +282,7 @@ function Signup() {
               </div>
               <div className="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
                 <select
-                  name="distrist"
+                  name="district"
                   className="form-select form-select-lg input form-city "
                   onChange={(e) => handleChangeDistrict(e)}
                   aria-label="Default select example"
