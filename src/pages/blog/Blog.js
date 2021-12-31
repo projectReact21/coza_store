@@ -103,7 +103,9 @@ const Blog = () => {
 
                       {blog.contents?.map((c, index) => (
                         <>
-                          <p key={index}>{c}</p>
+                          <p className="blog-contents" key={index}>
+                            {c}
+                          </p>
                           <br />
                         </>
                       ))}

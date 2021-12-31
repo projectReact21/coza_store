@@ -17,6 +17,10 @@ const OrderDetail = () => {
     setTotal(0);
     data.map((d) => setTotal((total) => (total += d.total)));
   }, []);
+  const handleCLick = (e, id) => {
+    e.preventDefault();
+    navigate(`/shopdetail/${id}`);
+  };
   return (
     <Container>
       <span
@@ -24,7 +28,7 @@ const OrderDetail = () => {
         style={{ cursor: "pointer" }}
         onClick={() => navigate("/feature")}
       >
-        Thanh Toán
+        Giỏ Hàng
       </span>{" "}
       <i className="fa fa-angle-right mx-1 " aria-hidden="true"></i>
       <span onClick={() => navigate("/order")} className="hover-layout">
@@ -102,6 +106,7 @@ const OrderDetail = () => {
                         <a
                           href="/#"
                           style={{ color: "blue", textDecoration: "none" }}
+                          onClick={(e) => handleCLick(e, data.productId)}
                         >
                           <h3 style={{ verticalAlign: "middle" }}>
                             {data.name}

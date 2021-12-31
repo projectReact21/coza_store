@@ -9,6 +9,7 @@ import productService from "../../../services/productService";
 import blogService from "./../../../services/blogService";
 import commentService from "./../../../services/commentService";
 import ActionTypes from "./../../../stores/action";
+import "./mainhome.css";
 function MainHome() {
   const navigate = useNavigate();
   const [dataHome, setDataHome] = useState([]);
@@ -140,14 +141,14 @@ function MainHome() {
                     <a
                       onClick={(e) => handleShowPage(e, b)}
                       href="/"
-                      className="fs-4 fw-bold"
+                      className="fs-4 fw-bold "
                       style={{ textDecoration: "none" }}
                     >
-                      {b.title}
+                      <span className="blog-title">{b.title}</span>
                     </a>
                   </Row>
                   <Row>
-                    <p className="line-3">{b.contents[0]}</p>
+                    <p className="line-3 blog-contents">{b.contents[0]}</p>
                     <span
                       className="fs-4 read-more"
                       onClick={() => navigate(`/blog/${b.id}`)}

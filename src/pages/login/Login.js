@@ -48,7 +48,7 @@ const Login = () => {
       } else if (parseInt(res.errorCode) === 406) {
         setPassword("");
         passwordRef.current.focus();
-        setResult(" mật khẩu");
+        setResult("Sai mật khẩu");
       }
     });
   };
