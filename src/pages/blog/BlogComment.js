@@ -88,10 +88,11 @@ const BlogComment = ({ blogId }) => {
   return (
     <>
       <div className="p-t-40">
-        <h5 className="mtext-113 cl2 p-b-12">Leave a Comment</h5>
+        <h5 className="mtext-113 cl2 p-b-12">Bình Luận</h5>
 
         <p className="stext-107 cl6 p-b-40">
-          Your email address will not be published. Required fields are marked *
+          Địa chỉ email của bạn sẽ không được công bố. Các trường bắt buộc được
+          đánh dấu *
         </p>
         <div className="row d-flex justify-content-start">
           <div className="col-md-12">
@@ -125,7 +126,7 @@ const BlogComment = ({ blogId }) => {
                   >
                     {" "}
                     {comment.userId === user.userId ? (
-                      <small>Remove</small>
+                      <small>Xóa Bình Luận</small>
                     ) : (
                       ""
                     )}

@@ -27,6 +27,7 @@ i .fa {
   color: rgba(0, 0, 0, 0.55);
 }
 a.fa {
+  width: 170px;
   text-decoration: none;
 }
 .fa span {

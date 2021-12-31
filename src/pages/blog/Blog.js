@@ -69,7 +69,7 @@ const Blog = () => {
                               <span className="cl12 m-l-4 m-r-6">|</span>
                             </span>
 
-                            <span>8 Comments</span>
+                            {/* <span>8 Comments</span> */}
                           </span>
 
                           <a

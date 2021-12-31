@@ -99,10 +99,10 @@ function CanvasCart({ content }) {
                   variant="dark"
                   onClick={handleViewCart}
                 >
-                  view cart
+                  Giỏ Hàng
                 </Button>
               </Col>
-              <Col className="text-center ">
+              {/* <Col className="text-center ">
                 <Button
                   className="text-uppercase  w-100 rounded-pill"
                   style={{ height: "4rem", fontWeight: "600" }}
@@ -110,7 +110,7 @@ function CanvasCart({ content }) {
                 >
                   check out
                 </Button>
-              </Col>
+              </Col> */}
             </Row>
           </Col>
         </Row>

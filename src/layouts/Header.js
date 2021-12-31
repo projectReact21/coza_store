@@ -158,28 +158,21 @@ function Header() {
                 href="/home"
                 className="hover-layout"
               >
-                Home
-              </Nav.Link>
-              <Nav.Link
-                onClick={(e) => handlechangePage(e, "/about")}
-                href="/about"
-                className="hover-layout"
-              >
-                About
+                Trang Chủ
               </Nav.Link>
               <Nav.Link
                 onClick={(e) => handlechangePage(e, "/shop")}
                 href="/shop"
                 className="hover-layout"
               >
-                Shop
+                Sản Phẩm
               </Nav.Link>
               <Nav.Link
                 onClick={(e) => handlechangePage(e, "/feature")}
                 href="/feature"
                 className="hover-layout"
               >
-                Features
+                Giỏ Hàng
               </Nav.Link>
               <Nav.Link
                 onClick={(e) => handlechangePage(e, "/blog")}
@@ -189,18 +182,25 @@ function Header() {
                 Blog
               </Nav.Link>
               <Nav.Link
+                onClick={(e) => handlechangePage(e, "/about")}
+                href="/about"
+                className="hover-layout"
+              >
+                Thông Tin
+              </Nav.Link>
+              <Nav.Link
                 onClick={(e) => handlechangePage(e, "/contact")}
                 href="/contact"
                 className="hover-layout"
               >
-                Contact
+                Liên Hệ
               </Nav.Link>
             </Nav>
 
             <Form className="d-flex">
               <Form.Control
                 type="search"
-                placeholder="Search"
+                placeholder="Tìm Kiếm"
                 className="me-2"
                 aria-label="Search"
                 id="search"
@@ -231,7 +231,7 @@ function Header() {
                   aria-hidden="true"
                   onClick={handleSignin}
                 >
-                  <span>Login</span>
+                  <span>Đăng Nhập</span>
                 </a>
               ) : (
                 // <i
@@ -260,10 +260,10 @@ function Header() {
                           href="/#"
                           onClick={handleOder}
                         >
-                          Order
+                          Đơn Hàng
                         </a>
 
-                        <a className="dropdown-item" href="{% url 'report' %}">
+                        {/* <a className="dropdown-item" href="{% url 'report' %}">
                           Thống kê
                         </a>
                         <a
@@ -277,14 +277,14 @@ function Header() {
                           href="{% url 'user_password' %}"
                         >
                           Thay đổi mật khẩu
-                        </a>
+                        </a> */}
                         <a
                           className="dropdown-item"
                           href="/#"
                           onClick={handleLogoutAction}
                         >
                           {" "}
-                          <span>Logout</span>
+                          <span>Đăng Xuất</span>
                         </a>
                       </div>
                     </div>

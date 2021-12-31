@@ -156,6 +156,7 @@
 
 .table-shopping-cart .table_row td {
   padding-bottom: 20px;
+  text-align: center;
 }
 
 .table-shopping-cart .table_row td.column-1 {
@@ -170,6 +171,7 @@
   line-height: 1.6;
   padding-top: 15px;
   padding-bottom: 15px;
+  text-align: center;
 }
 
 .table-shopping-cart td {
@@ -464,4 +466,12 @@ input.num-product::-webkit-inner-spin-button {
 }
 .link-detail {
   text-decoration: none;
+}
+.infomation {
+  margin-top: 95px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px 0;
 }

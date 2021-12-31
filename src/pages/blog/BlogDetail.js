@@ -41,7 +41,7 @@ const BlogDetail = () => {
             href="/"
             className="stext-109 cl8 hov-cl1 trans-04 text-decoration-none text-size"
           >
-            Home
+            Trang Chủ
             <i
               className="fa fa-angle-right m-l-9 m-r-10 text-size"
               aria-hidden="true"

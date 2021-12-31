@@ -10,7 +10,7 @@ const About = () => {
             "url(https://github.com/projectReact21/coza_store/blob/main/src/resoures/img/bg-01.jpg?raw=true)",
         }}
       >
-        <h2 className="ltext-105 cl0 txt-center">About</h2>
+        <h2 className="ltext-105 cl0 txt-center">Thông Tin</h2>
       </section>
       {/* <!-- Content page --> */}
       <section className="bg0 p-t-75 p-b-120">

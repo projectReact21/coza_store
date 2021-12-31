@@ -55,9 +55,7 @@ const Login = () => {
         <div className="container-login100">
           <div className="wrap-login100">
             <form className="login100-form validate-form">
-              <span className="login100-form-title p-b-43">
-                Login to continue
-              </span>
+              <span className="login100-form-title p-b-43">Đăng Nhập</span>
               <strong className="text-danger text-center text-capitalize ">
                 {result}
               </strong>
@@ -73,9 +71,10 @@ const Login = () => {
                   name="email"
                   value={email}
                   onChange={handleChangeEmail}
+                  placeholder="Email"
                 />
-                <span className="focus-input100"></span>
-                <span className="label-input100">Email</span>
+                {/* <span className="focus-input100"></span> */}
+                {/* <span className="label-input100">Email</span> */}
               </div>
 
               <div
@@ -89,9 +88,10 @@ const Login = () => {
                   name="pass"
                   value={password}
                   onChange={handleChangePassword}
+                  placeholder="Mật Khẩu"
                 />
-                <span className="focus-input100"></span>
-                <span className="label-input100">Password</span>
+                {/* <span className="focus-input100"></span>
+                <span className="label-input100">Mật Khẩu</span> */}
               </div>
 
               <div className="flex-sb-m w-full p-t-3 p-b-32">
@@ -103,13 +103,13 @@ const Login = () => {
                     name="remember-me"
                   />
                   <label className="label-checkbox100" htmlFor="ckb1">
-                    Remember me
+                    Ghi Nhớ Đăng Nhập
                   </label>
                 </div>
 
                 <div>
                   <a href="/#" className="txt1">
-                    Forgot Password?
+                    Quên Mật Khẩu
                   </a>
                 </div>
               </div>
@@ -119,13 +119,13 @@ const Login = () => {
                   className="login100-form-btn"
                   onClick={(e) => handleLogin(e)}
                 >
-                  Login
+                  Đăng Nhập
                 </button>
                 <button
                   className="login100-form-btn"
                   onClick={(e) => handleSignup(e)}
                 >
-                  signup
+                  Đăng ký
                 </button>
               </div>
 

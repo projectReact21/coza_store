@@ -2,28 +2,30 @@ import React from "react";
 import { Container, Row, Col, ListGroup, Form, Button } from "react-bootstrap";
 import LayoutListTextItem from "./LayoutListTextItem";
 const listFirst = ["women", "men", "Shoes", "Watches"];
-const listSecond = ["track order", "returns", "shipping", "FAQs"];
+// const listSecond = ["track order", "returns", "shipping", "FAQs"];
+const listSecond = ["Theo dõi đơn hàng", "Đổi trả", "Vận chuyển", "FAQs"];
 function Footer() {
   return (
     <footer>
-      <Container fluid className="bg-dark navbar-fixed-bottom">
+      <Container fluid className="bg-dark ">
         <Container className="bg-dark">
           <Row className="justify-content-center">
             <Col xs={12} sm={6} md={3} className=" mt-5 col-lg-3 p-b-50">
-              <h4 className="text-white mb-4">Categories</h4>
+              <h4 className="text-white mb-4">Loại Sản Phẩm</h4>
               <LayoutListTextItem listContent={listFirst} />
             </Col>
             <Col xs={12} sm={6} md={3} className=" mt-5 col-lg-3 p-b-50">
-              <h4 className="text-white mb-4">Help</h4>
+              <h4 className="text-white mb-4">Trợ Giúp</h4>
               <LayoutListTextItem listContent={listSecond} />
             </Col>
             <Col xs={12} sm={6} md={3} className=" mt-5 col-lg-3 p-b-50">
-              <h4 className="text-white mb-4">GET IN TOUCH</h4>
+              <h4 className="text-white mb-4">Liên Hệ</h4>
               <ListGroup className="border-0  ">
                 <ListGroup.Item className="border-0 px-0 bg-dark text-white">
                   <p className="cl-primary">
-                    Any questions? Let us know in store at 8th floor, 379 Hudson
-                    St, New York, NY 10018 or call us on{" "}
+                    Có câu hỏi nào không? Hãy cho chúng tôi biết tại cửa hàng
+                    tại tầng 8, 379 Hudson St, New York, NY 10018 hoặc gọi cho
+                    chúng tôi theo số{" "}
                     <strong className="text-primary mx-0">
                       (+1) 96 716 6879
                     </strong>
@@ -54,7 +56,7 @@ function Footer() {
               </ListGroup>
             </Col>
             <Col xs={12} sm={6} md={3} className=" mt-5 col-lg-3 p-b-50">
-              <h4 className="text-white mb-4">Newsletter</h4>
+              <h4 className="text-white mb-4">Bản tin</h4>
               <Form>
                 <input
                   type="email"
@@ -115,8 +117,9 @@ function Footer() {
           </Row>
           <Row className="justify-content-center mt-4">
             <p className=" text-center cl-primary">
-              Copyright &copy; All rights reserved | Made with
-              <i className="fa fa-heart-o" aria-hidden="true"></i> By
+              Copyright &copy; All rights reserved | Made with{""}
+              <i className="fa fa-heart-o" aria-hidden="true"></i>
+              {""} By Team
             </p>
           </Row>
         </Container>

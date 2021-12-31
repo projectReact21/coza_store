@@ -134,7 +134,7 @@ function Signup() {
           <div className="wrap-login100">
             <form className="login100-form validate-form">
               <span className="login100-form-title p-b-43 fw-bold text-color-primary">
-                SIGN UP
+                ĐĂNG KÝ
               </span>
               <strong className="text-danger text-center text-capitalize ">
                 {result}
@@ -156,7 +156,7 @@ function Signup() {
                   size="sm"
                   onClick={() => inputFieldRef.current.click()}
                 >
-                  Change
+                  Thay Đổi
                 </Button>
               </div>
               <div
@@ -169,9 +169,10 @@ function Signup() {
                   type="text"
                   name="userName"
                   onChange={handleChangeData}
+                  placeholder="Tên Tài Khoản"
                 />
-                <span className="focus-input100"></span>
-                <span className="label-input100">UserName</span>
+                {/* <span className="focus-input100"></span>
+                <span className="label-input100">Tên Tài Khoản</span> */}
               </div>
               <div
                 className="wrap-input100 validate-input mt-2"
@@ -183,9 +184,10 @@ function Signup() {
                   type="text"
                   name="email"
                   onChange={handleChangeData}
+                  placeholder="Email"
                 />
-                <span className="focus-input100"></span>
-                <span className="label-input100">Email</span>
+                {/* <span className="focus-input100"></span>
+                <span className="label-input100">Email</span> */}
               </div>
 
               <div
@@ -198,9 +200,10 @@ function Signup() {
                   type="password"
                   name="password"
                   onChange={handleChangeData}
+                  placeholder="Mật Khẩu"
                 />
-                <span className="focus-input100"></span>
-                <span className="label-input100">Password</span>
+                {/* <span className="focus-input100"></span>
+                <span className="label-input100">Mật Khẩu</span> */}
               </div>
               <div
                 className="wrap-input100 validate-input"
@@ -212,9 +215,10 @@ function Signup() {
                   type="password"
                   name="pass"
                   onChange={handleChangeRePassword}
+                  placeholder="Nhập Lại Mật Khẩu"
                 />
-                <span className="focus-input100"></span>
-                <span className="label-input100">Enter the password</span>
+                {/* <span className="focus-input100"></span>
+                <span className="label-input100">Nhập Lại Mật Khẩu</span> */}
               </div>
               <div
                 className="wrap-input100 validate-input"
@@ -226,9 +230,10 @@ function Signup() {
                   type="phone"
                   name="phone"
                   onChange={handleChangeData}
+                  placeholder="Điện Thoại"
                 />
-                <span className="focus-input100"></span>
-                <span className="label-input100">Phone</span>
+                {/* <span className="focus-input100"></span>
+                <span className="label-input100">Điện Thoại</span> */}
               </div>
               <div className="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9 ">
                 <select
@@ -239,7 +244,7 @@ function Signup() {
                 >
                   {age.map((c, index) => (
                     <option key={index} value={c}>
-                      {c} years ago
+                      {c} Tuổi
                     </option>
                   ))}
                 </select>
@@ -257,7 +262,7 @@ function Signup() {
                   onChange={handleChangeData}
                 />
                 <span className="focus-input100"></span>
-                <span className="label-input100">Address</span>
+                <span className="label-input100">Địa Chỉ</span>
               </div>
               <div className="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9 ">
                 <select
@@ -323,14 +328,14 @@ function Signup() {
               </div> */}
               <div className="container-login100-form-btn">
                 <button className="login100-form-btn" onClick={handleLogin}>
-                  Login
+                  Đăng Nhập
                 </button>
                 <button
                   type="button"
                   className="login100-form-btn btn-signup"
                   onClick={handleSignup}
                 >
-                  Sign Up
+                  Đăng KÝ
                 </button>
               </div>
             </form>

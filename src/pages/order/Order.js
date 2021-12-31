@@ -22,7 +22,7 @@ const Order = () => {
     e.preventDefault();
   };
   return (
-    <Container fuild className="oder">
+    <Container fuild="true" className="oder">
       <section
         className="ftco-section ftco-cart"
         style={{ paddingTop: "0 !important" }}

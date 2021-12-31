@@ -140,6 +140,7 @@ const Features = () => {
         if (res.data.errorCode === 0) {
           toast.success(`đã xóa thành công ${cart.name} ra khỏi giỏ hàng`);
           loadData();
+          Total();
         } else {
           toast.warning("update fail");
         }
@@ -177,7 +178,7 @@ const Features = () => {
     if (id) {
       mycartService.delete(id).then((res) => {
         loadData();
-        toast.warning("Delete Success");
+        toast.warning("Xóa Sản Phẩm Thành Công");
       });
     }
   };
@@ -221,11 +222,13 @@ const Features = () => {
     setData(newData);
     console.log(newData);
     productSolded.add(newData).then((res) => {
+      console.log(res.data);
       if (res.data.errorCode === 0) {
         toast.success(
-          `Checkout Success with codeOrder "${res.data.codeOrder}"`
+          `Bạn đã đặt hàng thành công với mã đơn hàng "${res.data.data.codeOrder}"`
         );
         loadData();
+        navigate("/order");
       }
     });
   };
@@ -238,14 +241,14 @@ const Features = () => {
       <Container>
         <div className="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
           <a href="index.html" className="text-link trans-04">
-            Home
+            Trang Chủ
             <i
               className="fa fa-angle-right m-l-9 m-r-10"
               aria-hidden="true"
             ></i>
           </a>
 
-          <span className="text-link text-color">Shoping Cart</span>
+          <span className="text-link text-color">Giỏ hàng</span>
         </div>
       </Container>
 
@@ -254,7 +257,7 @@ const Features = () => {
           <Row>
             {getCarts.length === 0 ? (
               <span className="d-flex justify-content-center fw-bold span-nothing">
-                NOT THINGS MY CARTS
+                Hiện Tại Chưa Có Bắt Kỳ Sản Phẩm Nào Trong Giỏ Hàng
               </span>
             ) : (
               <>
@@ -264,11 +267,11 @@ const Features = () => {
                       <table className="table-shopping-cart">
                         <thead>
                           <tr className="table_head">
-                            <th className="column-1">Product</th>
+                            <th className="column-1">Sản Phẩm</th>
                             <th className="column-2"></th>
-                            <th className="column-3">Price</th>
-                            <th className="column-4">Quantity</th>
-                            <th className="column-5">Total</th>
+                            <th className="column-3">Giá</th>
+                            <th className="column-4">Số Lượng</th>
+                            <th className="column-5">Thành Tiền</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -332,7 +335,7 @@ const Features = () => {
                       </table>
                     </div>
                     <div className="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
-                      <div className="flex-w flex-m m-r-20 m-tb-5">
+                      {/* <div className="flex-w flex-m m-r-20 m-tb-5">
                         <input
                           className=" input-coupon  p-lr-20 m-r-10 m-tb-5"
                           type="text"
@@ -343,7 +346,7 @@ const Features = () => {
                         <div className="flex-c-m  hov-btn3 p-lr-15 trans-04 pointer m-tb-5 btn-Apply">
                           Apply coupon
                         </div>
-                      </div>
+                      </div> */}
 
                       {/* <div className="flex-c-m p-lr-15 trans-04 pointer m-tb-10 btn-Apply ">
                         <button
@@ -359,7 +362,7 @@ const Features = () => {
                 </div>
                 <div className="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
                   <div className="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
-                    <h4 className="mtext-109 cl2 p-b-30">Cart Totals</h4>
+                    <h4 className="mtext-109 cl2 p-b-30">Tổng Giỏ Hàng</h4>
 
                     {/* <div className="flex-w flex-t bor12 p-b-13">
                       <div className="size-208">
@@ -373,19 +376,29 @@ const Features = () => {
 
                     <div className="flex-w flex-t bor12 p-t-15 p-b-30">
                       <div className="size-208 w-full-ssm">
-                        <span className="stext-110 cl2">Shipping:</span>
+                        <span className="stext-110 cl2">Vận Chuyển:</span>
+                        <div className="infomation">
+                          <div className="stext-110 cl2 phone-numer">
+                            Số Điện Thoại:
+                          </div>
+                          <div className="stext-110 cl2 info">Địa Chỉ:</div>
+                          <div className="stext-110 cl2 info">
+                            Tỉnh/Thành Phố:
+                          </div>
+                          <div className="stext-110 cl2 info">Quận/Huyện:</div>
+                          <div className="stext-110 cl2 info">Phường/Xã:</div>
+                        </div>
                       </div>
 
                       <div className="size-209 p-r-18 p-r-0-sm w-full-ssm">
                         <p className="stext-111 cl6 p-t-2">
-                          There are no shipping methods available. Please double
-                          check your address, or contact us if you need any
-                          help.
+                          Phương thức vận chuyển sẽ được chúng tôi lựa chọn phù
+                          hợp với địa chỉ giao hàng của bạn
                         </p>
 
                         <div className="p-t-15">
                           <span className="stext-112 cl8">
-                            Calculate Shipping
+                            Tính Toán Vận Chuyển
                           </span>
                           <div className="bor8 bg0 m-b-12">
                             <input
@@ -460,7 +473,7 @@ const Features = () => {
 
                     <div className="flex-w flex-t p-t-27 p-b-33">
                       <div className="size-208">
-                        <span className="mtext-101 cl2">Total:</span>
+                        <span className="mtext-101 cl2">Tổng Cộng:</span>
                       </div>
 
                       <div className="size-209 p-t-1">
@@ -472,7 +485,7 @@ const Features = () => {
                       className="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer"
                       onClick={handleCheckout}
                     >
-                      Proceed to Checkout
+                      Đặt Hàng
                     </button>
                     {/* <button
                       className="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer"

@@ -222,7 +222,7 @@ function ListProductItem({ productItem, status, home, shop }) {
             className="position-absolute card__product--item-btn mx-2 col-sm-4 col-md-6 "
             onClick={(e) => handleDetails(e, productItem.productId)}
           >
-            Details
+            Thông tin
           </Button>
           <Button
             variant="primary"
@@ -235,7 +235,7 @@ function ListProductItem({ productItem, status, home, shop }) {
               )
             }
           >
-            Buy
+            Mua
           </Button>
         </Row>
       </Card.Body>
