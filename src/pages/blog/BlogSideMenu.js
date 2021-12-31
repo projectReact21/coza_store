@@ -1,35 +1,80 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CateloryListText from "../../component/CateloryListText";
-import productmine from "../../resoures/img/product-min-01.jpg";
-import productmine2 from "../../resoures/img/product-min-02.jpg";
-import productmine3 from "../../resoures/img/product-min-03.jpg";
+import productService from "./../../services/productService";
+import { useSelector, useDispatch } from "react-redux";
+import mycartService from "./../../services/mycartService";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import ActionTypes from "./../../stores/action";
 
 const BlogSideMenu = () => {
+  const [dataSideBar, setDataSideBar] = useState();
+  const [page, setPage] = useState(0);
+  const [totalPage, setTotalPage] = useState();
+  const getUser = useSelector((state) => state.auth.dataUser);
+  const isLogin = useSelector((state) => state.auth.isLogin);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  setInterval(() => {
+    // setPage(x);
+  }, 300000);
   const listCategoies = [
-    "Fashion",
-    "Beauty",
-    "Street style",
-    "Life style",
-    "DIY & Crafts",
+    "Thời Trang",
+    "làm Đẹp",
+    "Phong Cách Đường Phố",
+    "Phong Cách Cuộc Sống",
+    "Cửa Hàng Và Đồ Thủ Công",
   ];
   const listTags = ["Fashion", "Lifestyle", "Demin", "Streetstyle", "Carfs"];
-  const listFeatures = [
-    {
-      img: productmine,
-      name: "White Shirt With Pleat Detail Back",
-      price: "19.00",
-    },
-    {
-      img: productmine2,
-      name: "Converse All Star Hi Black Canvas",
-      price: "39.00",
-    },
-    {
-      img: productmine3,
-      name: "Nixon Porter Leather Watch In Tan",
-      price: "17.00",
-    },
-  ];
+  useEffect(() => {
+    productService.getPaging(page, 3).then((res) => {
+      setDataSideBar(res.data.data.data);
+      setTotalPage(res.data.data.pagingInfo.totalPage);
+    });
+  }, [page]);
+  useEffect(() => {
+    const x = setInterval(() => {
+      const y = Math.floor(Math.random() * 20);
+      if (y < totalPage) setPage(y);
+    }, 15000);
+    return () => clearTimeout(x);
+  }, []);
+  const addToCart = (e, item, name, id) => {
+    e.preventDefault();
+    if (isLogin) {
+      const newData = {
+        id: item.id,
+        quantity: 1,
+        userId: id,
+      };
+      mycartService.add(newData).then((res) => {
+        if (res.data.errorCode === 0) {
+          toast.success(`đã thêm ${name} vào giỏ hàng `);
+          mycartService.getListId(getUser.userId).then((res) => {
+            dispatch({
+              type: ActionTypes.LOAD_MY_CARTS,
+              allmycarts: res.data.data,
+            });
+          });
+        } else toast.warning(res.data.errorMessage);
+      });
+      mycartService.getListId(getUser.userId).then((res) => {
+        dispatch({
+          type: ActionTypes.LOAD_MY_CARTS,
+          allmycarts: res.data.data,
+        });
+      });
+    } else {
+      dispatch({
+        type: ActionTypes.CURRENT_LOACION,
+        currentLocation: window.location.pathname,
+      });
+      navigate("/login");
+    }
+  };
+
+  console.log(dataSideBar);
   return (
     <>
       <div className="side-menu">
@@ -38,7 +83,7 @@ const BlogSideMenu = () => {
             className="stext-103 cl2 plh4 size-116 p-l-28 p-r-55"
             type="text"
             name="search"
-            placeholder="Search"
+            placeholder="Tìm Kiếm"
           />
 
           <button className="flex-c-m size-122 ab-t-r fs-18 cl4 hov-cl1 trans-04">
@@ -47,7 +92,7 @@ const BlogSideMenu = () => {
         </div>
 
         <div className="p-t-55">
-          <h4 className="mtext-112 cl2 p-b-33 fw-bold">Categories</h4>
+          <h4 className="mtext-112 cl2 p-b-33 fw-bold">Danh Sách</h4>
 
           <ul>
             {listCategoies.map((listItem, index) => (
@@ -64,27 +109,34 @@ const BlogSideMenu = () => {
         </div>
 
         <div className="p-t-65">
-          <h4 className="mtext-112 cl2 p-b-33 fw-bold">Featured Products</h4>
-
+          <h4 className="mtext-112 cl2 p-b-33 fw-bold">Sản phẩm Nổi Bật</h4>
           <ul>
-            {listFeatures.map((item, index) => (
+            {dataSideBar?.map((item, index) => (
               <li className="flex-w flex-t p-b-30" key={index}>
                 <a
+                  onClick={(e) => addToCart(e, item, item.name, getUser.userId)}
                   href="/#"
                   className="wrao-pic-w size-214 hov-ovelay1 m-r-20 text-decoration-none"
                 >
-                  <img src={item.img} alt="PRODUCT" />
+                  <img
+                    style={{ width: "6rem" }}
+                    src={item.srcImg}
+                    alt="PRODUCT"
+                  />
                 </a>
 
                 <div className="size-215 flex-col-t p-t-8">
                   <a
                     href="/#"
+                    onClick={(e) =>
+                      addToCart(e, item, item.name, getUser.userId)
+                    }
                     className="stext-116 cl8 hov-cl1 trans-04 text-decoration-none"
                   >
                     {item.name}
                   </a>
 
-                  <span className="stext-116 cl6 p-t-20">${item.price}</span>
+                  <span className="stext-116 cl6 p-t-20">{item.price}.000</span>
                 </div>
               </li>
             ))}

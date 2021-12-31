@@ -74,9 +74,9 @@ function Header() {
     } else {
       getMyCart([]);
     }
-    // blogService.getList().then((res) => {
-    //   getBlog(res.data.data);
-    // });
+    blogService.getpaging(0, 3).then((res) => {
+      getBlog(res.data.data.data);
+    });
   }, [isLogin]);
   const handleLogoutAction = (e) => {
     e.preventDefault();
@@ -245,11 +245,7 @@ function Header() {
                     <div className="dropdown">
                       {/* <strong className="text-uppercase"> */}
                       <div className="user " aria-hidden="true">
-                        <img
-                          src={`http://${getUser.avata}`}
-                          alt=""
-                          className="user-img"
-                        />
+                        <img src={getUser.avata} alt="" className="user-img" />
                         <span className="user-username">
                           {getUser.userName}
                         </span>

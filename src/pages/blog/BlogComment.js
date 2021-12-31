@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import commentService from "../../services/commentService";
 // import { useFormik } from "formik";
 // import * as Yup from "yup";
@@ -11,27 +11,25 @@ const BlogComment = ({ blogId }) => {
   const [comments, setComments] = useState([]);
   const isLogin = useSelector((state) => state.auth.isLogin);
   const user = useSelector((state) => state.auth.dataUser);
-  const getCmtId = useSelector((state) => state.blog.blog);
+  const getCmtId = useSelector((state) => state.blog.comments);
+  console.log(getCmtId);
+  const blog = useSelector((state) => state.blog.blog);
   const [comment, setComment] = useState({
-    commentId: 123,
-    userName: "",
+    commentId: "",
     contents: "",
-    avataUser: "",
-    create_at: "2021-12-16T05:56:53.000Z",
-    update_at: "2021-12-16T05:56:53.000Z",
-    userId: "",
+    id: "",
   });
-
-  useEffect(() => {
-    loadData();
-  }, [blogId]);
+  const inputRef = useRef();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const loadData = () => {
     commentService.getListCmt(blogId).then((res) => {
       console.log(res.data);
       if (res.data.errorCode === 0) {
-        setComments(res.data.data);
+        dispatch({
+          type: ActionTypes.COMMENTS,
+          comments: res.data.data,
+        });
       } else {
         console.log("error");
       }
@@ -43,28 +41,19 @@ const BlogComment = ({ blogId }) => {
     setComment(newData);
     console.log(newData);
   };
-  const getdate = () => {
-    var today = new Date(),
-      date =
-        today.getFullYear() +
-        "-" +
-        (today.getMonth() + 1) +
-        "-" +
-        today.getDate();
-    return date;
-  };
+
   const handleSave = () => {
     if (isLogin) {
-      comment.commentId = getCmtId.commentId;
-      comment.avataUser = user.avata;
-      comment.userId = user.userId;
-      comment.userName = user.userName;
-      comment.create_at = getdate();
-
+      comment.commentId = blog.commentId;
+      comment.id = user.id;
       commentService.add(comment).then((res) => {
-        loadData(res.data);
-        toast.success("Comment success");
-        console.log(res.result);
+        if (res.data.errorCode === 0) {
+          loadData();
+          inputRef.current.value = "";
+          toast.success("Comment Thành Công");
+        }
+
+        console.log(res.data);
         console.log("ok");
       });
     } else {
@@ -79,12 +68,11 @@ const BlogComment = ({ blogId }) => {
     commentService.delete(id).then((res) => {
       console.log(res);
       if (res.data.errorCode === 0) {
-        loadData(res.data);
-        toast.warning(res.data.data);
+        loadData(res);
+        toast.warning("Đã Xóa Comment Của Bạn Thành Công");
       }
     });
   };
-
   return (
     <>
       <div className="p-t-40">
@@ -95,7 +83,7 @@ const BlogComment = ({ blogId }) => {
         </p>
         <div className="row d-flex justify-content-start">
           <div className="col-md-12">
-            {comments.map((comment, index) => (
+            {getCmtId.map((comment, index) => (
               <div className="card p-3 mb-2" key={index}>
                 <div className="d-flex justify-content-between align-items-center">
                   <div className="user d-flex flex-row align-items-center">
@@ -107,15 +95,14 @@ const BlogComment = ({ blogId }) => {
                       alt=""
                     />{" "}
                     <span>
-                      <small className="font-weight-bold text-primary">
+                      <small className="font-weight-bold text-primary text-capitalize mx-2">
                         {comment.userName}
                       </small>{" "}
                       <small className="font-weight-bold">
                         {comment.contents}
                       </small>
                     </span>{" "}
-                  </div>{" "}
-                  {/* <small>{formatDate(comment.create_at)}</small> */}
+                  </div>
                   <small>{comment.create_at.slice(0, 10)}</small>
                 </div>
                 <div className="action d-flex justify-content-between mt-2 align-items-center">
@@ -123,7 +110,6 @@ const BlogComment = ({ blogId }) => {
                     className="reply px-4"
                     onClick={(e, id) => handleDelete(e, comment.id)}
                   >
-                    {" "}
                     {comment.userId === user.userId ? (
                       <small>Remove</small>
                     ) : (
@@ -131,7 +117,6 @@ const BlogComment = ({ blogId }) => {
                     )}
                   </div>
                   <div className="icons align-items-center">
-                    {" "}
                     <i className="fa fa-star text-warning"></i>{" "}
                     <i className="fa fa-check-circle-o check-icon"></i>{" "}
                   </div>
@@ -146,6 +131,7 @@ const BlogComment = ({ blogId }) => {
               className="stext-111 cl2 plh3 size-124 p-lr-18 p-tb-15"
               name="contents"
               placeholder="Comment..."
+              ref={inputRef}
               onChange={handleChangeData}
             ></textarea>
           </div>

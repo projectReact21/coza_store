@@ -11,7 +11,6 @@ import productSolded from "../../services/productSolded";
 
 import { DebounceInput } from "react-debounce-input";
 import loginService from "../../services/loginService";
-import { get } from "jquery";
 import { useNavigate } from "react-router-dom";
 
 const Features = () => {
@@ -35,28 +34,12 @@ const Features = () => {
   const getCarts = useSelector((state) => state.auth.allmycarts);
   const [checkouts, setCheckouts] = useState([]);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [tp, setTp] = useState({
     dress: "",
     city: "",
     district: "",
     ward: "",
-  });
-  const [checkout, setCheckout] = useState({
-    userId: 0,
-    userName: "",
-    productName: "",
-    dress: "",
-    phone: "",
-    status: 0,
-    create_at: "",
-    update_at: "",
-    ward: "",
-    district: "",
-    city: "",
-    price: "",
-    quantitys: "",
-    total: "",
-    srcImg: "",
   });
   const [cart, setCart] = useState({
     id: "",
@@ -76,7 +59,6 @@ const Features = () => {
     quantity: 0,
     total: 0,
   });
-  const dispatch = useDispatch();
   const [confirmOptions, setConfirmOptions] = useState({
     show: false,
     content: "",
@@ -85,11 +67,11 @@ const Features = () => {
   useEffect(() => {
     loadData();
     setData({
-      userId: getUser.userId,
-      userName: getUser.userName,
+      userId: getUser?.userId,
+      userName: getUser?.userName,
       details: [],
-      phone: user.phone,
-      dress: user.dress,
+      phone: user?.phone,
+      dress: user?.dress,
     });
     // Total();
   }, [cartTotal, wards]);
@@ -222,30 +204,28 @@ const Features = () => {
     console.log(newData);
     productSolded.add(newData).then((res) => {
       if (res.data.errorCode === 0) {
+        dispatch({
+          type: ActionTypes.DATA_USER_CHECK_OUT,
+          dataUserCheckOut: res.data.data,
+        });
         toast.success(
-          `Checkout Success with codeOrder "${res.data.codeOrder}"`
+          `Checkout Success with codeOrder "${res.data.data.codeOrder}"`
         );
         loadData();
+        navigate("/order");
       }
     });
   };
   const handleTest = (e) => {
     e.preventDefault();
-    console.log(checkouts);
   };
   return (
     <>
       <Container>
         <div className="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
           <a href="index.html" className="text-link trans-04">
-            Home
-            <i
-              className="fa fa-angle-right m-l-9 m-r-10"
-              aria-hidden="true"
-            ></i>
+            Thanh Toán
           </a>
-
-          <span className="text-link text-color">Shoping Cart</span>
         </div>
       </Container>
 
@@ -253,8 +233,8 @@ const Features = () => {
         <Container>
           <Row>
             {getCarts.length === 0 ? (
-              <span className="d-flex justify-content-center fw-bold span-nothing">
-                NOT THINGS MY CARTS
+              <span className="d-flex justify-content-center fw-bold span-nothing text-warning">
+                KHÔNG CÓ SẢN PHẨM TRONG GIỞ HÀNG VUI LÒNG CHỌN SẢN PHẨM
               </span>
             ) : (
               <>
@@ -394,7 +374,7 @@ const Features = () => {
                               name="phone"
                               placeholder="phone"
                               onChange={ChangeTp}
-                              defaultValue={user.phone}
+                              defaultValue={user?.phone}
                             />
                           </div>
                           <div className="bor8 bg0 m-b-12">
@@ -404,7 +384,7 @@ const Features = () => {
                               name="dress"
                               placeholder="Adress"
                               onChange={ChangeTp}
-                              defaultValue={user.dress}
+                              defaultValue={user?.dress}
                             />
                           </div>
 
@@ -431,8 +411,8 @@ const Features = () => {
                               aria-label="Default select example"
                             >
                               {districts.map((c, index) => (
-                                <option key={index} value={c.code}>
-                                  {c.name}
+                                <option key={index} value={c?.code}>
+                                  {c?.name}
                                 </option>
                               ))}
                             </select>
@@ -444,11 +424,11 @@ const Features = () => {
                               className="form-select"
                               aria-label="Default select example"
                               onChange={ChangeTp}
-                              defaultValue={user.ward}
+                              defaultValue={user?.ward}
                             >
                               {wards.map((c, index) => (
-                                <option key={index} value={c.codename}>
-                                  {c.name}
+                                <option key={index} value={c?.codename}>
+                                  {c?.name}
                                 </option>
                               ))}
                             </select>
