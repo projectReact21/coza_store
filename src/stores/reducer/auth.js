@@ -31,18 +31,23 @@ const initialState = {
   color: "",
   taps: "",
   //
-  dataCheckOut: [],
-  dataUserCheckOut: {},
+  dataCheckOut: JSON.parse(localStorage.getItem("datacheckout")) || [],
+  dataUserCheckOut: JSON.parse(localStorage.getItem("datausercheckout")) || {},
 };
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     //
     case ActionTypes.DATA_USER_CHECK_OUT:
+      localStorage.setItem(
+        "datausercheckout",
+        JSON.stringify(action.dataUserCheckOut)
+      );
       return {
         ...state,
         dataUserCheckOut: action.dataUserCheckOut,
       };
     case ActionTypes.DATA_CHECKOUT:
+      localStorage.setItem("datacheckout", JSON.stringify(action.dataCheckOut));
       return {
         ...state,
         dataCheckOut: action.dataCheckOut,

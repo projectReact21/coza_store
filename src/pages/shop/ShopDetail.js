@@ -191,7 +191,7 @@ const ShopDetail = () => {
                   {product.name}
                 </h4>
 
-                <span className="mtext-106 cl2">$ {product.price}</span>
+                <span className="mtext-106 cl2">{product.price}.000đ</span>
 
                 <p className="stext-102 cl3 p-t-23">{product.name}</p>
                 <div className="Description ">

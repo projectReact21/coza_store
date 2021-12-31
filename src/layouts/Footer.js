@@ -1,12 +1,15 @@
 import React from "react";
 import { Container, Row, Col, ListGroup, Form, Button } from "react-bootstrap";
 import LayoutListTextItem from "./LayoutListTextItem";
+import "./css/Header.css";
 const listFirst = ["women", "men", "Shoes", "Watches"];
 // const listSecond = ["track order", "returns", "shipping", "FAQs"];
+
 const listSecond = ["Theo dõi đơn hàng", "Đổi trả", "Vận chuyển", "FAQs"];
+
 function Footer() {
   return (
-    <footer>
+    <footer className="m-footer">
       <Container fluid className="bg-dark ">
         <Container className="bg-dark">
           <Row className="justify-content-center">

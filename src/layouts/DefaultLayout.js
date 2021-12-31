@@ -3,9 +3,10 @@ import { Routes, Route } from "react-router";
 import router from "../router";
 import Footer from "./Footer";
 import Header from "./Header";
+import "./css/Header.css";
 function DefaultLayout() {
   return (
-    <>
+    <div>
       <Header />
       <Routes>
         {router.map((route, index) => (
@@ -13,7 +14,7 @@ function DefaultLayout() {
         ))}
       </Routes>
       <Footer />
-    </>
+    </div>
   );
 }
 

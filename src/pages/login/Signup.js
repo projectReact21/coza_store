@@ -116,7 +116,7 @@ function Signup() {
     loginService.signup(data).then((res) => {
       console.log(res);
       if (res.data.errorCode === 0) {
-        toast.success(res.data.errorMessage);
+        toast.success("Tài khoản đã được đăng kí");
         console.log("ok");
         navigate("/login");
       } else {

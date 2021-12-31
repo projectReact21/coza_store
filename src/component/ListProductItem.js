@@ -215,7 +215,7 @@ function ListProductItem({ productItem, status, home, shop }) {
         </Card.Title>
         <Card.Text
           style={{ fontSize: "1rem" }}
-        >{`$ ${productItem?.price}`}</Card.Text>
+        >{`${productItem?.price}.000đ`}</Card.Text>
         <Row className="justify-content-between flex-row">
           <Button
             variant="primary"

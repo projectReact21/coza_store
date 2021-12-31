@@ -72,6 +72,9 @@ const Features = () => {
       details: [],
       phone: user?.phone,
       dress: user?.dress,
+      ward: user?.ward,
+      city: user?.city,
+      district: user?.district,
     });
     // Total();
   }, [cartTotal, wards]);
@@ -80,7 +83,7 @@ const Features = () => {
     for (let i = 0; i < carts.length; i++) {
       totalVal += carts[i].total;
     }
-    setCartTotal(parseFloat(totalVal).toFixed(2));
+    setCartTotal(parseFloat(totalVal).toFixed(0));
   };
   const handleDetails = (e, id) => {
     e.preventDefault();
@@ -290,7 +293,7 @@ const Features = () => {
                                 </a>
                               </td>
                               <td className="column-3" name="price">
-                                $ {item.price}
+                                {item.price}.000đ
                               </td>
                               <td className="column-4">
                                 <div className="wrap-input">
@@ -313,7 +316,7 @@ const Features = () => {
                                   />
                                 </div>
                               </td>
-                              <td className="column-5">$ {item.total}</td>
+                              <td className="column-5">{item.total}.000đ</td>
                             </tr>
                           ))}
                         </tbody>
@@ -462,7 +465,7 @@ const Features = () => {
                       </div>
 
                       <div className="size-209 p-t-1">
-                        <span className="mtext-110 cl2">$ {cartTotal}</span>
+                        <span className="mtext-110 cl2">{cartTotal}.000đ</span>
                       </div>
                     </div>
 

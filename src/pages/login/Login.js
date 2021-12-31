@@ -26,6 +26,12 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     loginService.login(email, password).then((res) => {
+      // if(password !== res.data.password) {
+      //   setResult("Sai tài khoản hoặc mật khẩu");
+      // }
+      // else{
+
+      // }
       console.log(res);
       if (res.errorCode === 0) {
         console.log(res.data);
@@ -35,14 +41,14 @@ const Login = () => {
           dataUser: res.data,
         });
         location ? navigate(location) : navigate("/home");
-      } else if (res.errorCode === 1) {
+      } else if (parseInt(res.errorCode) === 404) {
         setEmail("");
         emailRef.current.focus();
-        setResult(res.errorMessage);
-      } else {
+        setResult("Sai tài Khoản");
+      } else if (parseInt(res.errorCode) === 406) {
         setPassword("");
         passwordRef.current.focus();
-        setResult(res.errorMessage);
+        setResult(" mật khẩu");
       }
     });
   };

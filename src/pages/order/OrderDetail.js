@@ -14,6 +14,7 @@ const OrderDetail = () => {
   const [total, setTotal] = useState(0);
   console.log(data);
   useEffect(() => {
+    setTotal(0);
     data.map((d) => setTotal((total) => (total += d.total)));
   }, []);
   return (
@@ -37,23 +38,20 @@ const OrderDetail = () => {
             Chi tiết đơn hàng
           </h4>
         </Row>
-        <Row className="justify-content-center">
+        <Row className=" align-items-start mt-5">
           <div className="kHWfJY col-8">
             <div className="ipnhKS">
               <div className="name-content title">Tên khách Hàng :</div>
               <span className="mx-2 fs-4 text-primary">{user?.userName} </span>
               <div className="title">Địa chỉ người nhận :</div>
               <span className="mx-2 fs-4 text-primary">
-                {"Khư Vực / Đường : " +
+                {"Số Nhà : " +
                   user?.dress +
                   " , " +
-                  "Phường / Xã :" +
                   user?.ward +
                   " , " +
-                  "Quận / Huyện :" +
                   user?.district +
                   " , " +
-                  "Thành Phố :" +
                   user?.city}
               </span>
               <div className="content">
@@ -103,7 +101,7 @@ const OrderDetail = () => {
                       <td className="product-name">
                         <a
                           href="/#"
-                          style={{ color: "blue", "text-decoration": "none" }}
+                          style={{ color: "blue", textDecoration: "none" }}
                         >
                           <h3 style={{ verticalAlign: "middle" }}>
                             {data.name}
@@ -112,7 +110,7 @@ const OrderDetail = () => {
                       </td>
                       <td className="price" style={{ verticalAlign: "middle" }}>
                         {" "}
-                        {data.price} đ
+                        {data.price}.000 đ
                       </td>
                       <td
                         className="quantity text-center"
@@ -121,13 +119,13 @@ const OrderDetail = () => {
                         {data.quantity}
                       </td>
                       <td className="total" style={{ verticalAlign: "middle" }}>
-                        {data.total}{" "}
+                        {data.total}.000đ
                       </td>
                     </tr>
                   ))}
                 </tbody>
                 <tfoot>
-                  <tr>
+                  {/* <tr>
                     <td colSpan="4">
                       <span>Tạm tính:</span>
                     </td>
@@ -138,12 +136,13 @@ const OrderDetail = () => {
                       <span>Coupon</span>
                     </td>
                     <td>0</td>
-                  </tr>
+                  </tr> */}
                   <tr>
-                    <td colSpan="4">
+                    <td colSpan="4"></td>
+                    <td className="text-center total">
                       <span style={{ color: "red" }}>Tổng cộng:</span>
                     </td>
-                    <td>{total} đ</td>
+                    <td className="text-center total">{total}.000đ</td>
                   </tr>
                 </tfoot>
               </table>
