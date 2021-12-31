@@ -114,11 +114,8 @@ const Blog = () => {
                             <span className="cl4 ">Tác Giả</span>
                             <span className="fw-bolder fs-3 mx-2 text-danger">
                               {blog.author}
-                            </span>
-<<<<<<< HEAD
-
+                            </span>{" "}
                             {/* <span>8 Comments</span> */}
-=======
                             <span className="cl12 m-l-4 m-r-6">|</span>
                           </span>
                           <span className="flex-w col-auto ">
@@ -131,7 +128,6 @@ const Blog = () => {
                                 {t}
                               </a>
                             ))}
->>>>>>> 6e323da89931a4f0b99ea01599f59f4d731b13e6
                           </span>
                         </span>
 

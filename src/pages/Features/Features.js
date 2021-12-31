@@ -211,11 +211,7 @@ const Features = () => {
           dataUserCheckOut: res.data.data,
         });
         toast.success(
-<<<<<<< HEAD
           `Bạn đã đặt hàng thành công với mã đơn hàng "${res.data.data.codeOrder}"`
-=======
-          `Checkout Success with codeOrder "${res.data.data.codeOrder}"`
->>>>>>> 6e323da89931a4f0b99ea01599f59f4d731b13e6
         );
         loadData();
         navigate("/order");
@@ -230,7 +226,6 @@ const Features = () => {
       <Container>
         <div className="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
           <a href="index.html" className="text-link trans-04">
-<<<<<<< HEAD
             Trang Chủ
             <i
               className="fa fa-angle-right m-l-9 m-r-10"
@@ -238,11 +233,7 @@ const Features = () => {
             ></i>
           </a>
 
-          <span className="text-link text-color">Giỏ hàng</span>
-=======
-            Thanh Toán
-          </a>
->>>>>>> 6e323da89931a4f0b99ea01599f59f4d731b13e6
+          <span className="text-link text-color">Thanh Toán</span>
         </div>
       </Container>
 
@@ -250,13 +241,8 @@ const Features = () => {
         <Container>
           <Row>
             {getCarts.length === 0 ? (
-<<<<<<< HEAD
-              <span className="d-flex justify-content-center fw-bold span-nothing">
-                Hiện Tại Chưa Có Bắt Kỳ Sản Phẩm Nào Trong Giỏ Hàng
-=======
               <span className="d-flex justify-content-center fw-bold span-nothing text-warning">
                 KHÔNG CÓ SẢN PHẨM TRONG GIỞ HÀNG VUI LÒNG CHỌN SẢN PHẨM
->>>>>>> 6e323da89931a4f0b99ea01599f59f4d731b13e6
               </span>
             ) : (
               <>
