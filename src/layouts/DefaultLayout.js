@@ -6,7 +6,7 @@ import Header from "./Header";
 import "./css/Header.css";
 function DefaultLayout() {
   return (
-    <div>
+    <div className="DefaultLayout">
       <Header />
       <Routes>
         {router.map((route, index) => (
