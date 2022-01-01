@@ -2,7 +2,7 @@
   "name": "coza_store",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/projectReact21/cozaStore.git",
+  "homepage": "https://github.com/VoThanhHieu/cozastores.git",
   "dependencies": {
     "@testing-library/jest-dom": "^5.15.1",
     "@testing-library/react": "^11.2.7",
@@ -35,10 +35,10 @@
     "yup": "^0.32.11"
   },
   "scripts": {
-    "start": "set PORT=9000 && react-scripts --openssl-legacy-provider start",
-    "build": "react-scripts --openssl-legacy-provider build",
-    "test": "react-scripts --openssl-legacy-provider test",
-    "eject": "react-scripts --openssl-legacy-provider eject",
+    "start": "set PORT=9000 && react-scripts  start",
+    "build": "react-scripts  build",
+    "test": "react-scripts  test",
+    "eject": "react-scripts  eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
